@@ -1,10 +1,10 @@
-import HeroSection from "@/components/homePage/heroSection";
-import Image from "next/image";
+import About1 from "@/components/aboutPage/example";
 
-export default function Home() {
+export default function About() {
   return (
     <div className="flex flex-col flex-1 items-center justify-center text-white text-4xl font-extrabold bg-zinc-900 font-sans h-screen ">
-      <HeroSection/>
+      About Page
+      <About1/>
     </div>
   );
 }
