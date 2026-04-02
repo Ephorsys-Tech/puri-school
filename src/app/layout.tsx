@@ -1,11 +1,21 @@
 import type { Metadata } from 'next';
+import { Playfair_Display, Source_Sans_3 } from 'next/font/google';
 import './globals.css';
-import Navbar from '@/components/outlet/navbar/navbar';
-import Footer from '@/components/outlet/footer/foooter';
+import { AuthProvider } from '@/context/AuthContext';
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-heading',
+});
+
+const sourceSans = Source_Sans_3({
+  subsets: ['latin'],
+  variable: '--font-body',
+});
 
 export const metadata: Metadata = {
-  title: 'Your App',
-  description: 'Your description',
+  title: 'GNO Project School - Puri',
+  description: 'Usthi Foundation India, Puri School',
 };
 
 export default function RootLayout({
@@ -14,22 +24,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-      <html lang="en">
-      <body
-        // className={`${syne.variable} ${inter.variable} antialiased min-h-screen flex flex-col`}
-        suppressHydrationWarning
-      >
-        {/* <Preloader /> */}
-        <Navbar />
-
-        <main className="flex-1">
+    <html lang="en" className={`${playfair.variable} ${sourceSans.variable}`}>
+      <body className="antialiased min-h-screen bg-cream text-navy flex flex-col font-sans">
+        <AuthProvider>
           {children}
-          {/* <ScrollToTop /> */}
-          {/* <FloatingWhatsApp /> */}
-        </main>
-
-        <Footer />
+        </AuthProvider>
       </body>
-      </html>
+    </html>
   );
 }

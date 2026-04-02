@@ -1,37 +1,36 @@
-/**
- * Type definitions for Gallery and Admin
- */
-
-export interface GalleryItem {
+export interface GalleryImage {
   _id: string;
-  title: string;
-  description?: string;
   imageUrl: string;
-  category: 'event' | 'activity' | 'achievement' | 'other';
+  category: GalleryCategory;
   createdAt: string;
-  updatedAt: string;
 }
 
-export interface Admin {
+export type GalleryCategory = 'event' | 'activity' | 'achievement';
+
+export interface LoginCredentials {
+  email: string;
+  password: string;
+}
+
+export interface AuthTokens {
+  accessToken: string;
+  refreshToken: string;
+}
+
+export interface AuthUser {
   id: string;
   email: string;
+  name?: string;
+  role?: string;
 }
 
 export interface LoginResponse {
-  message: string;
+  success: boolean;
   accessToken: string;
   refreshToken: string;
-  admin: Admin;
-}
-
-export interface TokenRefreshResponse {
-  message: string;
-  accessToken: string;
-}
-
-export interface JWTPayload {
-  adminId: string;
-  type?: 'access' | 'refresh';
-  iat?: number;
-  exp?: number;
+  user?: AuthUser;
+  admin?: {
+    id: string;
+    email: string;
+  };
 }

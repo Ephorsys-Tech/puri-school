@@ -41,18 +41,16 @@ export async function POST(request: NextRequest) {
 
     await connectDB();
 
-    const { title, description, imageUrl, category } = await request.json();
+    const { imageUrl, category } = await request.json();
 
-    if (!title || !imageUrl) {
+    if (!imageUrl || !category) {
       return NextResponse.json(
-        { error: 'Title and image URL are required' },
+        { error: 'Image URL and Category are required' },
         { status: 400 }
       );
     }
 
     const gallery = await Gallery.create({
-      title,
-      description,
       imageUrl,
       category,
     });
