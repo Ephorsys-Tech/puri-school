@@ -64,8 +64,7 @@ export async function PUT(
 
     await connectDB();
 
-    const { id } = await params;
-    console.log(id);
+    const { id } = params;
 
     if (!Types.ObjectId.isValid(id)) {
       return NextResponse.json(
@@ -74,11 +73,11 @@ export async function PUT(
       );
     }
 
-    const { title, description, imageUrl, category } = await request.json();
+    const { imageUrl, category } = await request.json();
 
     const gallery = await Gallery.findByIdAndUpdate(
       id,
-      { title, description, imageUrl, category },
+      { imageUrl, category },
       { new: true, runValidators: true }
     );
 

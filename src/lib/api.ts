@@ -1,196 +1,115 @@
-/**
- * API Service - Utility functions for making API calls
- * Handles access tokens and automatic refresh on expiration
- */
+import axios, { AxiosInstance } from 'axios';
 
-import { GalleryItem } from '@/types';
+const baseURL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
 
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
-
-interface ApiResponse<T = any> {
-  message: string;
-  data?: T;
-  error?: string;
-  accessToken?: string;
-  refreshToken?: string;
-}
-
-export class ApiService {
-  private static accessToken: string | null = null;
-  private static refreshToken: string | null = null;
-
-  // Initialize tokens from localStorage on client side
-  static initialize(): void {
+export const tokenStorage = {
+  getTokens: () => {
+    if (typeof window === 'undefined') return null;
+    const tokens = localStorage.getItem('auth_tokens');
+    return tokens ? JSON.parse(tokens) : null;
+  },
+  setTokens: (tokens: { accessToken: string; refreshToken: string }) => {
     if (typeof window !== 'undefined') {
-      this.accessToken = localStorage.getItem('accessToken');
-      this.refreshToken = localStorage.getItem('refreshToken');
+      localStorage.setItem('auth_tokens', JSON.stringify(tokens));
     }
-  }
-
-  // Set tokens after login
-  static setTokens(accessToken: string, refreshToken: string): void {
-    this.accessToken = accessToken;
-    this.refreshToken = refreshToken;
+  },
+  clearTokens: () => {
     if (typeof window !== 'undefined') {
-      localStorage.setItem('accessToken', accessToken);
-      localStorage.setItem('refreshToken', refreshToken);
+      localStorage.removeItem('auth_tokens');
     }
   }
+};
 
-  // Get access token from memory or localStorage
-  static getAccessToken(): string | null {
-    if (!this.accessToken && typeof window !== 'undefined') {
-      this.accessToken = localStorage.getItem('accessToken');
+const api: AxiosInstance = axios.create({
+  baseURL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+export const apiAuth: AxiosInstance = axios.create({
+  baseURL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+let isRefreshing = false;
+let failedQueue: Array<{ resolve: (token: string) => void; reject: (error: any) => void }> = [];
+
+const processQueue = (error: any, token: string | null = null) => {
+  failedQueue.forEach(prom => {
+    if (error) {
+      prom.reject(error);
+    } else if (token) {
+      prom.resolve(token);
     }
-    return this.accessToken;
-  }
+  });
 
-  // Get refresh token
-  private static getRefreshToken(): string | null {
-    if (!this.refreshToken && typeof window !== 'undefined') {
-      this.refreshToken = localStorage.getItem('refreshToken');
+  failedQueue = [];
+};
+
+apiAuth.interceptors.request.use(
+  (config) => {
+    const tokens = tokenStorage.getTokens();
+    if (tokens?.accessToken) {
+      config.headers.Authorization = `Bearer ${tokens.accessToken}`;
     }
-    return this.refreshToken;
-  }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
-  // Clear tokens on logout
-  static clearTokens(): void {
-    this.accessToken = null;
-    this.refreshToken = null;
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('refreshToken');
-    }
-  }
+apiAuth.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config;
 
-  // Refresh access token
-  private static async refreshAccessToken(): Promise<boolean> {
-    try {
-      const refreshToken = this.getRefreshToken();
-      if (!refreshToken) return false;
-
-      const response = await fetch(`${API_BASE_URL}/auth/refresh`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ refreshToken }),
-      });
-
-      if (!response.ok) {
-        this.clearTokens();
-        return false;
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      if (isRefreshing) {
+        return new Promise((resolve, reject) => {
+          failedQueue.push({ resolve, reject });
+        })
+          .then((token) => {
+            originalRequest.headers.Authorization = `Bearer ${token}`;
+            return apiAuth(originalRequest);
+          })
+          .catch((err) => Promise.reject(err));
       }
 
-      const data = await response.json();
-      this.accessToken = data.accessToken;
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('accessToken', data.accessToken);
-      }
-      return true;
-    } catch (error) {
-      console.error('Token refresh failed:', error);
-      return false;
-    }
-  }
+      originalRequest._retry = true;
+      isRefreshing = true;
 
-  // Helper to make requests with automatic token refresh
-  private static async request<T>(
-    endpoint: string,
-    options: RequestInit = {},
-    retry: boolean = true
-  ): Promise<ApiResponse<T>> {
-    const headers: Record<string, string> = {
-      'Content-Type': 'application/json',
-    };
+      try {
+        const tokens = tokenStorage.getTokens();
+        if (!tokens?.refreshToken) throw new Error('No refresh token');
 
-    if (options.headers && typeof options.headers === 'object') {
-      Object.assign(headers, options.headers);
-    }
+        const { data } = await api.post('/api/auth/refresh', {
+          refreshToken: tokens.refreshToken,
+        });
 
-    const token = this.getAccessToken();
-    if (token) {
-      headers['Authorization'] = `Bearer ${token}`;
-    }
+        tokenStorage.setTokens({
+          accessToken: data.accessToken,
+          refreshToken: data.refreshToken,
+        });
 
-    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-      ...options,
-      headers,
-    });
-
-    const data = await response.json();
-
-    // If 401 (Unauthorized) and we haven't retried yet, try to refresh token
-    if (response.status === 401 && retry) {
-      const refreshed = await this.refreshAccessToken();
-      if (refreshed) {
-        return this.request<T>(endpoint, options, false);
+        processQueue(null, data.accessToken);
+        originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
+        return apiAuth(originalRequest);
+      } catch (err) {
+        processQueue(err, null);
+        tokenStorage.clearTokens();
+        if (typeof window !== 'undefined') {
+          window.location.href = '/login';
+        }
+        return Promise.reject(err);
+      } finally {
+        isRefreshing = false;
       }
     }
 
-    if (!response.ok) {
-      throw new Error(data.error || `API request failed with status ${response.status}`);
-    }
-
-    return data;
+    return Promise.reject(error);
   }
+);
 
-  // AUTH ENDPOINTS
-  static async login(email: string, password: string) {
-    const response = await this.request<{ id: string; email: string }>(
-      '/auth/login',
-      {
-        method: 'POST',
-        body: JSON.stringify({ email, password }),
-      },
-      false
-    );
-    return response as ApiResponse<{ id: string; email: string }> & {
-      accessToken: string;
-      refreshToken: string;
-    };
-  }
-
-  // GALLERY ENDPOINTS
-  static async getGallery() {
-    return this.request<GalleryItem[]>('/gallery');
-  }
-
-  static async getGalleryItem(id: string) {
-    return this.request<GalleryItem>(`/gallery/${id}`);
-  }
-
-  static async createGalleryItem(
-    title: string,
-    imageUrl: string,
-    description?: string,
-    category?: string
-  ) {
-    return this.request<GalleryItem>('/gallery', {
-      method: 'POST',
-      body: JSON.stringify({ title, imageUrl, description, category }),
-    });
-  }
-
-  static async updateGalleryItem(
-    id: string,
-    title?: string,
-    imageUrl?: string,
-    description?: string,
-    category?: string
-  ) {
-    return this.request<GalleryItem>(`/gallery/${id}`, {
-      method: 'PUT',
-      body: JSON.stringify({ title, imageUrl, description, category }),
-    });
-  }
-
-  static async deleteGalleryItem(id: string) {
-    return this.request<{ message: string }>(`/gallery/${id}`, {
-      method: 'DELETE',
-    });
-  }
-}
-
-export default ApiService;
+export default api;

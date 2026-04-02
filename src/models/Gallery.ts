@@ -1,8 +1,6 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
 export interface IGallery extends Document {
-  title: string;
-  description: string;
   imageUrl: string;
   category: string;
   createdAt: Date;
@@ -11,25 +9,15 @@ export interface IGallery extends Document {
 
 const GallerySchema: Schema = new Schema(
   {
-    title: {
-      type: String,
-      required: [true, 'Please provide a title'],
-      trim: true,
-      maxlength: 200,
-    },
-    description: {
-      type: String,
-      trim: true,
-      maxlength: 1000,
-    },
     imageUrl: {
       type: String,
       required: [true, 'Please provide an image URL'],
     },
     category: {
       type: String,
-      enum: ['event', 'activity', 'achievement', 'other'],
-      default: 'other',
+      enum: ['event', 'activity', 'achievement'],
+      default: 'activity',
+      required: true,
     },
   },
   {
@@ -37,5 +25,8 @@ const GallerySchema: Schema = new Schema(
   }
 );
 
-export default mongoose.models.Gallery ||
-  mongoose.model<IGallery>('Gallery', GallerySchema);
+if (mongoose.models.Gallery) {
+  delete mongoose.models.Gallery;
+}
+
+export default mongoose.model<IGallery>('Gallery', GallerySchema);
