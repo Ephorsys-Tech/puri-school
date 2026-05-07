@@ -38,14 +38,19 @@ export default function AboutPreview() {
             {/* Abstract Image Placeholder Grid */}
             <div className="grid grid-cols-2 gap-4">
               <div className="h-64 bg-cream/10 rounded-tl-3xl rounded-br-3xl overflow-hidden glass mix-blend-luminosity hover:mix-blend-normal transition-all duration-500">
-                <div className="w-full h-full bg-gradient-to-tr from-gold/20 to-transparent"></div>
+                <div className="w-full h-full bg-gradient-to-tr from-gold/20 to-transparent">
+                asdas.
+                </div>
               </div>
               <div className="h-64 bg-blue rounded-tr-3xl overflow-hidden mt-8">
-                <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600&q=80')] bg-cover bg-center opacity-50 hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600&q=80')] bg-cover bg-center opacity-50 hover:opacity-100 transition-opacity duration-500">
+                sad
+                </div>
               </div>
               <div className="h-48 bg-amber rounded-bl-3xl overflow-hidden glass shadow-2xl z-10 -mt-8 relative">
                 <div className="w-full h-full flex items-center justify-center p-6 text-center">
-                  <span className="font-heading font-bold text-navy text-2xl">20+ <br/> <span className="text-sm font-sans uppercase">Years of Impact</span></span>
+                  <span className="font-heading font-bold text-navy text-2xl">
+                  34+ <br/> <span className="text-sm font-sans uppercase">Years of Impact</span></span>
                 </div>
               </div>
               <div className="h-48 bg-cream/5 rounded-br-3xl overflow-hidden border border-gold/30">

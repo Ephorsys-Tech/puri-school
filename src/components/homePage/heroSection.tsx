@@ -2,14 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-/* ===================== CONFIG ===================== */
 
-const AUTO_PLAY = 5000;
+const AUTO_PLAY = 7000;
 const BOX_COUNT = 12;
 
-/* ===================== TYPES ===================== */
 
 type Slide = {
   img: string;
@@ -21,35 +19,37 @@ type Slide = {
   link: string;
 };
 
-/* ===================== SLIDES ===================== */
 
 const slides: Slide[] = [
   {
     img: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1600&q=80",
-    heading: "Help us",
-    highlight: "to save",
-    tail: "The homeless people",
-    subtext: "All of our effort can bring back the life",
-    button: "Donate",
-    link: "/donate",
+    heading: "Empower",
+    highlight: "Every Child",
+    tail: "With Education",
+    subtext:
+      "Free education and support for 400+ children in Puri.",
+    button: "Know More",
+    link: "/about",
   },
   {
     img: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=1600&q=80",
-    heading: "Together we",
-    highlight: "can feed",
-    tail: "The hungry children",
-    subtext: "Every contribution builds hope for tomorrow",
-    button: "Donate",
-    link: "/donate",
+    heading: "Building",
+    highlight: "Bright Futures",
+    tail: "Since 1992",
+    subtext:
+      "Helping students grow and succeed in life.",
+    button: "Know More",
+    link: "/gallery",
   },
   {
     img: "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=1600&q=80",
-    heading: "Empower",
-    highlight: "every child",
-    tail: "With quality education",
-    subtext: "Knowledge is the greatest gift we can give",
-    button: "Donate",
-    link: "/donate",
+    heading: "Support",
+    highlight: "Talent & Growth",
+    tail: "In Every Child",
+    subtext:
+      "Encouraging sports, arts, and learning.",
+    button: "Know More",
+    link: "/gallery",
   },
 ];
 
@@ -129,6 +129,8 @@ export default function HeroSection() {
   const [current, setCurrent] = useState<number>(0);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
+  const router = useRouter();
+
   useEffect(() => {
     if (timerRef.current) clearTimeout(timerRef.current);
 
@@ -202,6 +204,12 @@ export default function HeroSection() {
             >
               {slide.subtext}
             </motion.p>
+            <motion.button
+              onClick={() => router.push(slide.link)}
+              className="inline-block bg-[#159ABF] hover:bg-[#0c7a9e] transition text-white font-semibold uppercase tracking-widest px-5 py-2 mt-5 rounded-xl shadow-lg"
+            >
+              {slide.button}
+            </motion.button>
           </motion.div>
         </AnimatePresence>
       </div>
