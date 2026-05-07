@@ -5,13 +5,14 @@ import Hero from '@/components/homePage/Hero';
 import AboutPreview from '@/components/homePage/AboutPreview';
 import Facilities from '@/components/homePage/Facilities';
 import GalleryPreview from '@/components/homePage/GalleryPreview';
+import HeroSection from '@/components/homePage/heroSection';
 
 export default function Home() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <main className="flex-grow">
-        <Hero />
+        <HeroSection />
         <AboutPreview />
         <Facilities />
         <GalleryPreview />
