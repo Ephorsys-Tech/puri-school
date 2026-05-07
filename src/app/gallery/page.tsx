@@ -1,8 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import Navbar from '@/components/layout/Navbar';
-import Footer from '@/components/layout/Footer';
 import GalleryGrid from '@/components/gallery/GalleryGrid';
 import api from '@/lib/api';
 import { GalleryImage, GalleryCategory } from '@/types';
@@ -37,7 +35,6 @@ export default function GalleryPage() {
 
   return (
     <>
-      <Navbar />
       <main className="flex-grow pt-32 bg-cream min-h-screen relative overflow-hidden">
         {/* Abstract shapes */}
         <div className="absolute top-20 right-[-10%] w-[600px] h-[600px] bg-blue/5 rounded-full blur-[120px] pointer-events-none"></div>
@@ -74,7 +71,7 @@ export default function GalleryPage() {
           <GalleryGrid images={images} loading={loading} />
         </div>
       </main>
-      <Footer />
+  
     </>
   );
 }

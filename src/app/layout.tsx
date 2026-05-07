@@ -3,6 +3,7 @@ import { Playfair_Display, Source_Sans_3 } from 'next/font/google';
 import './globals.css';
 import { AuthProvider } from '@/context/AuthContext';
 import Navbar from '@/components/outlet/navbar/navbar';
+import Footer from '@/components/outlet/footer/foooter';
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -31,6 +32,7 @@ export default function RootLayout({
         <AuthProvider>
           {children}
         </AuthProvider>
+        <Footer/>
       </body>
     </html>
   );
