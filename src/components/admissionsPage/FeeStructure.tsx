@@ -1,151 +1,112 @@
+'use client';
 import React from 'react';
-import { CreditCard, TrendingDown } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { CreditCard, CheckCircle2 } from 'lucide-react';
 
 export default function FeeStructure() {
   const feeStructure = [
-    {
-      class: 'Nursery - KG',
-      tuition: '₹ 1,500',
-      otherFees: 'Books, uniforms included',
-      monthly: 'Affordable & Accessible'
-    },
-    {
-      class: 'Class 1 - 5',
-      tuition: '₹ 2,000',
-      otherFees: 'Stationery, mid-day meals',
-      monthly: 'Affordable & Accessible'
-    },
-    {
-      class: 'Class 6 - 8',
-      tuition: '₹ 2,500',
-      otherFees: 'Lab fees, activity fees',
-      monthly: 'Affordable & Accessible'
-    },
-    {
-      class: 'Class 9 - 10',
-      tuition: '₹ 3,000',
-      otherFees: 'Board exam fees included',
-      monthly: 'Affordable & Accessible'
-    }
+    { class: 'Nursery - KG', tuition: '₹ 100', otherFees: 'Books & uniforms included' },
+    { class: 'Class 1 - 5', tuition: '₹ 100', otherFees: 'Stationery & meals' },
+    { class: 'Class 6 - 8', tuition: '₹ 100', otherFees: 'Lab & activity fees' },
+    { class: 'Class 9 - 10', tuition: '₹ 100', otherFees: 'Board exam fees included' }
   ];
 
   return (
-    <section className="py-24 bg-navy text-cream">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="flex justify-center mb-4">
-            <div className="w-16 h-16 bg-gold rounded-xl flex items-center justify-center text-navy">
-              <CreditCard size={32} />
-            </div>
-          </div>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4">
-            Fee <span className="text-gold">Structure</span>
-          </h2>
-          <p className="text-cream/80 max-w-2xl mx-auto text-lg">
-            Quality education at affordable prices, supported by Usthi Foundation India
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {feeStructure.map((item, idx) => (
-            <div key={idx} className=" rounded-2xl hover:scale-[1.02] transition-transform">
-              <h3 className="font-heading text-lg font-bold text-cream mb-4">{item.class}</h3>
-              
-              <div className="space-y-4">
-                <div>
-                  <p className="text-cream/60 text-sm mb-1">Monthly Tuition</p>
-                  <p className="text-3xl font-bold text-gold">{item.tuition}</p>
-                </div>
-                
-                <div className="border-t border-cream/20 pt-4">
-                  <p className="text-cream/60 text-sm mb-1">Includes</p>
-                  <p className="text-cream/90 text-sm">{item.otherFees}</p>
-                </div>
-                
-                <div>
-                  <p className="text-gold text-xs font-bold">{item.monthly}</p>
-                </div>
+    <section className="py-28 bg-cream relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue/5 via-cream to-cream pointer-events-none -z-10"></div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <div className="text-center mb-24">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex justify-center mb-6">
+              <div className="w-20 h-20 bg-blue/10 rounded-2xl flex items-center justify-center text-blue shadow-lg">
+                <CreditCard size={40} />
               </div>
             </div>
+            <h2 className="font-heading text-5xl md:text-6xl font-black text-navy mb-6">
+              Fee <span className="text-gradient-blue">Structure</span>
+            </h2>
+            <p className="text-navy/70 max-w-2xl mx-auto text-lg font-medium">
+              Quality education at affordable prices, fully supported by Usthi Foundation India.
+            </p>
+          </motion.div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-24">
+          {feeStructure.map((item, idx) => (
+            <motion.div 
+              key={idx} 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="bg-white rounded-[2.5rem] p-8 shadow-xl border border-navy/5 text-center hover:-translate-y-2 transition-transform duration-300 relative overflow-hidden group"
+            >
+              <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue to-gold opacity-50 group-hover:opacity-100 transition-opacity"></div>
+              <h3 className="font-heading text-2xl font-black text-navy mb-6">{item.class}</h3>
+              <p className="text-navy/50 text-sm font-bold uppercase tracking-wider mb-2">Monthly Nominal Fees</p>
+              <div className="text-4xl font-black text-blue mb-8">{item.tuition}</div>
+              <div className="bg-accent rounded-xl p-4">
+                <p className="text-navy/70 text-sm font-medium">{item.otherFees}</p>
+              </div>
+            </motion.div>
           ))}
         </div>
 
-        <div className="bg-gold/10 rounded-2xl p-12 border border-gold/20 mb-16">
-          <h3 className="font-heading text-2xl font-bold text-gold mb-8 text-center">Fee Breakdown & Benefits</h3>
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-navy rounded-[3rem] p-10 md:p-16 text-white shadow-2xl relative overflow-hidden border border-white/10"
+        >
+          <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-blue/20 rounded-full blur-[120px] pointer-events-none"></div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <h3 className="font-heading text-3xl md:text-4xl font-black text-gold mb-12 text-center relative z-10">Fee Breakdown & Benefits</h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 relative z-10">
             <div>
-              <h4 className="font-bold text-cream mb-6 flex items-center gap-2">
-                <span className="text-gold">📋</span> What's Included
+              <h4 className="font-bold text-2xl text-white mb-8 flex items-center gap-4">
+                <span className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center">📋</span> 
+                What's Included
               </h4>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <span className="text-gold">✓</span>
-                  <span className="text-cream/90">Tuition and academic classes</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-gold">✓</span>
-                  <span className="text-cream/90">Mid-day nutritious meals</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-gold">✓</span>
-                  <span className="text-cream/90">School uniforms (2-3 sets)</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-gold">✓</span>
-                  <span className="text-cream/90">Books and study materials</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-gold">✓</span>
-                  <span className="text-cream/90">Laboratory facilities</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-gold">✓</span>
-                  <span className="text-cream/90">Sports and extracurricular activities</span>
-                </li>
+              <ul className="space-y-4">
+                {['Tuition and academic classes', 'Mid-day nutritious meals', 'School uniforms (2-3 sets)', 'Books and study materials', 'Laboratory facilities', 'Sports activities'].map((item, i) => (
+                  <li key={i} className="flex items-center gap-4">
+                    <CheckCircle2 className="text-gold" size={24} />
+                    <span className="text-white/90 font-medium">{item}</span>
+                  </li>
+                ))}
               </ul>
             </div>
 
             <div>
-              <h4 className="font-bold text-cream mb-6 flex items-center gap-2">
-                <span className="text-gold">💰</span> Special Provisions
+              <h4 className="font-bold text-2xl text-white mb-8 flex items-center gap-4">
+                <span className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center">💰</span> 
+                Special Provisions
               </h4>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <span className="text-gold">✓</span>
-                  <span className="text-cream/90">Sibling discount of 10% available</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-gold">✓</span>
-                  <span className="text-cream/90">Scholarship for merit students</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-gold">✓</span>
-                  <span className="text-cream/90">Financial aid for underprivileged children</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-gold">✓</span>
-                  <span className="text-cream/90">Payment plans available</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-gold">✓</span>
-                  <span className="text-cream/90">Flexible payment options</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-gold">✓</span>
-                  <span className="text-cream/90">One-time admission fee with first payment</span>
-                </li>
+              <ul className="space-y-4">
+                {['Sibling discount of 10% available', 'Scholarship for merit students', 'Financial aid for underprivileged', 'Payment plans available', 'Flexible payment options', 'One-time admission fee'].map((item, i) => (
+                  <li key={i} className="flex items-center gap-4">
+                    <CheckCircle2 className="text-blue" size={24} />
+                    <span className="text-white/90 font-medium">{item}</span>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="bg-gradient-to-r from-navy to-blue rounded-2xl p-8 md:p-12 text-center">
-          <h3 className="font-heading text-2xl font-bold mb-4">Our Commitment</h3>
-          <p className="text-cream/90 max-w-2xl mx-auto leading-relaxed">
-            Backed by Usthi Foundation India, we ensure that quality education is accessible to all, especially underprivileged children. No child is turned away due to inability to pay. Contact the office for scholarship and financial assistance programs.
+        <div className="mt-16 text-center max-w-3xl mx-auto">
+          <p className="text-navy/80 text-lg font-medium leading-relaxed">
+            No child is turned away due to inability to pay. Contact the office for scholarship and financial assistance programs.
           </p>
         </div>
+
       </div>
     </section>
   );
