@@ -89,13 +89,9 @@ export default function Facilities() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
-          <span className="text-gold font-bold uppercase tracking-wider text-sm mb-2 block">
-            Infrastructure
-          </span>
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-navy mb-4">
             World-Class Facilities
           </h2>
-          <div className="w-24 h-1 bg-gold mx-auto rounded-full"></div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
