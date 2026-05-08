@@ -11,6 +11,7 @@ import {
   MdLocationOn,
   MdSchool,
 } from 'react-icons/md';
+import { BsYoutube } from 'react-icons/bs';
 
 export default function Footer() {
   return (
@@ -24,11 +25,11 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-1 md:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4 group">
-              <div className="bg-gradient-to-br from-gold to-amber p-2 rounded-full text-navy">
+              <div className="bg-linear-to-br from-gold to-amber p-2 rounded-full text-navy">
                 <MdSchool size={24} />
               </div>
               <span className="font-heading text-xl font-bold tracking-tight text-cream">
-                GNO Project School
+                Usthi Foundation India School
               </span>
             </Link>
             <p className="text-cream/80 mb-6 text-sm">
@@ -37,10 +38,10 @@ export default function Footer() {
             </p>
             <div className="flex space-x-4">
               <a
-                href="#"
+                href="https://www.youtube.com/@usthischool-2023"
                 className="w-10 h-10 rounded-full glass-navy flex items-center justify-center text-gold hover:bg-gold hover:text-navy transition-all duration-300"
               >
-                <FaFacebookF size={16} />
+                <BsYoutube size={16} />
               </a>
               <a
                 href="#"
@@ -106,16 +107,16 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <MdLocationOn className="text-gold mt-1 shrink-0" size={20} />
                 <span className="text-cream/80 text-sm">
-                  GNO Project School, Usthi Foundation India, Puri, Odisha, India
+                  Usthi Foundation India School,Water works Road Puri, Near to Indoor Stadium, Puri, Odisha
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <MdPhone className="text-gold shrink-0" size={20} />
-                <span className="text-cream/80 text-sm">+91 00000 00000</span>
+                <span className="text-cream/80 text-sm">+91 7853822264</span>
               </li>
               <li className="flex items-center gap-3">
                 <MdEmail className="text-gold shrink-0" size={20} />
-                <span className="text-cream/80 text-sm">info@gnoschoolpuri.org</span>
+                <span className="text-cream/80 text-sm">usthischool@gmail.com</span>
               </li>
             </ul>
           </div>
@@ -123,9 +124,10 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-cream/10 pt-8 flex flex-col md:flex-row justify-between items-center text-cream/60 text-sm">
-          <p>&copy; {new Date().getFullYear()} GNO Project School. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Usthi Foundation School Puri. All rights reserved.</p>
+          <p className='font-semibold' >Powered By <span className='text-gold font-bold ' >Ephorsys</span></p>
           <div className="mt-4 md:mt-0 flex gap-4">
-            <Link href="/privacy" className="hover:text-gold transition-colors">Privacy Policy</Link>
+            <Link href="/privacy-policy" className="hover:text-gold transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-gold transition-colors">Terms of Service</Link>
             <Link href="/login" className="hover:text-gold transition-colors">Admin Portal</Link>
           </div>
