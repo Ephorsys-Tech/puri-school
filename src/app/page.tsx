@@ -8,7 +8,7 @@ import HeroSection from '@/components/homePage/heroSection';
 export default function Home() {
   return (
     <>
-      <main className="flex-grow">
+      <main className="grow">
         <HeroSection />
         <AboutPreview />
         <Facilities />
