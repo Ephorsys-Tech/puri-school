@@ -11,14 +11,17 @@ import {
   User,
   Menu,
   X,
-  School
+  School,
+  Mail
 } from 'lucide-react';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
+  activeTab: 'gallery' | 'messages';
+  setActiveTab: (tab: 'gallery' | 'messages') => void;
 }
 
-export default function DashboardLayout({ children }: DashboardLayoutProps) {
+export default function DashboardLayout({ children, activeTab, setActiveTab }: DashboardLayoutProps) {
   const { user, login, logout, isLoading } = useAuth();
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
   const router = React.useMemo(() => typeof window !== 'undefined' ? require('next/navigation').useRouter() : null, []);
@@ -47,7 +50,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     <div className="min-h-screen bg-cream flex">
       {/* Mobile Toggle */}
       <button 
-        className="lg:hidden fixed top-4 left-4 z-[60] bg-navy text-gold p-2 rounded-lg shadow-lg"
+        className="lg:hidden fixed top-4 right-4 z-[60] bg-navy text-gold p-2 rounded-lg shadow-lg"
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
       >
         {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
@@ -67,11 +70,38 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             <span className="font-heading text-lg font-bold text-cream tracking-tight">Admin Portal</span>
           </Link>
 
-          <div className="flex-grow">
-            <div className="p-3 rounded-xl bg-gold/10 text-gold flex items-center gap-3">
+          <div className="flex-grow space-y-2">
+            <button
+              onClick={() => setActiveTab('gallery')}
+              className={`w-full p-3 rounded-xl flex items-center gap-3 transition-all ${
+                activeTab === 'gallery'
+                  ? 'bg-gold/10 text-gold'
+                  : 'text-cream/60 hover:bg-white/5 hover:text-cream'
+              }`}
+            >
               <ImageIcon size={20} />
               <span className="font-bold">Gallery Manager</span>
-            </div>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('messages')}
+              className={`w-full p-3 rounded-xl flex items-center gap-3 transition-all ${
+                activeTab === 'messages'
+                  ? 'bg-gold/10 text-gold'
+                  : 'text-cream/60 hover:bg-white/5 hover:text-cream'
+              }`}
+            >
+              <Mail size={20} />
+              <span className="font-bold">Messages</span>
+            </button>
+
+            <Link
+              href="/"
+              className="w-full p-3 rounded-xl flex items-center gap-3 transition-all text-cream/60 hover:bg-white/5 hover:text-cream"
+            >
+              <School size={20} />
+              <span className="font-bold">Go to Website</span>
+            </Link>
           </div>
 
           <div className="mt-auto pt-6 border-t border-white/10">

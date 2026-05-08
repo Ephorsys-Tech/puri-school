@@ -13,11 +13,11 @@ import Sports from '@/components/academicsPage/Sports';
 export default function AcademicsPage() {
   return (
     <main className="flex-grow bg-cream relative overflow-hidden">
-      
+
       {/* Header Section with Background Image */}
       <section className="relative pt-32 pb-24 lg:pt-40 lg:pb-32 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img 
+          <img
             src="/images/ACADEMICS.jpg"
             alt="Academic Excellence Background"
             className="w-full h-full object-cover"
