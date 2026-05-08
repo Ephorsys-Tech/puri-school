@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy: #0f172a;
-  --color-blue: #2563eb;
-  --color-gold: #fbbf24;
-  --color-amber: #f59e0b;
-  --color-cream: #f8fafc;
+  --color-navy: #081A2E; /* Dark Navy for text and dark sections */
+  --color-blue: #159ABF; /* Primary Blue */
+  --color-gold: #4FD1FF; /* Secondary Light Blue */
+  --color-amber: #0C7A9E; /* Hover/Deep Blue */
+  --color-cream: #FFFFFF; /* Pure White for main backgrounds */
+  --color-accent: #F3F4F6; /* Light Gray for alternating sections */
 
   --animate-float: float 6s ease-in-out infinite;
   --animate-float-delayed: float 6s ease-in-out 3s infinite;
@@ -53,6 +54,9 @@ body {
 
   .text-gradient-gold {
     @apply bg-gradient-to-br from-gold to-amber bg-clip-text text-transparent;
+  }
+  .text-gradient-blue {
+    @apply bg-gradient-to-br from-blue to-blue-800 bg-clip-text text-transparent;
   }
   
   .bg-mesh {

@@ -1,65 +1,74 @@
+'use client';
 import React from 'react';
+import { motion } from 'framer-motion';
 import { BookMarked } from 'lucide-react';
 
 export default function Subjects() {
   const classSubjects = [
-    {
-      level: 'Nursery & KG',
-      subjects: ['English', 'Mathematics', 'Environmental Awareness', 'Art & Craft', 'Music', 'Physical Education']
-    },
-    {
-      level: 'Class 1 - 5',
-      subjects: ['English', 'Hindi', 'Odia', 'Mathematics', 'EVS', 'Computer Basics', 'Physical Education']
-    },
-    {
-      level: 'Class 6 - 8',
-      subjects: ['English', 'Hindi', 'Odia', 'Mathematics', 'Science', 'Social Science', 'Computer Science']
-    },
-    {
-      level: 'Class 9 - 10',
-      subjects: ['English', 'Mathematics', 'Science', 'Social Science', 'IT/Computer', 'Optional Languages']
-    }
+    { level: 'Nursery & KG', subjects: ['English', 'Mathematics', 'Environmental Awareness', 'Art & Craft', 'Music', 'Physical Education'] },
+    { level: 'Class 1 - 5', subjects: ['English', 'Hindi', 'Odia', 'Mathematics', 'EVS', 'Computer Basics', 'Physical Education'] },
+    { level: 'Class 6 - 8', subjects: ['English', 'Hindi', 'Odia', 'Mathematics', 'Science', 'Social Science', 'Computer Science'] },
+    { level: 'Class 9 - 10', subjects: ['English', 'Mathematics', 'Science', 'Social Science', 'IT/Computer', 'Optional Languages'] }
   ];
 
   return (
-    <section className="py-24 bg-cream">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="flex justify-center mb-4">
-            <div className="w-16 h-16 bg-navy rounded-xl flex items-center justify-center text-gold">
-              <BookMarked size={32} />
-            </div>
-          </div>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-navy mb-4">
-            Subject <span className="text-gradient-gold">Offerings</span>
-          </h2>
-          <p className="text-navy/80 max-w-2xl mx-auto text-lg">
-            Comprehensive subject coverage designed for each academic level
-          </p>
-        </div>
+    <section className="py-28 bg-accent relative overflow-hidden">
+      <div className="absolute top-0 left-[-10%] w-[600px] h-[600px] bg-blue/5 rounded-full blur-[150px] pointer-events-none"></div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {classSubjects.map((classItem, idx) => (
-            <div key={idx} className="glass p-8 rounded-2xl border-l-4 border-gold hover:shadow-lg transition-shadow">
-              <h3 className="font-heading text-2xl font-bold text-navy mb-6">{classItem.level}</h3>
-              <div className="space-y-3">
-                {classItem.subjects.map((subject, sidx) => (
-                  <div key={sidx} className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-gold"></div>
-                    <span className="text-navy/80">{subject}</span>
-                  </div>
-                ))}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+          
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="lg:col-span-5 space-y-8"
+          >
+            <div>
+              <div className="w-20 h-20 bg-blue/10 rounded-2xl flex items-center justify-center text-blue mb-8">
+                <BookMarked size={40} />
               </div>
+              <h2 className="font-heading text-5xl md:text-6xl font-black text-navy leading-tight">
+                Subject <span className="text-gradient-blue">Offerings</span>
+              </h2>
             </div>
-          ))}
+            <p className="text-navy/70 text-lg font-medium leading-relaxed">
+              Our comprehensive subject coverage is meticulously designed for each academic level, ensuring a balanced curriculum that fosters critical thinking and creativity.
+            </p>
+            
+            <div className="relative rounded-[2.5rem] overflow-hidden aspect-[4/3] shadow-2xl border-4 border-white mt-8 hidden lg:block">
+              <img 
+                src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop" 
+                alt="Study materials" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6"
+          >
+            {classSubjects.map((classItem, idx) => (
+              <div key={idx} className="bg-white p-8 rounded-[2rem] shadow-xl border border-navy/5 hover:-translate-y-2 transition-transform duration-300 group">
+                <h3 className="font-heading text-2xl font-black text-navy mb-6 group-hover:text-blue transition-colors">{classItem.level}</h3>
+                <div className="space-y-4">
+                  {classItem.subjects.map((subject, sidx) => (
+                    <div key={sidx} className="flex items-center gap-4">
+                      <div className="w-2 h-2 rounded-full bg-gold"></div>
+                      <span className="text-navy/80 font-medium">{subject}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </motion.div>
+
         </div>
 
-        <div className="mt-16 bg-gradient-to-r from-navy to-blue rounded-2xl p-8 md:p-12 text-cream text-center">
-          <h3 className="font-heading text-2xl font-bold mb-4">Balanced Curriculum</h3>
-          <p className="text-cream/90 max-w-2xl mx-auto">
-            Each subject is designed to develop critical thinking, creativity, and practical skills. We emphasize both theoretical knowledge and hands-on learning experiences through laboratory work, projects, and field studies.
-          </p>
-        </div>
       </div>
     </section>
   );

@@ -27,7 +27,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${playfair.variable} ${sourceSans.variable}`}>
-      <body className="antialiased min-h-screen bg-cream text-navy flex flex-col font-sans">
+      <body className="antialiased min-h-screen bg-cream text-black flex flex-col font-sans">
         <Navbar />
         <AuthProvider>
           {children}
