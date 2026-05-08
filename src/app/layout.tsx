@@ -2,8 +2,7 @@ import type { Metadata } from 'next';
 import { Playfair_Display, Source_Sans_3 } from 'next/font/google';
 import './globals.css';
 import { AuthProvider } from '@/context/AuthContext';
-import Navbar from '@/components/outlet/navbar/navbar';
-import Footer from '@/components/outlet/footer/foooter';
+import LayoutWrapper from '@/components/LayoutWrapper';
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -28,11 +27,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${sourceSans.variable}`}>
       <body className="antialiased min-h-screen bg-cream text-black flex flex-col font-sans">
-        <Navbar />
         <AuthProvider>
-          {children}
+          <LayoutWrapper>
+            {children}
+          </LayoutWrapper>
         </AuthProvider>
-        <Footer/>
       </body>
     </html>
   );

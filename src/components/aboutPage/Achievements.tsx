@@ -1,153 +1,322 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Award, Star, BookOpen, Heart, Trophy, Users, Zap } from 'lucide-react';
+import { Award, Star, BookOpen, Heart, Trophy, Users, Zap, GraduationCap, Utensils, Shirt, Monitor } from 'lucide-react';
 
 export default function Achievements() {
+  const [activeTab, setActiveTab] = useState('all');
+
   const milestones = [
-    { year: '1992', title: 'Foundation', desc: 'Our first project school in Puri began with the aim of imparting holistic education to over 400 underprivileged children.', icon: <Heart size={24} /> },
-    { year: '2000s', title: 'CBSE Curriculum', desc: 'Following the CBSE curriculum from Kindergarten to Class 10, providing essentials completely free.', icon: <BookOpen size={24} /> },
-    { year: '2020', title: 'Graduate Success', desc: 'Our school has produced graduates who have secured prestigious employment opportunities.', icon: <Star size={24} /> },
-    { year: '2023', title: '100% Board Results', desc: 'Achieved a perfect pass rate in Class 10 board examinations, setting new standards of excellence.', icon: <Award size={24} /> },
+    {
+      year: '1992',
+      title: 'Foundation',
+      desc: 'Our first project school in Puri began with the aim of imparting holistic education to over 400 underprivileged children, focusing on the fishermen community in Penthakata village.',
+      icon: <Heart size={22} />,
+      color: '#e05c5c',
+    },
+    {
+      year: '2000s',
+      title: 'CBSE Curriculum',
+      desc: 'Following the CBSE curriculum from Kindergarten to Class 10, providing mid-day meals, uniforms, study materials, and other essentials for personality development — all completely free.',
+      icon: <BookOpen size={22} />,
+      color: '#4a90d9',
+    },
+    {
+      year: '2020',
+      title: 'Graduate Success',
+      desc: 'Our school has produced a sizeable number of graduates who have secured prestigious employment opportunities in various sectors, achieving a decent standard of living and uplifting society as a whole.',
+      icon: <GraduationCap size={22} />,
+      color: '#d4a017',
+    },
+    {
+      year: '2023',
+      title: '100% Board Results',
+      desc: 'Achieved a perfect pass rate in Class 10 board examinations, setting new standards of academic excellence.',
+      icon: <Award size={22} />,
+      color: '#2ecc71',
+    },
   ];
 
   const studentAchievements = [
-    { category: 'Debate', title: 'Global Warming Debate', details: 'Certificate of Merit awarded to Class VI-VIII students.', icon: '🎤' },
-    { category: 'Arts', title: 'District Drawing', details: 'Massive participation and top honors at the district level.', icon: '🎨' },
-    { category: 'Sports', title: 'Soft Ball Tournament', details: '5 students selected to join the state event.', icon: '⚾' },
-    { category: 'Gymnastics', title: 'State Competition', details: 'Selected for state-level tournament from Puri district.', icon: '🤸' },
-    { category: 'Boxing', title: 'Inter-School', details: 'Represented in inter-school block level competition.', icon: '🥊' },
-    { category: 'Yoga', title: 'Khelo India', details: 'Selected to participate in National Level Competition in New Delhi.', icon: '🧘' },
+    {
+      category: 'Debate',
+      tag: 'academic',
+      title: 'Global Warming Debate',
+      details: 'Held at Puri — students from Class VI, VII & VIII participated in deliberations and were awarded a Certificate of Merit.',
+      icon: '🎤',
+      highlight: false,
+    },
+    {
+      category: 'Arts',
+      tag: 'academic',
+      title: 'District Drawing Competition',
+      details: 'Held in the school campus, attended by students from lower to higher classes in large numbers. Top honours at the district level.',
+      icon: '🎨',
+      highlight: false,
+    },
+    {
+      category: 'Softball',
+      tag: 'sports',
+      title: 'District → State Selection',
+      details: '5 students were selected in the district-level tournament to join the state event.',
+      icon: '⚾',
+      highlight: false,
+    },
+    {
+      category: 'Gymnastics',
+      tag: 'sports',
+      title: 'State Competition',
+      details: 'Sri S. Lalit Kumar Reddy of Std. VII was selected at the district-level tournament to participate at the state-level gymnastics competition.',
+      icon: '🤸',
+      highlight: false,
+    },
+    {
+      category: 'Boxing',
+      tag: 'sports',
+      title: 'Inter-School Block Level',
+      details: 'Two students from Std. VI & VII represented the school in the inter-school block-level boxing competition.',
+      icon: '🥊',
+      highlight: false,
+    },
+    {
+      category: 'Javelin Throw',
+      tag: 'sports',
+      title: 'Inter-School Block Level',
+      details: 'One student from Std. VI participated in the inter-school block-level Javelin Throw competition.',
+      icon: '🏹',
+      highlight: false,
+    },
+    {
+      category: 'Yoga',
+      tag: 'sports',
+      title: '🏆 Khelo India — National Level',
+      details: 'Sri S. Lalit Kumar Reddy from Std. VII was selected to participate in the National Level Competition: Khelo India at New Delhi, 14–20 December 2023. Additionally, one girl student from Std. II participated at the District level under this category.',
+      icon: '🧘',
+      highlight: true,
+    },
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
-  };
+  const initiatives = [
+    {
+      icon: <Zap size={32} />,
+      title: 'Holistic Education',
+      desc: 'Comprehensive education focusing on academic excellence and personality development for every child.',
+    },
+    {
+      icon: <Users size={32} />,
+      title: 'Community Focus',
+      desc: 'Serving underprivileged children with special focus on the fishermen community of Penthakata village.',
+    },
+    {
+      icon: <Utensils size={32} />,
+      title: 'Mid-Day Meals',
+      desc: 'Nutritious mid-day meals provided daily, ensuring no child studies on an empty stomach.',
+    },
+    {
+      icon: <Shirt size={32} />,
+      title: 'Free Essentials',
+      desc: 'Uniforms, study materials, and other essentials provided completely free to every enrolled student.',
+    },
+    {
+      icon: <Monitor size={32} />,
+      title: 'Vocational Training',
+      desc: 'Tailoring & computer education equip students with skills for a sustainable and dignified livelihood.',
+    },
+    {
+      icon: <Trophy size={32} />,
+      title: 'Skill Development',
+      desc: 'Creating a demographic dividend through a vibrant academic and vocational environment since 1992.',
+    },
+  ];
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
+  const tabs = [
+    { id: 'all', label: 'All' },
+    { id: 'sports', label: '🏃 Sports' },
+    { id: 'academic', label: '📚 Academic' },
+  ];
+
+  const filtered = activeTab === 'all' ? studentAchievements : studentAchievements.filter(a => a.tag === activeTab);
 
   return (
-    <section className="py-28 bg-cream relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue/5 via-cream to-cream pointer-events-none -z-10"></div>
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-24">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="font-heading text-5xl md:text-6xl font-black text-navy mb-6"
-          >
-            Milestones & <span className="text-gradient-blue">Glory</span>
-          </motion.h2>
-          <motion.div 
-            initial={{ width: 0 }}
-            whileInView={{ width: '100px' }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="h-1.5 bg-gradient-to-r from-blue to-gold mx-auto rounded-full"
-          />
-        </div>
+    <section className="bg-cream text-navy py-20 relative overflow-hidden">
+      {/* Decorative background */}
+      <div 
+        className="absolute inset-0 pointer-events-none" 
+        style={{
+          backgroundImage: 'radial-gradient(circle at 10% 20%, rgba(74,144,217,0.06) 0%, transparent 50%), radial-gradient(circle at 90% 80%, rgba(212,160,23,0.06) 0%, transparent 50%)',
+        }} 
+      />
 
-        {/* Timeline */}
-        <div className="mb-32">
-          <h3 className="font-heading text-4xl font-black text-navy mb-16 text-center">Journey Since 1992</h3>
-          <div className="relative">
-            <div className="absolute left-[28px] md:left-1/2 top-0 bottom-0 w-1.5 bg-accent -translate-x-1/2 rounded-full"></div>
-            
-            <div className="space-y-16">
-              {milestones.map((item, idx) => (
-                <motion.div 
-                  key={idx} 
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.6 }}
-                  className={`relative flex flex-col md:flex-row items-center ${idx % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
-                >
-                  <div className="absolute left-0 md:left-1/2 w-16 h-16 bg-white rounded-full border-4 border-blue flex items-center justify-center text-blue z-10 -translate-x-1/2 shadow-xl shadow-blue/20">
-                    {item.icon}
-                  </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-                  <div className={`ml-20 md:ml-0 md:w-1/2 p-4 flex ${idx % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
-                    <div className="bg-white p-8 rounded-[2rem] shadow-xl border border-navy/5 hover:border-blue/30 transition-colors w-full md:w-[90%] group hover:-translate-y-2 duration-300">
-                      <span className="text-blue font-black text-2xl mb-2 block">{item.year}</span>
-                      <h3 className="text-navy font-black text-2xl mb-3">{item.title}</h3>
-                      <p className="text-navy/70 leading-relaxed font-medium">{item.desc}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
+        {/* ── Header ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-16"
+        >
+          <span className="inline-block bg-navy text-gold text-xs font-bold tracking-widest uppercase px-5 py-1.5 rounded-sm mb-5 font-sans">
+            Penthakata Project School · Est. 1992
+          </span>
+          <h2 className="font-heading text-5xl md:text-6xl font-black text-navy mb-4 leading-tight">
+            Milestones &amp;{' '}
+            <span className="text-gradient-blue">
+              Achievements
+            </span>
+          </h2>
+          <p className="text-lg text-navy/70 max-w-2xl mx-auto leading-relaxed font-medium italic">
+            Over three decades of nurturing potential, transforming lives, and uplifting communities through free, quality education.
+          </p>
+          <div className="w-20 h-1 bg-gradient-to-r from-blue to-gold mx-auto mt-6 rounded-full" />
+        </motion.div>
 
-        {/* Student Achievements */}
-        <div className="mb-32">
-          <h3 className="font-heading text-4xl font-black text-navy mb-16 text-center">Student Spotlight</h3>
-          <motion.div 
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            {studentAchievements.map((achievement, idx) => (
-              <motion.div 
-                key={idx} 
-                variants={itemVariants}
-                className="bg-white p-8 rounded-[2rem] shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-navy/5 relative overflow-hidden group"
+        {/* ── Timeline ── */}
+        <div className="mb-20">
+          <SectionLabel>Journey Since 1992</SectionLabel>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-8">
+            {milestones.map((m, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="bg-white rounded-2xl p-6 border border-navy/5 shadow-sm relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
               >
-                <div className="absolute -right-10 -top-10 w-32 h-32 bg-blue/5 rounded-full group-hover:bg-blue/10 transition-colors pointer-events-none"></div>
-                <div className="text-5xl mb-6">{achievement.icon}</div>
-                <span className="inline-block bg-blue/10 text-blue px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest mb-4">{achievement.category}</span>
-                <h4 className="font-heading text-xl font-black text-navy mb-3">{achievement.title}</h4>
-                <p className="text-navy/70 text-sm leading-relaxed font-medium">{achievement.details}</p>
+                <div className="absolute top-0 inset-x-0 h-1" style={{ background: m.color }} />
+                <div 
+                  className="w-11 h-11 rounded-xl flex items-center justify-center mb-4" 
+                  style={{ background: `${m.color}18`, color: m.color }}
+                >
+                  {m.icon}
+                </div>
+                <span className="text-sm font-bold tracking-wider font-sans" style={{ color: m.color }}>
+                  {m.year}
+                </span>
+                <h3 className="text-xl font-bold text-navy mt-1 mb-2">{m.title}</h3>
+                <p className="text-sm text-navy/70 leading-relaxed">{m.desc}</p>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
 
-        {/* Special Initiatives */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          className="bg-gradient-to-br from-navy to-blue rounded-[3rem] p-12 md:p-16 text-white shadow-2xl relative overflow-hidden"
-        >
-          <div className="absolute top-0 right-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 pointer-events-none"></div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
-            <div className="text-center group">
-              <div className="w-20 h-20 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center text-gold mb-6 mx-auto group-hover:scale-110 transition-transform">
-                <Zap size={40} />
-              </div>
-              <h4 className="font-heading text-2xl font-black mb-3">Holistic Education</h4>
-              <p className="text-white/80 font-medium">Providing comprehensive education focusing on academic excellence and personality development.</p>
-            </div>
-            
-            <div className="text-center group">
-              <div className="w-20 h-20 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center text-gold mb-6 mx-auto group-hover:scale-110 transition-transform">
-                <Users size={40} />
-              </div>
-              <h4 className="font-heading text-2xl font-black mb-3">Community Focus</h4>
-              <p className="text-white/80 font-medium">Serving underprivileged children and focusing on the fishermen community of Penthakata village.</p>
-            </div>
-            
-            <div className="text-center group">
-              <div className="w-20 h-20 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center text-gold mb-6 mx-auto group-hover:scale-110 transition-transform">
-                <Trophy size={40} />
-              </div>
-              <h4 className="font-heading text-2xl font-black mb-3">Skill Development</h4>
-              <p className="text-white/80 font-medium">Vocational training in tailoring & computer education for sustainable living.</p>
-            </div>
+        {/* ── Student Achievements ── */}
+        <div className="mb-20">
+          <SectionLabel>Student Spotlight</SectionLabel>
+
+          {/* Tabs */}
+          <div className="flex gap-2 mt-6 mb-8 flex-wrap justify-center">
+            {tabs.map(tab => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`px-5 py-2 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-200 ${
+                  activeTab === tab.id
+                    ? 'bg-navy text-white shadow-md'
+                    : 'bg-white text-navy/70 border border-navy/10 hover:bg-navy/5'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
           </div>
-        </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filtered.map((a, i) => (
+              <motion.div
+                key={`${a.category}-${a.title}`}
+                layout
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.35, delay: i * 0.06 }}
+                className={`rounded-2xl p-6 border transition-all duration-300 hover:-translate-y-1 ${
+                  a.highlight
+                    ? 'bg-gradient-to-br from-navy to-blue text-white border-none shadow-lg shadow-navy/20'
+                    : 'bg-white text-navy border-navy/5 shadow-sm hover:shadow-md'
+                }`}
+              >
+                {a.highlight && (
+                  <div className="absolute top-4 right-4 bg-gold text-navy text-xs font-bold tracking-wider uppercase px-2.5 py-1 rounded-md">
+                    National
+                  </div>
+                )}
+                <span className="text-4xl block mb-4">{a.icon}</span>
+                <span className={`inline-block px-3 py-1 rounded-md text-xs font-bold tracking-wider uppercase mb-3 ${
+                  a.highlight
+                    ? 'bg-white/15 text-gold'
+                    : 'bg-navy/5 text-blue'
+                }`}>
+                  {a.category}
+                </span>
+                <h4 className="text-xl font-bold mb-2 leading-tight">{a.title}</h4>
+                <p className={`text-sm leading-relaxed ${
+                  a.highlight ? 'text-white/80' : 'text-navy/70'
+                }`}>
+                  {a.details}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Initiatives ── */}
+        <div>
+          <SectionLabel>How We Make a Difference</SectionLabel>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+            {initiatives.map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="flex gap-4 items-start bg-white rounded-2xl p-6 border border-navy/5 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1"
+              >
+                <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-navy to-blue rounded-xl flex items-center justify-center text-gold">
+                  {item.icon}
+                </div>
+                <div>
+                  <h4 className="text-base font-bold mb-1 text-navy">{item.title}</h4>
+                  <p className="text-sm text-navy/70 leading-relaxed">{item.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Footer quote ── */}
+        <motion.blockquote
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-center mt-20 p-10 bg-gradient-to-br from-navy to-blue rounded-3xl text-white shadow-xl shadow-navy/20"
+        >
+          <p className="text-xl md:text-2xl font-medium italic leading-relaxed mb-4 text-white/90">
+            "It is believed that each child is unique and has inherent potential to develop his or her personality."
+          </p>
+          <span className="text-xs font-bold tracking-widest uppercase text-gold font-sans">
+            — Penthakata Project School
+          </span>
+        </motion.blockquote>
 
       </div>
     </section>
+  );
+}
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex items-center gap-4">
+      <div className="flex-1 h-px bg-navy/10" />
+      <h3 className="text-xs font-bold tracking-widest uppercase text-blue whitespace-nowrap font-sans">
+        {children}
+      </h3>
+      <div className="flex-1 h-px bg-navy/10" />
+    </div>
   );
 }

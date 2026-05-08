@@ -3,26 +3,18 @@
 import React, { useEffect, useState } from 'react';
 import GalleryGrid from '@/components/gallery/GalleryGrid';
 import api from '@/lib/api';
-import { GalleryImage, GalleryCategory } from '@/types';
+import { GalleryImage } from '@/types';
 
 export default function GalleryPage() {
   const [images, setImages] = useState<GalleryImage[]>([]);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<GalleryCategory | 'all'>('all');
 
-  const categories: { id: GalleryCategory | 'all'; label: string }[] = [
-    { id: 'all', label: 'All Memories' },
-    { id: 'event', label: 'Events' },
-    { id: 'activity', label: 'Activities' },
-    { id: 'achievement', label: 'Achievements' },
-  ];
 
   useEffect(() => {
     const fetchImages = async () => {
       setLoading(true);
       try {
-        const url = activeTab === 'all' ? '/api/gallery' : `/api/gallery?category=${activeTab}`;
-        const { data } = await api.get(url);
+        const { data } = await api.get('/api/gallery');
         setImages(data.data || []);
       } catch (error) {
         console.error('Failed to fetch gallery', error);
@@ -31,7 +23,7 @@ export default function GalleryPage() {
       }
     };
     fetchImages();
-  }, [activeTab]);
+  }, []);
 
   return (
     <>
@@ -51,22 +43,7 @@ export default function GalleryPage() {
             </p>
           </div>
 
-          {/* Filter Tabs */}
-          <div className="flex flex-wrap justify-center gap-3 mb-20">
-            {categories.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setActiveTab(cat.id)}
-                className={`px-8 py-3 rounded-full font-black uppercase tracking-[0.2em] text-[10px] transition-all duration-300 border-2 ${
-                  activeTab === cat.id 
-                    ? 'bg-blue text-white border-blue shadow-xl shadow-blue-500/20' 
-                    : 'bg-white text-navy/40 border-transparent hover:bg-navy/5'
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
-          </div>
+
 
           <GalleryGrid images={images} loading={loading} />
         </div>

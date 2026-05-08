@@ -4,17 +4,31 @@ import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Send } from 'lucide-react';
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      const response = await fetch('/api/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
       setStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-    }, 1500);
+      setFormData({ name: '', email: '',phone:'', message: '' });
+    } catch (error) {
+      console.error('Error sending message:', error);
+      setStatus('error');
+    }
   };
 
   return (
@@ -23,6 +37,9 @@ export default function ContactPage() {
       <main className="flex-grow pt-24 bg-cream min-h-screen">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center mb-16">
+            <div className="inline-block px-4 py-1 bg-gold/20 text-gold text-xs font-black uppercase tracking-[0.2em] rounded-full mb-4">
+              Direct Communication
+            </div>
             <h1 className="font-heading text-5xl md:text-6xl font-bold text-navy mb-4">Get in <span className="text-gradient-gold">Touch</span></h1>
             <p className="text-navy/70 text-lg max-w-2xl mx-auto">
               Have questions about admissions, facilities, or our curriculum? We are here to help.
@@ -33,13 +50,24 @@ export default function ContactPage() {
             
             {/* Contact Info */}
             <div className="lg:col-span-1 space-y-6">
+              <div className="glass rounded-2xl overflow-hidden shadow-lg hover:-translate-y-1 transition-transform duration-300">
+                <img 
+                  src="/images/contact-image.png" 
+                  alt="School Building" 
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-4 bg-navy text-gold text-center text-xs font-black uppercase tracking-[0.2em]">
+                  Visit our beautiful campus
+                </div>
+              </div>
+
               <div className="glass p-8 rounded-2xl flex items-start gap-4 hover:-translate-y-1 transition-transform duration-300">
                 <div className="w-12 h-12 bg-navy rounded-full flex items-center justify-center text-gold shrink-0">
                   <MapPin />
                 </div>
                 <div>
                   <h3 className="font-bold text-navy text-lg mb-2">Our Location</h3>
-                  <p className="text-navy/70 text-sm">GNO Project School<br/>Usthi Foundation India,<br/>Puri, Odisha, India 752002</p>
+                  <p className="text-navy/70 text-sm">Usthi Foundation India School Puri<br/>Water works roade Puri,<br/>near to indoor stadium</p>
                 </div>
               </div>
               
@@ -49,7 +77,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-bold text-navy text-lg mb-2">Phone Number</h3>
-                  <p className="text-navy/70 text-sm">+91 00000 00000<br/>+91 11111 11111</p>
+                  <p className="text-navy/70 text-sm">+91 78538 22264</p>
                 </div>
               </div>
 
@@ -59,7 +87,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-bold text-navy text-lg mb-2">Email Address</h3>
-                  <p className="text-navy/70 text-sm">info@gnoschoolpuri.org<br/>admissions@gnoschoolpuri.org</p>
+                  <p className="text-navy/70 text-sm">usthischool@gmail.com</p>
                 </div>
               </div>
             </div>
@@ -83,12 +111,22 @@ export default function ContactPage() {
                 </div>
                 
                 <div>
-                  <label className="block text-cream/80 text-sm mb-2">Email Address <span className="text-red-400">*</span></label>
+                  <label className="block text-cream/80 text-sm mb-2">Email Address (Optional)</label>
                   <input 
                     type="email" 
-                    required 
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    className="w-full bg-cream/10 border border-cream/20 text-cream rounded-xl px-4 py-3 focus:outline-none focus:border-gold transition-colors"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-cream/80 text-sm mb-2">Phone Number <span className="text-red-400">*</span></label>
+                  <input 
+                    type="tel" 
+                    required 
+                    value={formData.phone}
+                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
                     className="w-full bg-cream/10 border border-cream/20 text-cream rounded-xl px-4 py-3 focus:outline-none focus:border-gold transition-colors"
                   />
                 </div>

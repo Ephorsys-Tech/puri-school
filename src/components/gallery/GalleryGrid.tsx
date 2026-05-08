@@ -43,25 +43,31 @@ export default function GalleryGrid({ images, loading }: GalleryGridProps) {
 
       {/* Lightbox */}
       {selectedImage && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-navy/95 backdrop-blur-sm animate-[fadeIn_0.3s_ease-out]">
+        <div 
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-navy/80 backdrop-blur-xl animate-[fadeIn_0.3s_ease-out]"
+          onClick={() => setSelectedImage(null)}
+        >
           <button 
-            className="absolute top-6 right-6 w-12 h-12 bg-cream/10 hover:bg-gold hover:text-navy text-cream rounded-full flex items-center justify-center transition-colors z-10"
+            className="absolute top-6 right-6 w-12 h-12 bg-white/10 hover:bg-gold hover:text-navy text-white rounded-full flex items-center justify-center transition-colors z-10"
             onClick={() => setSelectedImage(null)}
           >
             <X size={24} />
           </button>
           
-          <div className="max-w-5xl w-full bg-navy rounded-[3rem] overflow-hidden shadow-2xl relative border border-white/10" onClick={e => e.stopPropagation()}>
+          <div 
+            className="max-w-3xl w-full bg-navy rounded-[2rem] overflow-hidden shadow-2xl relative border border-white/10" 
+            onClick={e => e.stopPropagation()}
+          >
             <img 
               src={selectedImage.imageUrl} 
               alt="Gallery Preview" 
-              className="w-full max-h-[80vh] object-contain bg-black/20"
+              className="w-full max-h-[60vh] object-contain bg-black/20"
             />
-            <div className="p-8 md:p-12 bg-gradient-to-b from-navy/50 to-navy backdrop-blur-md flex justify-between items-center">
-              <span className="inline-block px-6 py-2 bg-blue text-white text-xs font-black uppercase tracking-[0.3em] rounded-full">
+            <div className="p-6 bg-gradient-to-b from-navy/50 to-navy backdrop-blur-md flex justify-between items-center">
+              <span className="inline-block px-4 py-1 bg-blue text-white text-[10px] font-black uppercase tracking-[0.2em] rounded-full">
                 {selectedImage.category}
               </span>
-              <p className="text-white/40 text-xs font-medium uppercase tracking-widest leading-none">
+              <p className="text-white/40 text-[10px] font-bold uppercase tracking-widest leading-none">
                 Puri School Memorial • {new Date(selectedImage.createdAt).getFullYear()}
               </p>
             </div>

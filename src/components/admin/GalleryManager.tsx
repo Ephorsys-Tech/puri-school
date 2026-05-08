@@ -17,6 +17,8 @@ export default function GalleryManager() {
   });
 
   const [activeFilter, setActiveFilter] = useState<GalleryCategory | 'all'>('all');
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [imageToDelete, setImageToDelete] = useState<string | null>(null);
 
   useEffect(() => {
     fetchImages();
@@ -49,11 +51,18 @@ export default function GalleryManager() {
     }
   };
 
-  const handleDelete = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this image?')) return;
+  const openDeleteModal = (id: string) => {
+    setImageToDelete(id);
+    setIsDeleteModalOpen(true);
+  };
+
+  const confirmDelete = async () => {
+    if (!imageToDelete) return;
     try {
-      await apiAuth.delete(`/api/gallery/${id}`);
-      setImages(images.filter(img => img._id !== id));
+      await apiAuth.delete(`/api/gallery/${imageToDelete}`);
+      setImages(images.filter(img => img._id !== imageToDelete));
+      setIsDeleteModalOpen(false);
+      setImageToDelete(null);
     } catch (error) {
       alert('Failed to delete');
     }
@@ -107,7 +116,7 @@ export default function GalleryManager() {
   return (
     <div className="space-y-10 animate-[fadeUp_0.4s_ease-out]">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-        <div className="space-y-1">
+        <div className="space-y-1 mt-12">
           <h1 className="font-heading text-4xl font-black text-navy tracking-tight">Gallery Manager</h1>
           <p className="text-navy/40 font-medium tracking-wide flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-blue animate-pulse"></span>
@@ -154,12 +163,12 @@ export default function GalleryManager() {
                 src={img.imageUrl} 
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
                 <div className="flex gap-2">
                   <button onClick={() => openModal(img)} className="flex-grow py-3 bg-white/20 backdrop-blur-md text-white rounded-xl flex items-center justify-center hover:bg-blue transition-colors">
                     <Pencil size={18} />
                   </button>
-                  <button onClick={() => handleDelete(img._id)} className="flex-grow py-3 bg-white/20 backdrop-blur-md text-red-400 rounded-xl flex items-center justify-center hover:bg-red-500 hover:text-white transition-colors">
+                  <button onClick={() => openDeleteModal(img._id)} className="flex-grow py-3 bg-white/20 backdrop-blur-md text-red-400 rounded-xl flex items-center justify-center hover:bg-red-500 hover:text-white transition-colors">
                     <Trash2 size={18} />
                   </button>
                 </div>
@@ -273,6 +282,35 @@ export default function GalleryManager() {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Delete Confirmation Modal */}
+      {isDeleteModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-navy/80 backdrop-blur-xl animate-[fadeIn_0.3s_ease-out]">
+          <div className="bg-white rounded-[2rem] w-full max-w-md shadow-2xl relative overflow-hidden border border-white/20 p-10 space-y-6">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-red-50 text-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Trash2 size={32} />
+              </div>
+              <h2 className="font-heading text-2xl font-black text-navy mb-2">Delete Memory?</h2>
+              <p className="text-navy/60 text-sm">Are you sure you want to delete this memory? This action cannot be undone.</p>
+            </div>
+            <div className="flex gap-4">
+              <button 
+                onClick={() => setIsDeleteModalOpen(false)}
+                className="flex-grow py-4 bg-navy/5 rounded-xl font-black text-xs uppercase tracking-[0.2em] text-navy/40 hover:bg-navy/10 hover:text-navy transition-all"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={confirmDelete}
+                className="flex-grow py-4 bg-red-500 text-white rounded-xl font-black text-xs uppercase tracking-[0.2em] shadow-xl shadow-red-500/20 hover:bg-red-600 transition-all"
+              >
+                Delete
+              </button>
+            </div>
           </div>
         </div>
       )}
