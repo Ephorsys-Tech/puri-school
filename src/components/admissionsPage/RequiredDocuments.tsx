@@ -1,92 +1,102 @@
+'use client';
 import React from 'react';
+import { motion } from 'framer-motion';
 import { FileText, CheckCircle2 } from 'lucide-react';
 
 export default function RequiredDocuments() {
   const documents = [
-    { category: 'Identity Documents', items: ['Birth Certificate (Original + Photocopy)', 'Aadhaar Card of Student', 'Aadhaar Card of Parents'] },
-    { category: 'Photographs', items: ['4 Passport size photographs of student', '2 Passport size photographs of parents', '1 Passport size photograph of siblings (if applicable)'] },
-    { category: 'Academic Documents', items: ['Previous class Report Card', 'Transfer Certificate (TC) from previous school', 'Progress Report or Academic Records'] },
-    { category: 'Medical & Health', items: ['Medical fitness certificate', 'Vaccination records', 'Any relevant health documents'] },
-    { category: 'Residence Proof', items: ['Electricity bill or Water bill', 'Rent agreement (if applicable)', 'Ration card or any government ID'] },
-    { category: 'Others', items: ['Caste Certificate (if applicable)', 'Physically challenged certificate (if applicable)', 'Parental consent letter'] }
+    { category: 'Identity', items: ['Birth Certificate (Original + Copy)', 'Aadhaar Card of Student', 'Aadhaar Card of Parents'] },
+    { category: 'Photographs', items: ['4 Passport size of student', '2 Passport size of parents', '1 Passport size of siblings'] },
+    { category: 'Academic', items: ['Previous Report Card', 'Transfer Certificate (TC)', 'Academic Records'] },
+    { category: 'Medical', items: ['Fitness certificate', 'Vaccination records', 'Relevant health documents'] },
+    { category: 'Residence', items: ['Electricity/Water bill', 'Rent agreement', 'Ration card/Gov ID'] },
+    { category: 'Others', items: ['Caste Certificate (if applicable)', 'Physical challenge cert', 'Parental consent letter'] }
   ];
 
   return (
-    <section className="py-24 bg-cream">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="flex justify-center mb-4">
-            <div className="w-16 h-16 bg-navy rounded-xl flex items-center justify-center text-gold">
-              <FileText size={32} />
+    <section className="py-28 bg-accent relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <div className="text-center mb-20">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex justify-center mb-6">
+              <div className="w-20 h-20 bg-blue/10 rounded-2xl flex items-center justify-center text-blue shadow-lg">
+                <FileText size={40} />
+              </div>
             </div>
-          </div>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-navy mb-4">
-            Required <span className="text-gradient-gold">Documents</span>
-          </h2>
-          <p className="text-navy/80 max-w-2xl mx-auto text-lg">
-            Please arrange the following documents for smooth admission processing
-          </p>
+            <h2 className="font-heading text-5xl md:text-6xl font-black text-navy mb-6">
+              Required <span className="text-gradient-blue">Documents</span>
+            </h2>
+            <p className="text-navy/70 max-w-2xl mx-auto text-lg font-medium">
+              Please arrange the following documents for smooth admission processing.
+            </p>
+          </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20"
+        >
           {documents.map((doc, idx) => (
-            <div key={idx} className="glass p-8 rounded-2xl border-l-4 border-gold hover:shadow-lg transition-shadow">
-              <h3 className="font-heading text-lg font-bold text-navy mb-4">{doc.category}</h3>
-              <ul className="space-y-3">
+            <div key={idx} className="bg-white p-8 rounded-[2rem] shadow-xl border border-navy/5 hover:-translate-y-2 transition-transform duration-300">
+              <h3 className="font-heading text-xl font-black text-navy mb-6 border-b border-navy/5 pb-4">{doc.category}</h3>
+              <ul className="space-y-4">
                 {doc.items.map((item, itemIdx) => (
                   <li key={itemIdx} className="flex items-start gap-3">
-                    <CheckCircle2 className="text-gold flex-shrink-0 mt-0.5" size={18} />
-                    <span className="text-navy/80 text-sm">{item}</span>
+                    <CheckCircle2 className="text-blue flex-shrink-0 mt-0.5" size={20} />
+                    <span className="text-navy/80 text-sm font-medium">{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
           ))}
+        </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <motion.div 
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="bg-navy rounded-[3rem] p-10 md:p-12 text-white shadow-2xl relative overflow-hidden"
+          >
+            <div className="absolute right-0 top-0 w-64 h-64 bg-blue/20 rounded-full blur-[80px]"></div>
+            <h3 className="font-heading text-3xl font-bold mb-8 relative z-10 text-gold">Important Notes</h3>
+            <ul className="space-y-6 relative z-10">
+              <li className="flex items-start gap-4">
+                <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 text-gold">1</span>
+                <span className="text-white/90 font-medium pt-1">All documents must be legible and in good condition.</span>
+              </li>
+              <li className="flex items-start gap-4">
+                <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 text-gold">2</span>
+                <span className="text-white/90 font-medium pt-1">Photocopies must be attested by a notary or parents.</span>
+              </li>
+              <li className="flex items-start gap-4">
+                <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 text-gold">3</span>
+                <span className="text-white/90 font-medium pt-1">Original documents will be returned after verification.</span>
+              </li>
+            </ul>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="relative rounded-[3rem] overflow-hidden aspect-[4/3] lg:aspect-auto shadow-2xl border-4 border-white"
+          >
+            <img 
+              src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1000&auto=format&fit=crop" 
+              alt="Documents" 
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
         </div>
 
-        <div className="bg-gradient-to-r from-navy to-blue rounded-2xl p-12 text-cream">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div>
-              <h3 className="font-heading text-2xl font-bold mb-6">Important Notes</h3>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3">
-                  <span className="text-gold text-xl">→</span>
-                  <span>All documents must be legible and in good condition</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-gold text-xl">→</span>
-                  <span>Photocopies must be attested by a notary or parents</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-gold text-xl">→</span>
-                  <span>Original documents will be returned after verification</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-gold text-xl">→</span>
-                  <span>Missing documents may delay the admission process</span>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-heading text-2xl font-bold mb-6">Submission Process</h3>
-              <div className="space-y-4">
-                <div className="bg-gold/10 p-4 rounded-lg">
-                  <p className="text-gold font-bold mb-2">Step 1: Prepare Documents</p>
-                  <p className="text-cream/80 text-sm">Collect all required documents and make necessary photocopies</p>
-                </div>
-                <div className="bg-gold/10 p-4 rounded-lg">
-                  <p className="text-gold font-bold mb-2">Step 2: Verification</p>
-                  <p className="text-cream/80 text-sm">School staff will verify all documents during office hours</p>
-                </div>
-                <div className="bg-gold/10 p-4 rounded-lg">
-                  <p className="text-gold font-bold mb-2">Step 3: Confirmation</p>
-                  <p className="text-cream/80 text-sm">After verification, proceed with fee payment and admission</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );

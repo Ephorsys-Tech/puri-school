@@ -1,71 +1,89 @@
+'use client';
 import React from 'react';
-import { Award, Target } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Award, Target, BookOpen, Layers } from 'lucide-react';
 
 export default function CBSECurriculum() {
   const features = [
-    {
-      icon: <Target size={28} />,
-      title: 'Standardized Curriculum',
-      description: 'Following the prestigious CBSE framework designed by Central Board of Secondary Education, New Delhi'
-    },
-    {
-      icon: <Award size={28} />,
-      title: 'Board Recognition',
-      description: 'Full affiliation ensuring recognized certificates and seamless transitions for higher studies'
-    },
-    {
-      icon: <Target size={28} />,
-      title: 'Holistic Development',
-      description: 'Beyond academics - emphasis on co-curricular activities, sports, and life skills'
-    },
-    {
-      icon: <Award size={28} />,
-      title: 'Competitive Preparation',
-      description: 'Curriculum designed to prepare students for competitive examinations and entrance tests'
-    }
+    { icon: <Target size={32} />, title: 'Standardized Framework', desc: 'Following the prestigious CBSE framework designed by New Delhi.' },
+    { icon: <Award size={32} />, title: 'Global Recognition', desc: 'Full affiliation ensuring recognized certificates and seamless transitions.' },
+    { icon: <Layers size={32} />, title: 'Holistic Development', desc: 'Beyond academics - emphasis on co-curricular activities and sports.' },
+    { icon: <BookOpen size={32} />, title: 'Competitive Edge', desc: 'Curriculum designed to prepare students for entrance tests.' }
   ];
 
   const methodology = [
-    'Experiential Learning: Moving beyond rote learning to practical applications',
-    'Interactive Classrooms: Utilizing smartboards and digital content',
-    'Continuous Evaluation: Focusing on formative assessments for holistic feedback',
-    'Student-Centric Approach: Personalized learning paths for different learning styles',
-    'Integration of Technology: Incorporating digital tools and online resources',
-    'Regular Assessments: Periodic tests and evaluations for progress tracking'
+    'Experiential Learning: Moving beyond rote learning',
+    'Interactive Classrooms: Utilizing digital content',
+    'Continuous Evaluation: Formative assessments',
+    'Student-Centric Approach: Personalized paths',
   ];
 
   return (
-    <section className="py-24 bg-navy text-cream">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4">
-            CBSE <span className="text-gold">Curriculum</span>
-          </h2>
-          <p className="text-cream/80 max-w-2xl mx-auto text-lg">
-            Our education follows the Central Board of Secondary Education standards with modern teaching methodologies
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          {features.map((feature, idx) => (
-            <div key={idx} className="glass p-8 rounded-2xl hover:scale-[1.02] transition-transform">
-              <div className="text-gold mb-4">{feature.icon}</div>
-              <h3 className="font-heading text-xl font-bold mb-3">{feature.title}</h3>
-              <p className="text-cream/80">{feature.description}</p>
+    <section className="py-28 bg-navy text-white relative overflow-hidden">
+      <div className="absolute left-0 top-0 w-1/2 h-full bg-blue/10 diagonal-cut-bottom pointer-events-none"></div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="space-y-8"
+          >
+            <div>
+              <span className="text-gold font-bold uppercase tracking-widest text-sm mb-2 block">Academic Standards</span>
+              <h2 className="font-heading text-5xl md:text-6xl font-black leading-tight">
+                CBSE <span className="text-gold">Curriculum</span>
+              </h2>
             </div>
-          ))}
-        </div>
+            
+            <p className="text-white/80 text-lg leading-relaxed font-medium">
+              Our education follows the Central Board of Secondary Education standards with modern teaching methodologies. We ensure that our students are equipped with knowledge that transcends textbooks.
+            </p>
 
-        <div className="bg-gold/10 rounded-2xl p-12 border border-gold/20">
-          <h3 className="font-heading text-2xl font-bold text-gold mb-8">Our Teaching Methodology</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {methodology.map((method, idx) => (
-              <div key={idx} className="flex gap-4">
-                <div className="w-2 h-2 rounded-full bg-gold mt-2 flex-shrink-0"></div>
-                <p className="text-cream/90">{method}</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6">
+              {features.map((feat, idx) => (
+                <div key={idx} className="bg-white/5 backdrop-blur-md p-6 rounded-[2rem] border border-white/10 hover:bg-white/10 transition-colors group">
+                  <div className="text-gold mb-4 group-hover:scale-110 transition-transform inline-block">{feat.icon}</div>
+                  <h3 className="font-bold text-xl mb-2">{feat.title}</h3>
+                  <p className="text-white/60 text-sm">{feat.desc}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            <div className="absolute inset-0 border-4 border-gold translate-x-6 translate-y-6 rounded-[3rem] -z-10"></div>
+            <div className="relative rounded-[3rem] overflow-hidden aspect-square shadow-2xl">
+              <img 
+                src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1000&auto=format&fit=crop" 
+                alt="Classroom learning" 
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/20 to-transparent"></div>
+              
+              <div className="absolute bottom-0 left-0 w-full p-8">
+                <div className="bg-white/10 backdrop-blur-xl p-6 rounded-2xl border border-white/20">
+                  <h3 className="font-heading text-2xl font-bold text-gold mb-4">Teaching Methodology</h3>
+                  <ul className="space-y-3">
+                    {methodology.map((m, i) => (
+                      <li key={i} className="flex items-center gap-3">
+                        <div className="w-2 h-2 rounded-full bg-gold"></div>
+                        <span className="text-white/90 text-sm font-medium">{m}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            ))}
-          </div>
+            </div>
+          </motion.div>
+
         </div>
       </div>
     </section>

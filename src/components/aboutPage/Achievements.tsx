@@ -1,152 +1,152 @@
+'use client';
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Award, Star, BookOpen, Heart, Trophy, Users, Zap } from 'lucide-react';
 
 export default function Achievements() {
   const milestones = [
-    { year: '1992', title: 'Foundation', desc: 'Our first project school in Puri began with the aim of imparting holistic education to over 400 underprivileged children from the fishermen community in Penthakata village.', icon: <Heart size={24} /> },
-    { year: '2000s', title: 'CBSE Curriculum', desc: 'Following the CBSE curriculum from Kindergarten to Class 10, providing mid-day meals, uniforms, study materials, and other essentials - all completely free.', icon: <BookOpen size={24} /> },
-    { year: '2000-2023', title: 'Graduate Success', desc: 'Over the years, our school has produced a sizeable number of graduates who have secured prestigious employment opportunities in various sectors.', icon: <Star size={24} /> },
+    { year: '1992', title: 'Foundation', desc: 'Our first project school in Puri began with the aim of imparting holistic education to over 400 underprivileged children.', icon: <Heart size={24} /> },
+    { year: '2000s', title: 'CBSE Curriculum', desc: 'Following the CBSE curriculum from Kindergarten to Class 10, providing essentials completely free.', icon: <BookOpen size={24} /> },
+    { year: '2020', title: 'Graduate Success', desc: 'Our school has produced graduates who have secured prestigious employment opportunities.', icon: <Star size={24} /> },
     { year: '2023', title: '100% Board Results', desc: 'Achieved a perfect pass rate in Class 10 board examinations, setting new standards of excellence.', icon: <Award size={24} /> },
   ];
 
   const studentAchievements = [
-    {
-      category: 'Debate Competition',
-      title: 'Global Warming Debate',
-      details: 'Students from Class VI, VII & VIII participated and were awarded Certificate of Merit',
-      icon: '🎤'
-    },
-    {
-      category: 'Arts',
-      title: 'District Level Drawing Competition',
-      details: 'Held at school campus with participation from lower to higher classes in large numbers',
-      icon: '🎨'
-    },
-    {
-      category: 'Sports - Soft Ball',
-      title: 'District Level Tournament',
-      details: '5 students selected in district level tournament to join the state event',
-      icon: '⚾'
-    },
-    {
-      category: 'Gymnastics',
-      title: 'State Level Competition',
-      details: 'Sri S. Lalit Kumar Reddy (Std. VII) selected in district level tournament to participate at state level',
-      icon: '🤸'
-    },
-    {
-      category: 'Boxing',
-      title: 'Inter-School Block Level',
-      details: 'Two students from Std. VI & VII represented in inter-school block level competition',
-      icon: '🥊'
-    },
-    {
-      category: 'Javelin Throw',
-      title: 'Inter-School Block Level',
-      details: 'One Std. VI student participated in inter-school block level competition',
-      icon: '🎯'
-    },
-    {
-      category: 'Yoga - National Level',
-      title: 'Khelo India Competition',
-      details: 'Sri S. Lalit Kumar Reddy (Std. VII) selected to participate in NATIONAL LEVEL COMPETITION at NEW DELHI (14th-20th December, 2023). One girl student from Std. II also participated at district level.',
-      icon: '🧘'
-    },
+    { category: 'Debate', title: 'Global Warming Debate', details: 'Certificate of Merit awarded to Class VI-VIII students.', icon: '🎤' },
+    { category: 'Arts', title: 'District Drawing', details: 'Massive participation and top honors at the district level.', icon: '🎨' },
+    { category: 'Sports', title: 'Soft Ball Tournament', details: '5 students selected to join the state event.', icon: '⚾' },
+    { category: 'Gymnastics', title: 'State Competition', details: 'Selected for state-level tournament from Puri district.', icon: '🤸' },
+    { category: 'Boxing', title: 'Inter-School', details: 'Represented in inter-school block level competition.', icon: '🥊' },
+    { category: 'Yoga', title: 'Khelo India', details: 'Selected to participate in National Level Competition in New Delhi.', icon: '🧘' },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+  };
+
   return (
-    <section className="py-24 bg-cream">
+    <section className="py-28 bg-cream relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue/5 via-cream to-cream pointer-events-none -z-10"></div>
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Title */}
-        <div className="text-center mb-20">
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-navy mb-4">
-            Our <span className="text-gold">Achievements & Milestones</span>
-          </h2>
-          <div className="w-24 h-1 bg-gold mx-auto rounded-full"></div>
+        <div className="text-center mb-24">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="font-heading text-5xl md:text-6xl font-black text-navy mb-6"
+          >
+            Milestones & <span className="text-gradient-blue">Glory</span>
+          </motion.h2>
+          <motion.div 
+            initial={{ width: 0 }}
+            whileInView={{ width: '100px' }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="h-1.5 bg-gradient-to-r from-blue to-gold mx-auto rounded-full"
+          />
         </div>
 
-        {/* Journey Timeline */}
-        <div className="mb-24">
-          <h3 className="font-heading text-3xl font-bold text-navy mb-12 text-center">Our Journey Since 1992</h3>
-          
+        {/* Timeline */}
+        <div className="mb-32">
+          <h3 className="font-heading text-4xl font-black text-navy mb-16 text-center">Journey Since 1992</h3>
           <div className="relative">
-            {/* Vertical Timeline Line */}
-            <div className="absolute left-[28px] md:left-1/2 top-0 bottom-0 w-1 bg-gold/30 -translate-x-1/2"></div>
+            <div className="absolute left-[28px] md:left-1/2 top-0 bottom-0 w-1.5 bg-accent -translate-x-1/2 rounded-full"></div>
             
-            <div className="space-y-12">
+            <div className="space-y-16">
               {milestones.map((item, idx) => (
-                <div key={idx} className={`relative flex flex-col md:flex-row items-center ${idx % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
-                  
-                  {/* Timeline Dot */}
-                  <div className="absolute left-0 md:left-1/2 w-14 h-14 bg-navy rounded-full border-4 border-cream flex items-center justify-center text-gold z-10 -translate-x-1/2 shadow-lg">
+                <motion.div 
+                  key={idx} 
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.6 }}
+                  className={`relative flex flex-col md:flex-row items-center ${idx % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
+                >
+                  <div className="absolute left-0 md:left-1/2 w-16 h-16 bg-white rounded-full border-4 border-blue flex items-center justify-center text-blue z-10 -translate-x-1/2 shadow-xl shadow-blue/20">
                     {item.icon}
                   </div>
 
-                  <div className="ml-20 md:ml-0 md:w-1/2 p-4">
-                    <div className={`glass p-6 rounded-2xl ${idx % 2 === 0 ? 'md:ml-12' : 'md:mr-12'}`}>
-                      <span className="text-gold font-bold text-xl mb-2 block font-heading">{item.year}</span>
-                      <h3 className="text-navy font-bold text-xl mb-2">{item.title}</h3>
-                      <p className="text-navy/70 leading-relaxed">{item.desc}</p>
+                  <div className={`ml-20 md:ml-0 md:w-1/2 p-4 flex ${idx % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
+                    <div className="bg-white p-8 rounded-[2rem] shadow-xl border border-navy/5 hover:border-blue/30 transition-colors w-full md:w-[90%] group hover:-translate-y-2 duration-300">
+                      <span className="text-blue font-black text-2xl mb-2 block">{item.year}</span>
+                      <h3 className="text-navy font-black text-2xl mb-3">{item.title}</h3>
+                      <p className="text-navy/70 leading-relaxed font-medium">{item.desc}</p>
                     </div>
                   </div>
-
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
         </div>
 
         {/* Student Achievements */}
-        <div className="mb-20">
-          <h3 className="font-heading text-3xl font-bold text-navy mb-12 text-center">Student Achievements & Participation</h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="mb-32">
+          <h3 className="font-heading text-4xl font-black text-navy mb-16 text-center">Student Spotlight</h3>
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
             {studentAchievements.map((achievement, idx) => (
-              <div key={idx} className="glass p-6 rounded-2xl hover:scale-[1.02] transition-transform duration-300">
-                <div className="text-4xl mb-3">{achievement.icon}</div>
-                <span className="inline-block bg-gold/20 text-navy px-3 py-1 rounded-full text-xs font-bold mb-2">{achievement.category}</span>
-                <h4 className="font-heading text-lg font-bold text-navy mb-2">{achievement.title}</h4>
-                <p className="text-navy/70 text-sm leading-relaxed">{achievement.details}</p>
-              </div>
+              <motion.div 
+                key={idx} 
+                variants={itemVariants}
+                className="bg-white p-8 rounded-[2rem] shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-navy/5 relative overflow-hidden group"
+              >
+                <div className="absolute -right-10 -top-10 w-32 h-32 bg-blue/5 rounded-full group-hover:bg-blue/10 transition-colors pointer-events-none"></div>
+                <div className="text-5xl mb-6">{achievement.icon}</div>
+                <span className="inline-block bg-blue/10 text-blue px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest mb-4">{achievement.category}</span>
+                <h4 className="font-heading text-xl font-black text-navy mb-3">{achievement.title}</h4>
+                <p className="text-navy/70 text-sm leading-relaxed font-medium">{achievement.details}</p>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         {/* Special Initiatives */}
-        <div className="bg-gradient-to-r from-navy to-blue rounded-2xl p-8 md:p-12 text-cream">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gold rounded-xl flex items-center justify-center text-navy mb-4 mx-auto">
-                <Zap size={32} />
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="bg-gradient-to-br from-navy to-blue rounded-[3rem] p-12 md:p-16 text-white shadow-2xl relative overflow-hidden"
+        >
+          <div className="absolute top-0 right-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 pointer-events-none"></div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
+            <div className="text-center group">
+              <div className="w-20 h-20 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center text-gold mb-6 mx-auto group-hover:scale-110 transition-transform">
+                <Zap size={40} />
               </div>
-              <h4 className="font-heading text-xl font-bold mb-2">Holistic Education</h4>
-              <p className="text-cream/80">Providing comprehensive education focusing on academic excellence and personality development</p>
+              <h4 className="font-heading text-2xl font-black mb-3">Holistic Education</h4>
+              <p className="text-white/80 font-medium">Providing comprehensive education focusing on academic excellence and personality development.</p>
             </div>
             
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gold rounded-xl flex items-center justify-center text-navy mb-4 mx-auto">
-                <Users size={32} />
+            <div className="text-center group">
+              <div className="w-20 h-20 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center text-gold mb-6 mx-auto group-hover:scale-110 transition-transform">
+                <Users size={40} />
               </div>
-              <h4 className="font-heading text-xl font-bold mb-2">Community Focus</h4>
-              <p className="text-cream/80">Serving underprivileged children and focusing on the fishermen community of Penthakata village</p>
+              <h4 className="font-heading text-2xl font-black mb-3">Community Focus</h4>
+              <p className="text-white/80 font-medium">Serving underprivileged children and focusing on the fishermen community of Penthakata village.</p>
             </div>
             
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gold rounded-xl flex items-center justify-center text-navy mb-4 mx-auto">
-                <Trophy size={32} />
+            <div className="text-center group">
+              <div className="w-20 h-20 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center text-gold mb-6 mx-auto group-hover:scale-110 transition-transform">
+                <Trophy size={40} />
               </div>
-              <h4 className="font-heading text-xl font-bold mb-2">Skill Development</h4>
-              <p className="text-cream/80">Vocational training in tailoring & computer education for sustainable living and demographic dividend</p>
+              <h4 className="font-heading text-2xl font-black mb-3">Skill Development</h4>
+              <p className="text-white/80 font-medium">Vocational training in tailoring & computer education for sustainable living.</p>
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Philosophy */}
-        <div className="mt-20 text-center max-w-3xl mx-auto">
-          <p className="text-navy/80 text-lg leading-relaxed italic">
-            "We believe that each child is unique with inherent potential to develop their personality. Through our commitment to sustainable education, skill development, and community service, we strive to uplift society as a whole."
-          </p>
-        </div>
       </div>
     </section>
   );
