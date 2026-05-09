@@ -39,7 +39,7 @@ export default function Subjects() {
             
             <div className="relative rounded-[2.5rem] overflow-hidden aspect-[4/3] shadow-2xl border-4 border-white mt-8 hidden lg:block">
               <img 
-                src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop" 
+                src="images/book.jpeg" 
                 alt="Study materials" 
                 className="w-full h-full object-cover"
               />

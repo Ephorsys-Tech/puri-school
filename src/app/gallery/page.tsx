@@ -34,7 +34,7 @@ export default function GalleryPage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
           <div className="text-center mb-20 space-y-4">
-            <span className="text-blue font-black uppercase tracking-[0.4em] text-xs">A Visual Legacy</span>
+            <span className="text-blue bg-blue/10 rounded-2xl px-2 py-1 font-bold uppercase tracking-widest text-sm mb-2">A Visual Legacy</span>
             <h1 className="font-heading text-5xl md:text-7xl font-black text-navy leading-tight">
               School <span className="text-blue">Archives</span>
             </h1>

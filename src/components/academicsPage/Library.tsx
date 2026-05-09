@@ -22,10 +22,10 @@ export default function Library() {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="space-y-8 lg:self-start sticky top-0"
           >
             <div>
-              <span className="text-gold font-bold uppercase tracking-widest text-sm mb-2 block">Knowledge Hub</span>
+              <span className="text-blue bg-blue/10 rounded-2xl px-2 py-1 font-bold uppercase tracking-widest text-sm mb-2">Knowledge Hub</span>
               <h2 className="font-heading text-5xl md:text-6xl font-black leading-tight">
                 School <span className="text-gold">Library</span>
               </h2>

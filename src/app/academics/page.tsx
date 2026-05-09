@@ -23,7 +23,7 @@ export default function AcademicsPage() {
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-navy/80 mix-blend-multiply"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-cream via-cream/20 to-transparent"></div>
+          <div className="absolute inset-0"></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -33,7 +33,7 @@ export default function AcademicsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <span className="text-gold font-bold uppercase tracking-widest text-sm mb-6 block">Holistic Education</span>
+              <span className="text-blue bg-blue/10 rounded-2xl px-2 py-1 font-bold uppercase tracking-widest text-sm mb-2">Holistic Education</span>
               <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-tight">
                 Academic <span className="text-gold">Excellence</span>
               </h1>

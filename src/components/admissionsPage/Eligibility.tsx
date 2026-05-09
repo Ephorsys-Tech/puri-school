@@ -14,7 +14,7 @@ export default function Eligibility() {
   ];
 
   return (
-    <section className="py-28 bg-navy text-white relative overflow-hidden">
+    <section className="py-4 bg-navy text-white relative overflow-hidden">
       <div className="absolute right-0 top-0 w-1/3 h-full bg-blue/10 diagonal-cut-bottom pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -25,7 +25,7 @@ export default function Eligibility() {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-4 sticky top-32"
+            className="lg:col-span-4 lg:self-start sticky top-0"
           >
             <div className="w-20 h-20 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center text-gold mb-8">
               <Users size={40} />

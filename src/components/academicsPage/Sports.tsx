@@ -26,7 +26,7 @@ export default function Sports() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <span className="text-blue font-bold uppercase tracking-widest text-sm mb-4 block">Physical Education</span>
+            <span className="text-blue bg-blue/10 rounded-2xl px-2 py-1 font-bold uppercase tracking-widest text-sm mb-2">Physical Education</span>
             <h2 className="font-heading text-5xl md:text-6xl font-black text-navy mb-6">
               Sports & <span className="text-gradient-blue">Recreation</span>
             </h2>

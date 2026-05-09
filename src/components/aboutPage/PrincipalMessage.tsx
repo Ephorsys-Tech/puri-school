@@ -41,7 +41,7 @@ export default function PrincipalMessage() {
             className="order-1 lg:order-2 space-y-8"
           >
             <div>
-              <span className="text-blue font-bold uppercase tracking-widest text-sm mb-2 block">Leadership</span>
+              <span className="text-blue bg-blue/10 rounded-2xl px-2 py-1 font-bold uppercase tracking-widest text-sm mb-2">Leadership</span>
               <h2 className="font-heading text-5xl md:text-6xl font-black text-navy leading-tight">
                 Message from the <br/><span className="text-gradient-blue">Principal</span>
               </h2>
@@ -64,7 +64,6 @@ export default function PrincipalMessage() {
                 <h4 className="font-heading text-2xl font-black text-navy">Dr. A. Sharma</h4>
                 <p className="text-blue font-bold tracking-wide text-sm uppercase mt-1">Principal, GNO Project School</p>
               </div>
-              <img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Signature_placeholder.svg" className="h-16 opacity-50" alt="Signature" />
             </div>
           </motion.div>
 
