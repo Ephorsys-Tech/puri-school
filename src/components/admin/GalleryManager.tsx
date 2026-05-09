@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { apiAuth } from '@/lib/api';
 import { GalleryImage, GalleryCategory } from '@/types';
-import { Plus, Pencil, Trash2, X, Image as ImageIcon, Filter, UploadCloud } from 'lucide-react';
+import { Plus, Pencil, Trash2, X, Image as ImageIcon, UploadCloud } from 'lucide-react';
 
 export default function GalleryManager() {
   const [images, setImages] = useState<GalleryImage[]>([]);
@@ -46,7 +46,7 @@ export default function GalleryManager() {
       }
       fetchImages();
       closeModal();
-    } catch (error) {
+    } catch {
       alert('Failed to save gallery item');
     }
   };
@@ -63,7 +63,7 @@ export default function GalleryManager() {
       setImages(images.filter(img => img._id !== imageToDelete));
       setIsDeleteModalOpen(false);
       setImageToDelete(null);
-    } catch (error) {
+    } catch {
       alert('Failed to delete');
     }
   };
@@ -97,7 +97,7 @@ export default function GalleryManager() {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       setFormData({ ...formData, imageUrl: data.imageUrl });
-    } catch (error) {
+    } catch {
       alert('Upload failed');
     } finally {
       setUploading(false);
@@ -161,6 +161,7 @@ export default function GalleryManager() {
             <div key={img._id} className="group relative aspect-square rounded-[2rem] overflow-hidden border-4 border-white shadow-lg hover:shadow-2xl transition-all duration-500">
               <img 
                 src={img.imageUrl} 
+                alt={`${img.category} gallery memory`}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
@@ -191,35 +192,36 @@ export default function GalleryManager() {
 
       {/* Modern Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-navy/80 backdrop-blur-xl animate-[fadeIn_0.3s_ease-out]">
-          <div className="bg-white rounded-[3rem] w-full max-w-lg shadow-2xl relative overflow-hidden border border-white/20">
-            <div className="bg-navy p-10 text-white relative">
-               <div className="absolute top-[-10%] right-[-10%] w-40 h-40 bg-blue/20 rounded-full blur-3xl"></div>
-               <h2 className="font-heading text-3xl font-black tracking-tight mb-2">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-navy/80 p-3 backdrop-blur-xl animate-[fadeIn_0.3s_ease-out] sm:p-4">
+          <div className="relative flex max-h-[92dvh] w-full max-w-md flex-col overflow-hidden rounded-2xl border border-white/20 bg-white shadow-2xl">
+            <div className="relative shrink-0 bg-navy px-5 py-5 text-white sm:px-6">
+              <div className="absolute top-[-40%] right-[-18%] h-36 w-36 rounded-full bg-blue/20 blur-3xl"></div>
+              <h2 className="font-heading pr-12 text-2xl font-black tracking-tight sm:text-3xl">
                 {editingImage ? 'Edit Memory' : 'Capture New Memory'}
               </h2>
-              <p className="text-white/40 text-sm font-bold uppercase tracking-widest leading-none">Puri School Digital Archive</p>
+              <p className="mt-2 text-[10px] font-bold uppercase leading-none tracking-[0.2em] text-white/45">Puri School Digital Archive</p>
               <button 
                 onClick={closeModal}
-                className="absolute top-8 right-8 text-white/40 hover:text-white transition-colors"
+                className="absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white/60 transition-colors hover:bg-white/20 hover:text-white"
+                aria-label="Close modal"
               >
-                <X size={32} />
+                <X size={22} />
               </button>
             </div>
             
-            <form onSubmit={handleSubmit} className="p-10 space-y-8">
+            <form onSubmit={handleSubmit} className="min-h-0 flex-1 space-y-6 overflow-y-auto px-5 py-6 sm:px-6">
               <div className="space-y-4">
-                <label className="text-[10px] font-black text-navy/40 uppercase tracking-[0.2em] ml-2">Select Category</label>
-                <div className="flex gap-2">
+                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-navy/40">Select Category</label>
+                <div className="grid grid-cols-3 gap-2">
                   {(['event', 'activity', 'achievement'] as const).map((cat) => (
                     <button
                       key={cat}
                       type="button"
                       onClick={() => setFormData({...formData, category: cat})}
-                      className={`flex-grow py-3 rounded-2xl font-bold text-xs uppercase tracking-widest border-2 transition-all ${
+                      className={`min-h-12 rounded-xl border-2 px-2 py-3 text-[10px] font-black uppercase tracking-wider transition-all sm:text-xs ${
                         formData.category === cat 
                           ? 'bg-blue border-blue text-white shadow-lg' 
-                          : 'border-navy/5 text-navy/40 hover:border-navy/10'
+                          : 'border-navy/10 bg-white text-navy/45 hover:border-blue/30 hover:text-navy'
                       }`}
                     >
                       {cat}
@@ -229,56 +231,59 @@ export default function GalleryManager() {
               </div>
 
               <div className="space-y-4">
-                <label className="text-[10px] font-black text-navy/40 uppercase tracking-[0.2em] ml-2">Visual Source</label>
-                <div className="p-8 border-2 border-dashed border-navy/10 rounded-[2rem] bg-navy/5 flex flex-col items-center justify-center gap-4 group hover:border-blue/30 transition-colors relative">
+                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-navy/40">Upload Image</label>
+                <div className="group relative flex min-h-56 flex-col items-center justify-center gap-4 overflow-hidden rounded-2xl border-2 border-dashed border-navy/10 bg-navy/5 p-6 text-center transition-colors hover:border-blue/40">
+                    {formData.imageUrl && !uploading && (
+                      <>
+                        <img
+                          src={formData.imageUrl}
+                          alt="Selected gallery memory"
+                          className="absolute inset-0 h-full w-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-navy/55"></div>
+                      </>
+                    )}
                     <input 
                       type="file" 
                       accept="image/*"
                       onChange={handleFileUpload}
                       className="absolute inset-0 opacity-0 cursor-pointer"
                     />
-                    <div className={`w-16 h-16 rounded-full flex items-center justify-center shadow-lg transition-transform ${uploading ? 'bg-gold' : 'bg-blue group-hover:scale-110'}`}>
+                    <div className={`relative z-10 flex h-16 w-16 items-center justify-center rounded-full shadow-lg transition-transform ${uploading ? 'bg-gold' : 'bg-blue group-hover:scale-110'}`}>
                       {uploading ? (
                         <div className="w-8 h-8 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
                       ) : (
                         <UploadCloud className="text-white" size={32} />
                       )}
                     </div>
-                    <div className="text-center">
-                      <p className="text-navy font-black text-sm uppercase tracking-widest">{uploading ? 'Processing Visual...' : 'Upload from Local'}</p>
-                      <p className="text-navy/30 text-[10px] font-bold uppercase tracking-widest mt-1">PNG, JPG, HEIC up to 10MB</p>
+                    <div className="relative z-10">
+                      <p className={`text-sm font-black uppercase tracking-widest ${formData.imageUrl && !uploading ? 'text-white' : 'text-navy'}`}>
+                        {uploading ? 'Processing Visual...' : formData.imageUrl ? 'Image Ready' : 'Upload from Local'}
+                      </p>
+                      <p className={`mt-1 text-[10px] font-bold uppercase tracking-widest ${formData.imageUrl && !uploading ? 'text-white/70' : 'text-navy/35'}`}>
+                        PNG, JPG, HEIC up to 10MB
+                      </p>
+                      {formData.imageUrl && !uploading && (
+                        <p className="mt-3 text-xs font-bold text-gold">Tap to replace image</p>
+                      )}
                     </div>
-                </div>
-                
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-navy/20">
-                    <ImageIcon size={18} />
-                  </div>
-                  <input 
-                    required
-                    type="url" 
-                    value={formData.imageUrl}
-                    onChange={e => setFormData({...formData, imageUrl: e.target.value})}
-                    className="w-full pl-12 pr-6 py-4 bg-navy/5 border-2 border-transparent rounded-2xl focus:outline-none focus:border-blue/30 focus:bg-white transition-all text-sm font-bold text-navy"
-                    placeholder="Visual URL (populated automatically on upload)"
-                  />
                 </div>
               </div>
 
-              <div className="pt-4 flex gap-4">
+              <div className="sticky bottom-0 -mx-5 flex gap-3 border-t border-navy/10 bg-white/95 px-5 pt-4 pb-1 backdrop-blur sm:-mx-6 sm:px-6">
                 <button 
                   type="button" 
                   onClick={closeModal}
-                  className="flex-grow py-5 bg-navy/5 rounded-[1.5rem] font-black text-xs uppercase tracking-[0.2em] text-navy/40 hover:bg-navy/10 hover:text-navy transition-all"
+                  className="flex-1 rounded-xl bg-navy/5 py-4 text-xs font-black uppercase tracking-[0.18em] text-navy/45 transition-all hover:bg-navy/10 hover:text-navy"
                 >
                   Discard
                 </button>
                 <button 
                   type="submit" 
                   disabled={uploading || !formData.imageUrl}
-                  className="flex-grow py-5 bg-blue text-white rounded-[1.5rem] font-black text-xs uppercase tracking-[0.2em] shadow-xl shadow-blue-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-30 disabled:grayscale"
+                  className="flex-1 rounded-xl bg-blue py-4 text-xs font-black uppercase tracking-[0.18em] text-white shadow-xl shadow-blue-500/20 transition-all hover:scale-[1.02] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-30 disabled:grayscale"
                 >
-                  {editingImage ? 'Verify & Update' : 'Archive Memory'}
+                  {editingImage ? 'Update' : 'Archive'}
                 </button>
               </div>
             </form>

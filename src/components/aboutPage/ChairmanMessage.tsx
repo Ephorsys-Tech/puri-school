@@ -20,7 +20,7 @@ export default function ChairmanMessage() {
             className="space-y-8"
           >
             <div>
-              <span className="text-gold font-bold uppercase tracking-widest text-sm mb-2 block">Visionary Leadership</span>
+              <span className="text-blue bg-blue/10 rounded-2xl px-2 py-1 font-bold uppercase tracking-widest text-sm mb-2">Visionary Leadership</span>
               <h2 className="font-heading text-5xl md:text-6xl font-black leading-tight">
                 Message from the <br/><span className="text-gold">Chairman</span>
               </h2>
@@ -44,7 +44,7 @@ export default function ChairmanMessage() {
                 <h4 className="font-heading text-2xl font-black text-white">Mr. Rajesh Verma</h4>
                 <p className="text-gold font-bold tracking-wide text-sm uppercase mt-1">Chairman, Usthi Foundation India</p>
               </div>
-              <img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Signature_placeholder.svg" className="h-16 opacity-50 invert" alt="Signature" />
+              
             </div>
           </motion.div>
 

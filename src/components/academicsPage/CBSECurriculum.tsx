@@ -32,7 +32,7 @@ export default function CBSECurriculum() {
             className="space-y-8"
           >
             <div>
-              <span className="text-gold font-bold uppercase tracking-widest text-sm mb-2 block">Academic Standards</span>
+              <span className="text-blue bg-blue/10 rounded-2xl px-2 py-1 font-bold uppercase tracking-widest text-sm mb-2">Academic Standards</span>
               <h2 className="font-heading text-5xl md:text-6xl font-black leading-tight">
                 CBSE <span className="text-gold">Curriculum</span>
               </h2>
@@ -62,7 +62,7 @@ export default function CBSECurriculum() {
             <div className="absolute inset-0 border-4 border-gold translate-x-6 translate-y-6 rounded-[3rem] -z-10"></div>
             <div className="relative rounded-[3rem] overflow-hidden aspect-square shadow-2xl">
               <img 
-                src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1000&auto=format&fit=crop" 
+                src="images/ncert.webp" 
                 alt="Classroom learning" 
                 className="w-full h-full object-cover"
               />

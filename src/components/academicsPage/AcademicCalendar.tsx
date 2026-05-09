@@ -23,7 +23,7 @@ export default function AcademicCalendar() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-4 sticky top-32"
+            className="lg:col-span-4 lg:self-start sticky top-0"
           >
             <div className="w-20 h-20 bg-blue/10 rounded-2xl flex items-center justify-center text-blue mb-8">
               <Calendar size={40} />
