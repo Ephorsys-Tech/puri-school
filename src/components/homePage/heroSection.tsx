@@ -188,7 +188,7 @@ export default function HeroSection() {
               className="text-4xl sm:text-5xl lg:text-6xl font-extrabold uppercase"
             >
               {slide.heading}{" "}
-              <span className="text-[#159ABF]">{slide.highlight}</span>
+              <span className="text-blue">{slide.highlight}</span>
             </motion.h1>
 
             <motion.h2
@@ -206,7 +206,7 @@ export default function HeroSection() {
             </motion.p>
             <motion.button
               onClick={() => router.push(slide.link)}
-              className="inline-block bg-[#159ABF] hover:bg-[#0c7a9e] transition text-white font-semibold uppercase tracking-widest px-5 py-2 mt-5 rounded-xl shadow-lg"
+              className="inline-block bg-blue hover:bg-[#0c7a9e] transition text-white font-semibold uppercase tracking-widest px-5 py-2 mt-5 rounded-xl shadow-lg"
             >
               {slide.button}
             </motion.button>
