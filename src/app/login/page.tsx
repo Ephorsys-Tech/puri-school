@@ -22,7 +22,7 @@ export default function LoginPage() {
             <School size={24} />
           </div>
           <span className="font-heading text-2xl font-bold tracking-tight text-cream">
-            GNO Project School
+            Usthi Foundation India School
           </span>
         </Link>
         

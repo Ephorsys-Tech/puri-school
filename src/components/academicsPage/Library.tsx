@@ -26,7 +26,7 @@ export default function Library() {
           >
             <div>
               <span className="text-blue bg-blue/10 rounded-2xl px-2 py-1 font-bold uppercase tracking-widest text-sm mb-2">Knowledge Hub</span>
-              <h2 className="font-heading text-5xl md:text-6xl font-black leading-tight">
+              <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-black leading-tight">
                 School <span className="text-gold">Library</span>
               </h2>
             </div>
@@ -50,12 +50,12 @@ export default function Library() {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="absolute inset-0 border-4 border-gold translate-x-6 translate-y-6 rounded-[3rem] -z-10"></div>
-            <div className="relative rounded-[3rem] overflow-hidden aspect-[4/5] shadow-2xl border border-white/10">
+            <div className="absolute inset-0 border-4 border-gold translate-x-3 translate-y-2 rounded-[3rem] -z-10 h-full" ></div>
+            <div className="relative rounded-[3rem] overflow-hidden shadow-2xl border border-white/10 h-[60%]">
               <img 
                 src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=1000&auto=format&fit=crop" 
                 alt="Library" 
-                className="w-full h-full object-cover"
+                className="w-full h-[60%] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/20 to-transparent"></div>
             </div>
@@ -73,21 +73,21 @@ export default function Library() {
               <div className="w-16 h-16 bg-blue/10 rounded-xl flex items-center justify-center text-blue mx-auto mb-6 group-hover:scale-110 transition-transform">
                 <BookText size={32} />
               </div>
-              <h4 className="font-heading text-xl font-black mb-3">Extensive Collection</h4>
+              <h4 className="font-heading text-md font-black mb-5">Extensive Collection</h4>
               <p className="text-navy/70 text-sm font-medium">Comprehensive collection of books across subjects including fiction, reference materials, and educational resources.</p>
             </div>
             <div className="group">
               <div className="w-16 h-16 bg-blue/10 rounded-xl flex items-center justify-center text-blue mx-auto mb-6 group-hover:scale-110 transition-transform">
                 <Laptop size={32} />
               </div>
-              <h4 className="font-heading text-xl font-black mb-3">Digital Resources</h4>
+              <h4 className="font-heading text-md font-black mb-5">Digital Resources</h4>
               <p className="text-navy/70 text-sm font-medium">Access to online databases, e-books, and educational journals for enhanced learning through interactive portals.</p>
             </div>
             <div className="group">
               <div className="w-16 h-16 bg-blue/10 rounded-xl flex items-center justify-center text-blue mx-auto mb-6 group-hover:scale-110 transition-transform">
                 <Users size={32} />
               </div>
-              <h4 className="font-heading text-xl font-black mb-3">Research Support</h4>
+              <h4 className="font-heading text-md font-black mb-5">Research Support</h4>
               <p className="text-navy/70 text-sm font-medium">Dedicated staff to assist students in finding research materials and conducting highly effective library programs.</p>
             </div>
           </div>

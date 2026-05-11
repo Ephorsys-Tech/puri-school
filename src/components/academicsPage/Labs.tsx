@@ -28,7 +28,7 @@ export default function Labs() {
                 <Microscope size={40} />
               </div>
             </div>
-            <h2 className="font-heading text-5xl md:text-6xl font-black text-navy mb-6">
+            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-black text-navy mb-6">
               Advanced <span className="text-gradient-blue">Laboratories</span>
             </h2>
             <p className="text-navy/70 max-w-2xl mx-auto text-lg font-medium">
@@ -42,7 +42,7 @@ export default function Labs() {
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="relative rounded-[3rem] overflow-hidden aspect-video shadow-2xl group border-4 border-white"
+            className="relative rounded-[2rem] overflow-hidden aspect-video shadow-2xl group border-4 border-white"
           >
             <img 
               src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1200&auto=format&fit=crop" 
@@ -62,7 +62,7 @@ export default function Labs() {
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="relative rounded-[3rem] overflow-hidden aspect-video shadow-2xl group border-4 border-white"
+            className="relative rounded-[2rem] overflow-hidden aspect-video shadow-2xl group border-4 border-white"
           >
             <img 
               src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1200&auto=format&fit=crop" 

@@ -47,7 +47,7 @@ export default function ClassesOffered() {
                 <BookOpen size={40} />
               </div>
             </div>
-            <h2 className="font-heading text-5xl md:text-6xl font-black text-navy mb-6">
+            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-black text-navy mb-6">
               Classes <span className="text-gradient-blue">Offered</span>
             </h2>
             <p className="text-navy/70 max-w-2xl mx-auto text-lg font-medium">
@@ -75,7 +75,7 @@ export default function ClassesOffered() {
                 <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300"></div>
                 <div className="absolute inset-0 p-6 flex flex-col justify-end transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                   <div className="text-gold font-black text-3xl mb-2">{classItem.grades}</div>
-                  <h3 className="font-heading text-2xl font-bold text-white mb-3">{classItem.level}</h3>
+                  <h3 className="font-heading text-xl font-bold text-white mb-3">{classItem.level}</h3>
                   <p className="text-white/80 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">{classItem.description}</p>
                 </div>
               </div>

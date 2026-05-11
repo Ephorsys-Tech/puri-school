@@ -28,11 +28,11 @@ export default function AdmissionProcess() {
                 <ClipboardList size={40} />
               </div>
             </div>
-            <h2 className="font-heading text-5xl md:text-6xl font-black text-navy mb-6">
+            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-black text-navy mb-6">
               Admission <span className="text-gradient-blue">Process</span>
             </h2>
             <p className="text-navy/70 max-w-2xl mx-auto text-lg font-medium">
-              Four simple steps to enroll your child in GNO Project School and begin their journey with us.
+              Four simple steps to enroll your child in Usthi Foundation India School and begin their journey with us.
             </p>
           </motion.div>
         </div>

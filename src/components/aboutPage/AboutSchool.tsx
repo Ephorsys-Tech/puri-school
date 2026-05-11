@@ -26,9 +26,9 @@ export default function AboutSchool() {
           >
             <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-blue/10 text-blue font-bold text-sm tracking-widest uppercase">
               <BookOpen size={18} />
-              <span>GNO Project School</span>
+              <span>Usthi Foundation India School</span>
             </div>
-            <h1 className="font-heading text-5xl md:text-6xl font-black text-navy leading-tight">
+            <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-black text-navy leading-tight">
               A Legacy of <br/><span className="text-gradient-blue">Education & Hope</span>
             </h1>
             <p className="text-lg text-navy/70 leading-relaxed">

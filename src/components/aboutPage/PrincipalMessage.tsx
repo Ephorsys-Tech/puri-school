@@ -49,7 +49,7 @@ export default function PrincipalMessage() {
             
             <div className="space-y-6 text-navy/80 text-lg leading-relaxed relative font-medium">
               <p>
-                Welcome to GNO Project School. Education is not merely the accumulation of facts; it is the preparation for life itself. We strive to provide an environment where every child is encouraged to discover their true potential.
+                Welcome to Usthi Foundation India School. Education is not merely the accumulation of facts; it is the preparation for life itself. We strive to provide an environment where every child is encouraged to discover their true potential.
               </p>
               <p>
                 Our philosophy revolves around an 'antigravity' approach—lifting the heavy burdens of traditional rote learning and allowing students' curiosity to take flight.
@@ -62,7 +62,7 @@ export default function PrincipalMessage() {
             <div className="pt-8 border-t-2 border-navy/10 flex items-center gap-6">
               <div>
                 <h4 className="font-heading text-2xl font-black text-navy">Dr. A. Sharma</h4>
-                <p className="text-blue font-bold tracking-wide text-sm uppercase mt-1">Principal, GNO Project School</p>
+                <p className="text-blue font-bold tracking-wide text-sm uppercase mt-1">Principal, Usthi Foundation India School</p>
               </div>
             </div>
           </motion.div>

@@ -5,7 +5,7 @@ export default function TermsAndConditions() {
     <section className="py-25 mt-7 bg-gray-50 text-gray-800">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
-        <h1 className="text-3xl sm:text-4xl font-bold mb-6 text-center">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-center">
           Terms and Conditions
         </h1>
 

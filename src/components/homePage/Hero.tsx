@@ -25,12 +25,12 @@ export default function Hero() {
           <span className="inline-block py-1 px-3 rounded-full border border-gold/40 text-gold font-semibold text-sm tracking-widest mb-6">
             USTHI FOUNDATION INDIA
           </span>
-          <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-black text-navy mb-6 leading-tight tracking-tighter">
+          <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-black text-navy mb-6 leading-tight tracking-tighter">
             Elevate Your <br />
             <span className="text-gradient-gold">Potential</span>
           </h1>
           <p className="max-w-2xl mx-auto text-lg md:text-xl text-navy/80 mb-10 font-medium leading-relaxed">
-            GNO Project School, Puri. Nurturing minds with holistic education, modern facilities, and a visionary approach to shape tomorrow's leaders.
+            Usthi Foundation India School, Puri. Nurturing minds with holistic education, modern facilities, and a visionary approach to shape tomorrow's leaders.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

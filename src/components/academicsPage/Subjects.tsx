@@ -23,13 +23,13 @@ export default function Subjects() {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-5 space-y-8"
+            className="lg:col-span-4 lg:self-start sticky top-0"
           >
             <div>
               <div className="w-20 h-20 bg-blue/10 rounded-2xl flex items-center justify-center text-blue mb-8">
                 <BookMarked size={40} />
               </div>
-              <h2 className="font-heading text-5xl md:text-6xl font-black text-navy leading-tight">
+              <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-black text-navy leading-tight">
                 Subject <span className="text-gradient-blue">Offerings</span>
               </h2>
             </div>

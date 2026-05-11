@@ -36,15 +36,15 @@ export default function ContactPage() {
     <main className="flex-grow bg-cream text-navy">
       <section className="relative overflow-hidden pt-32 pb-20 lg:pt-40 lg:pb-28">
         <div className="absolute inset-0 bg-mesh opacity-80"></div>
-        <div className="absolute top-0 right-[-12rem] h-[32rem] w-[32rem] rounded-full bg-blue/10 blur-[140px]"></div>
+        <div className="absolute top-0 -right-48 h-128 w-lg rounded-full bg-blue/10 blur-[140px]"></div>
 
         <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:px-8">
           <div>
             <span className="mb-5 inline-flex items-center gap-2 rounded-md border border-gold/30 bg-white/70 px-3 py-2 text-xs font-black uppercase tracking-[0.22em] text-blue">
               <MessageCircle size={16} />
-              Contact GNO Project School
+              Contact Usthi Foundation India School
             </span>
-            <h1 className="font-heading text-5xl font-black leading-tight text-navy md:text-6xl lg:text-7xl">
+            <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-black leading-tight text-navy ">
               Let us help with your next <span className="text-gradient-gold">school visit</span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg font-medium leading-relaxed text-navy/70 md:text-xl">
@@ -71,8 +71,8 @@ export default function ContactPage() {
 
           <div className="relative min-h-[360px] overflow-hidden rounded-lg shadow-2xl">
             <Image
-              src="/images/campus.jpg"
-              alt="Students and staff at GNO Project School"
+              src="/images/ga.webp"
+              alt="Students and staff at Usthi Foundation India School"
               fill
               priority
               className="object-cover"
@@ -91,17 +91,17 @@ export default function ContactPage() {
         <div className="mx-auto grid max-w-7xl gap-4 px-4 sm:px-6 md:grid-cols-3 lg:px-8">
           <a href="tel:+917853822264" className="rounded-lg bg-white p-6 shadow-sm transition-transform hover:-translate-y-1">
             <Phone className="mb-4 text-blue" size={28} />
-            <h2 className="font-heading text-xl font-black text-navy">Phone</h2>
+            <h2 className="font-heading text-sm md:text-lg font-black text-navy">Phone</h2>
             <p className="mt-2 font-semibold text-navy/70">+91 78538 22264</p>
           </a>
           <a href="mailto:usthischool@gmail.com" className="rounded-lg bg-white p-6 shadow-sm transition-transform hover:-translate-y-1">
             <Mail className="mb-4 text-blue" size={28} />
-            <h2 className="font-heading text-xl font-black text-navy">Email</h2>
+            <h2 className="font-heading text-sm md:text-lg font-black text-navy">Email</h2>
             <p className="mt-2 break-words font-semibold text-navy/70">usthischool@gmail.com</p>
           </a>
           <div className="rounded-lg bg-white p-6 shadow-sm">
             <Clock className="mb-4 text-blue" size={28} />
-            <h2 className="font-heading text-xl font-black text-navy">Office Help</h2>
+            <h2 className="font-heading text-sm md:text-lg font-black text-navy">Office Help</h2>
             <p className="mt-2 font-semibold text-navy/70">Admissions, documents, fees, and school visits</p>
           </div>
         </div>
@@ -112,7 +112,7 @@ export default function ContactPage() {
           <aside className="space-y-6">
             <div>
               <span className="text-sm font-black uppercase tracking-[0.22em] text-blue">Reach Us</span>
-              <h2 className="mt-3 font-heading text-4xl font-black text-navy">Visit the campus office</h2>
+              <h2 className="mt-3 font-heading text-3xl sm:text-4xl md:text-5xl font-black text-navy">Visit the campus office</h2>
               <p className="mt-4 text-lg leading-relaxed text-navy/70">
                 For admissions support, bring your questions to the school office or send them through the form.
               </p>
@@ -137,7 +137,7 @@ export default function ContactPage() {
             <div className="relative h-72 overflow-hidden rounded-lg shadow-xl">
               <Image
                 src="/images/campus.jpg"
-                alt="GNO Project School campus building"
+                alt="Usthi Foundation India School campus building"
                 fill
                 className="object-cover"
                 sizes="(min-width: 1024px) 35vw, 100vw"
@@ -226,7 +226,7 @@ export default function ContactPage() {
           <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <span className="text-sm font-black uppercase tracking-[0.22em] text-blue">Find Us</span>
-              <h2 className="mt-3 font-heading text-4xl font-black text-navy">GNO Project School, Puri</h2>
+              <h2 className="mt-3 font-heading text-3xl sm:text-4xl md:text-5xl font-black text-navy">Usthi Foundation India School, Puri</h2>
             </div>
             <p className="max-w-xl text-navy/70">
               Located near Indoor Stadium on Water Works Road for convenient access from central Puri.
@@ -235,7 +235,7 @@ export default function ContactPage() {
 
           <div className="h-[28rem] overflow-hidden rounded-lg border border-blue/10 bg-white shadow-xl">
             <iframe
-              title="Map showing GNO Project School in Puri"
+              title="Map showing Usthi Foundation India School in Puri"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119743.40927376722!2d85.73805175!3d19.8045657!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19c4180256e495%3A0x496a9d8bf04d1efc!2sPuri%2C%20Odisha!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
               width="100%"
               height="100%"

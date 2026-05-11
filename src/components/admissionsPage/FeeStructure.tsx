@@ -5,10 +5,10 @@ import { CreditCard, CheckCircle2 } from 'lucide-react';
 
 export default function FeeStructure() {
   const feeStructure = [
-    { class: 'Nursery - KG', tuition: '₹ 100', otherFees: 'Books & uniforms included' },
-    { class: 'Class 1 - 5', tuition: '₹ 100', otherFees: 'Stationery & meals' },
-    { class: 'Class 6 - 8', tuition: '₹ 100', otherFees: 'Lab & activity fees' },
-    { class: 'Class 9 - 10', tuition: '₹ 100', otherFees: 'Board exam fees included' }
+    { class: 'Nursery - KG', tuition: '₹ 100' },
+    { class: 'Class 1 - 5', tuition: '₹ 100' },
+    { class: 'Class 6 - 8', tuition: '₹ 100' },
+    { class: 'Class 9 - 10', tuition: '₹ 100' }
   ];
 
   return (
@@ -28,7 +28,7 @@ export default function FeeStructure() {
                 <CreditCard size={40} />
               </div>
             </div>
-            <h2 className="font-heading text-5xl md:text-6xl font-black text-navy mb-6">
+            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-black text-navy mb-6">
               Fee <span className="text-gradient-blue">Structure</span>
             </h2>
             <p className="text-navy/70 max-w-2xl mx-auto text-lg font-medium">
@@ -52,7 +52,7 @@ export default function FeeStructure() {
               <p className="text-navy/50 text-sm font-bold uppercase tracking-wider mb-2">Monthly Nominal Fees</p>
               <div className="text-4xl font-black text-blue mb-8">{item.tuition}</div>
               <div className="bg-accent rounded-xl p-4">
-                <p className="text-navy/70 text-sm font-medium">{item.otherFees}</p>
+                <p className="text-navy/70 text-sm font-medium">Everything included</p>
               </div>
             </motion.div>
           ))}

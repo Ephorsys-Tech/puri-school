@@ -33,11 +33,9 @@ export default function GalleryGrid({ images, loading }: GalleryGridProps) {
 
   return (
     <>
-      <div className="columns-1 sm:columns-2 lg:columns-3 gap-8 space-y-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {(Array.isArray(images) ? images : []).map((img) => (
-          <div key={img._id} className="break-inside-avoid">
-            <GalleryCard image={img} onClick={setSelectedImage} />
-          </div>
+          <GalleryCard key={img._id} image={img} onClick={setSelectedImage} />
         ))}
       </div>
 
