@@ -160,7 +160,7 @@ export default function Achievements() {
           <span className="inline-block bg-navy text-gold text-xs font-bold tracking-widest uppercase px-5 py-1.5 rounded-sm mb-5 font-sans">
             Penthakata Project School · Est. 1992
           </span>
-          <h2 className="font-heading text-5xl md:text-6xl font-black text-navy mb-4 leading-tight">
+          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-black text-navy mb-4 leading-tight">
             Milestones &amp;{' '}
             <span className="text-gradient-blue">
               Achievements
@@ -169,7 +169,6 @@ export default function Achievements() {
           <p className="text-lg text-navy/70 max-w-2xl mx-auto leading-relaxed font-medium italic">
             Over three decades of nurturing potential, transforming lives, and uplifting communities through free, quality education.
           </p>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue to-gold mx-auto mt-6 rounded-full" />
         </motion.div>
 
         {/* ── Timeline ── */}
@@ -234,15 +233,10 @@ export default function Achievements() {
                 transition={{ duration: 0.35, delay: i * 0.06 }}
                 className={`rounded-2xl p-6 border transition-all duration-300 hover:-translate-y-1 ${
                   a.highlight
-                    ? 'bg-gradient-to-br from-navy to-blue text-white border-none shadow-lg shadow-navy/20'
+                    ? 'bg-linear-to-br from-navy to-blue text-white border-none shadow-lg shadow-navy/20'
                     : 'bg-white text-navy border-navy/5 shadow-sm hover:shadow-md'
                 }`}
               >
-                {a.highlight && (
-                  <div className="absolute top-4 right-4 bg-gold text-navy text-xs font-bold tracking-wider uppercase px-2.5 py-1 rounded-md">
-                    National
-                  </div>
-                )}
                 <span className="text-4xl block mb-4">{a.icon}</span>
                 <span className={`inline-block px-3 py-1 rounded-md text-xs font-bold tracking-wider uppercase mb-3 ${
                   a.highlight
@@ -276,7 +270,7 @@ export default function Achievements() {
                 transition={{ duration: 0.5, delay: i * 0.08 }}
                 className="flex gap-4 items-start bg-white rounded-2xl p-6 border border-navy/5 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1"
               >
-                <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-navy to-blue rounded-xl flex items-center justify-center text-gold">
+                <div className="shrink-0 w-12 h-12 bg-linear-to-br from-navy to-blue rounded-xl flex items-center justify-center text-gold">
                   {item.icon}
                 </div>
                 <div>
@@ -294,7 +288,7 @@ export default function Achievements() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-center mt-20 p-10 bg-gradient-to-br from-navy to-blue rounded-3xl text-white shadow-xl shadow-navy/20"
+          className="text-center mt-20 p-10 bg-linear-to-br from-navy to-blue rounded-3xl text-white shadow-xl shadow-navy/20"
         >
           <p className="text-xl md:text-2xl font-medium italic leading-relaxed mb-4 text-white/90">
             "It is believed that each child is unique and has inherent potential to develop his or her personality."

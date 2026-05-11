@@ -8,7 +8,7 @@ import Teachers from '@/components/aboutPage/Teachers';
 
 export default function AboutPage() {
   return (
-    <main className="flex-grow pt-24 bg-cream">
+    <main className="grow pt-24 bg-cream">
       <AboutSchool />
       <VisionMission />
       <PrincipalMessage />
