@@ -34,7 +34,7 @@ export default function AcademicsPage() {
               transition={{ duration: 0.8 }}
             >
               <span className="text-blue bg-blue/10 rounded-2xl px-2 py-1 font-bold uppercase tracking-widest text-sm mb-2">Holistic Education</span>
-              <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-tight">
+              <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-black text-white mb-8 leading-tight">
                 Academic <span className="text-gold">Excellence</span>
               </h1>
               <p className="text-white/90 text-lg md:text-xl leading-relaxed font-medium">

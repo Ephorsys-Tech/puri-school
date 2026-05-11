@@ -47,7 +47,7 @@ export default function MessageManager() {
     <div className="space-y-10 animate-[fadeUp_0.4s_ease-out]">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
         <div className="space-y-1">
-          <h1 className="font-heading text-4xl font-black text-navy tracking-tight">Contact Messages</h1>
+          <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-black text-navy tracking-tight">Contact Messages</h1>
           <p className="text-navy/40 font-medium tracking-wide flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-gold animate-pulse"></span>
             View and manage messages from the contact section

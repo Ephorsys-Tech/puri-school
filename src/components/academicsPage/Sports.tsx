@@ -27,7 +27,7 @@ export default function Sports() {
             viewport={{ once: true }}
           >
             <span className="text-blue bg-blue/10 rounded-2xl px-2 py-1 font-bold uppercase tracking-widest text-sm mb-2">Physical Education</span>
-            <h2 className="font-heading text-5xl md:text-6xl font-black text-navy mb-6">
+            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-black text-navy mb-6">
               Sports & <span className="text-gradient-blue">Recreation</span>
             </h2>
             <p className="text-navy/70 max-w-2xl mx-auto text-lg font-medium">
@@ -42,17 +42,17 @@ export default function Sports() {
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-8 relative rounded-[3rem] overflow-hidden aspect-[16/9] shadow-2xl border-4 border-white"
+            className="lg:col-span-8 relative rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white/10 bg-navy min-h-[420px] md:min-h-[520px]"
           >
             <img 
               src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=1200&auto=format&fit=crop" 
               alt="Students running" 
-              className="w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/30 to-transparent"></div>
-            <div className="absolute bottom-0 left-0 w-full p-8 md:p-12">
-              <h3 className="font-heading text-3xl font-black text-white mb-4">Championing Health & Vitality</h3>
-              <p className="text-white/80 font-medium max-w-2xl text-lg">
+            <div className="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/40 to-transparent"></div>
+            <div className="absolute bottom-0 left-0 w-full p-8 md:p-12 lg:p-16">
+              <h3 className="font-heading text-2xl md:text-3xl font-black text-white mb-4">Championing Health & Vitality</h3>
+              <p className="text-white/80 font-medium max-w-3xl text-base md:text-lg leading-relaxed">
                 We believe sports are integral to holistic development. Instilling values of discipline, teamwork, and healthy living through structured programs.
               </p>
             </div>

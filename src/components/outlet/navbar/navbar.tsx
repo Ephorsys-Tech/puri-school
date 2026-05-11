@@ -43,7 +43,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center select-none">
             <div className="w-14 h-14 lg:w-16 lg:h-16 rounded-full overflow-hidden">
               <img
-                src="/usthi foundation.png"
+                src="images/logo.png"
                 alt="School Logo"
                 className="w-full h-full object-cover"
               />

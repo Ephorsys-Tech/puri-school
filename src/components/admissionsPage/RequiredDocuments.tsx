@@ -28,7 +28,7 @@ export default function RequiredDocuments() {
                 <FileText size={40} />
               </div>
             </div>
-            <h2 className="font-heading text-5xl md:text-6xl font-black text-navy mb-6">
+            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-black text-navy mb-6">
               Required <span className="text-gradient-blue">Documents</span>
             </h2>
             <p className="text-navy/70 max-w-2xl mx-auto text-lg font-medium">

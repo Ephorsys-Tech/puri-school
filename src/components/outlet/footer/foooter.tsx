@@ -20,40 +20,45 @@ export default function Footer() {
       <div className="absolute top-[-50%] left-[-10%] w-96 h-96 bg-blue/20 rounded-full blur-3xl mix-blend-screen pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-14 mb-14 items-start">
 
           {/* Brand */}
-          <div className="col-span-1 md:col-span-1">
-            <Link href="/" className="flex items-center gap-2 mb-4 group">
-              <div className="bg-linear-to-br from-gold to-amber p-2 rounded-full text-navy">
-                <MdSchool size={24} />
-              </div>
-              <span className="font-heading text-xl font-bold tracking-tight text-cream">
+          <div className="col-span-1 md:col-span-3 lg:col-span-2 lg:max-w-[520px]">
+            <Link href="/" className="flex items-center gap-3 mb-4 group">
+              {/* Logo */}
+            <div className="w-14 h-14 lg:w-16 lg:h-16 rounded-full overflow-hidden">
+              <img
+                src="images/logo.png"
+                alt="School Logo"
+                className="w-full h-full object-cover"
+              />
+            </div>
+              <span className="font-heading text-2xl md:text-3xl font-bold tracking-tight text-cream leading-tight">
                 Usthi Foundation India School
               </span>
             </Link>
-            <p className="text-cream/80 mb-6 text-sm">
+            <p className="text-cream/80 mb-6 text-sm md:text-base leading-relaxed">
               Empowering students through holistic education and moral values,
               fostering a brighter future. Supported by Usthi Foundation India, Puri.
             </p>
-            <div className="flex space-x-4">
+            <div className="flex items-center gap-3">
               <a
                 href="https://www.youtube.com/@usthischool-2023"
-                className="w-10 h-10 rounded-full glass-navy flex items-center justify-center text-gold hover:bg-gold hover:text-navy transition-all duration-300"
+                className="w-11 h-11 rounded-full glass-navy flex items-center justify-center text-gold hover:bg-gold hover:text-navy transition-all duration-300"
               >
-                <BsYoutube size={16} />
+                <BsYoutube size={18} />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 rounded-full glass-navy flex items-center justify-center text-gold hover:bg-gold hover:text-navy transition-all duration-300"
+                className="w-11 h-11 rounded-full glass-navy flex items-center justify-center text-gold hover:bg-gold hover:text-navy transition-all duration-300"
               >
-                <FaTwitter size={16} />
+                <FaTwitter size={18} />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 rounded-full glass-navy flex items-center justify-center text-gold hover:bg-gold hover:text-navy transition-all duration-300"
+                className="w-11 h-11 rounded-full glass-navy flex items-center justify-center text-gold hover:bg-gold hover:text-navy transition-all duration-300"
               >
-                <FaInstagram size={16} />
+                <FaInstagram size={18} />
               </a>
             </div>
           </div>
@@ -78,7 +83,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Academics */}
+          {/* Academics
           <div>
             <h3 className="font-heading text-lg font-semibold mb-6 text-gold relative inline-block after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-1/2 after:h-0.5 after:bg-gold">
               Academics
@@ -96,7 +101,7 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
           {/* Contact Info */}
           <div>
@@ -106,31 +111,34 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MdLocationOn className="text-gold mt-1 shrink-0" size={20} />
-                <span className="text-cream/80 text-sm">
-                  Usthi Foundation India School,Water works Road Puri, Near to Indoor Stadium, Puri, Odisha
+                <span className="text-cream/80 text-sm md:text-base">
+                  Usthi Foundation India School, Water works Road Puri, Near to Indoor Stadium, Puri, Odisha
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <MdPhone className="text-gold shrink-0" size={20} />
-                <span className="text-cream/80 text-sm">+91 7853822264</span>
+                <span className="text-cream/80 text-sm md:text-base">+91 7853822264</span>
               </li>
               <li className="flex items-center gap-3">
                 <MdEmail className="text-gold shrink-0" size={20} />
-                <span className="text-cream/80 text-sm">usthischool@gmail.com</span>
+                <span className="text-cream/80 text-sm md:text-base">usthischool@gmail.com</span>
               </li>
             </ul>
           </div>
 
         </div>
 
-        <div className="border-t border-cream/10 pt-8 flex flex-col md:flex-row justify-between items-center text-cream/60 text-sm">
-          <p>&copy; {new Date().getFullYear()} Usthi Foundation School Puri. All rights reserved.</p>
-          <p className='font-semibold' >Powered By <span className='text-gold font-bold ' >Ephorsys</span></p>
-          <div className="mt-4 md:mt-0 flex gap-4">
+        <div className="border-t border-cream/10 pt-8 flex flex-col lg:flex-row justify-between items-center gap-4 text-cream/60 text-sm">
+          <p className="text-center lg:text-left">&copy; {new Date().getFullYear()} Usthi Foundation School Puri. All rights reserved.</p>
+          
+          <div className="flex flex-wrap justify-center gap-4">
             <Link href="/privacy-policy" className="hover:text-gold transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-gold transition-colors">Terms of Service</Link>
             <Link href="/login" className="hover:text-gold transition-colors">Admin Portal</Link>
           </div>
+          <p className="font-semibold text-center lg:text-right">
+            Powered By <span className="text-gold font-bold"><a href="https://www.ephorsys.com" target="_blank" rel="noopener noreferrer">Ephorsys</a></span>
+          </p>
         </div>
       </div>
     </footer>

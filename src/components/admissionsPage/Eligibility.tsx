@@ -27,13 +27,11 @@ export default function Eligibility() {
             viewport={{ once: true }}
             className="lg:col-span-4 lg:self-start sticky top-0"
           >
-            <div className="w-20 h-20 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center text-gold mb-8">
-              <Users size={40} />
-            </div>
-            <h2 className="font-heading text-5xl font-black mb-6 leading-tight">
+           
+            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-black mb-6 leading-tight mt-4">
               Eligibility <span className="text-gold">Criteria</span>
             </h2>
-            <p className="text-white/80 text-lg font-medium mb-8">
+            <p className="text-white/80 text-lg font-medium">
               Basic requirements for admission to ensure every child is ready for our curriculum.
             </p>
             

@@ -60,7 +60,7 @@ export default function PrincipalMessage() {
             
             <div className="space-y-4 text-navy/80 text-sm sm:text-base leading-relaxed font-medium">
               <p>
-                Welcome to GNO Project School. Education is not merely the accumulation of facts; it is the preparation for life itself. We strive to provide an environment where every child is encouraged to discover their true potential.
+                Welcome to Usthi Foundation India School. Education is not merely the accumulation of facts; it is the preparation for life itself. We strive to provide an environment where every child is encouraged to discover their true potential.
               </p>
 
               <p>

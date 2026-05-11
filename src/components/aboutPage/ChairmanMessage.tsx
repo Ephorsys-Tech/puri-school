@@ -38,7 +38,7 @@ export default function ChairmanMessage() {
               <Quote className="absolute -top-4 -left-4 w-12 h-12 text-white/5 -z-10 rotate-180" fill="currentColor" />
 
               <p>
-                At Usthi Foundation India, we believe that quality education is the cornerstone of societal transformation. GNO Project School exemplifies our commitment to creating inclusive, holistic learning experiences.
+                At Usthi Foundation India, we believe that quality education is the cornerstone of societal transformation. Usthi Foundation India School exemplifies our commitment to creating inclusive, holistic learning experiences.
               </p>
 
               <p>
