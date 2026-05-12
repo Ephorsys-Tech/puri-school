@@ -8,8 +8,8 @@ Admin login to get tokens.
 **Request:**
 ```json
 {
-  "email": "admin@example.com",
-  "password": "admin123"
+  "email": "adminpurischool@gmail.com",
+  "password": "Puri@2026"
 }
 ```
 

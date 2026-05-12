@@ -33,7 +33,7 @@ export default function CBSECurriculum() {
           >
             <div>
               <span className="text-blue bg-blue/10 rounded-2xl px-2 py-1 font-bold uppercase tracking-widest text-sm mb-2">Academic Standards</span>
-              <h2 className="font-heading text-3xl sm:text-4xl md:text-5xll font-black leading-tight">
+              <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-black leading-tight">
                 CBSE <span className="text-gold">Curriculum</span>
               </h2>
             </div>
