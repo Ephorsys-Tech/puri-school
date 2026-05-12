@@ -108,8 +108,8 @@ export default function Navbar() {
         <div className="flex items-center justify-between mb-8">
           <Link href="/" onClick={() => setMenuOpen(false)}>
             <img
-              src="/usthi foundation.jpeg"
-              alt="Usthi Foundation"
+              src="/images/logo.png"
+              alt="logo"
               className="w-14 h-14 rounded-full object-cover"
             />
           </Link>
@@ -145,16 +145,6 @@ export default function Navbar() {
             </Link>
           ))}
         </ul>
-
-        {/* Mobile Donate */}
-        <Link
-          href="/donate"
-          onClick={() => setMenuOpen(false)}
-          className="mt-8 flex items-center justify-center gap-3 px-6 py-3 rounded-full text-xs font-extrabold uppercase tracking-widest text-white bg-linear-to-r from-[#159ABF] to-[#4FD1FF] shadow-md shadow-[#159ABF]/30 hover:shadow-lg transition-all"
-        >
-          <img src="/donation1.png" alt="Donate" className="w-7 h-7" />
-          Donate
-        </Link>
       </aside>
     </>
   );

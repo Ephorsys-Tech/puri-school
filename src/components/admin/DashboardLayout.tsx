@@ -4,6 +4,7 @@ import React from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { tokenStorage } from '@/lib/api';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { 
   LayoutDashboard, 
   Image as ImageIcon, 
@@ -24,11 +25,11 @@ interface DashboardLayoutProps {
 export default function DashboardLayout({ children, activeTab, setActiveTab }: DashboardLayoutProps) {
   const { user, login, logout, isLoading } = useAuth();
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
-  const router = React.useMemo(() => typeof window !== 'undefined' ? require('next/navigation').useRouter() : null, []);
+  const router = useRouter();
 
   React.useEffect(() => {
     if (!isLoading && !user && !tokenStorage.getTokens()) {
-      window.location.href = '/login';
+      router.push('/login');
     }
   }, [isLoading, user]);
 

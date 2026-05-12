@@ -1,6 +1,8 @@
 import axios, { AxiosInstance } from 'axios';
 
-const baseURL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+const baseURL = typeof window !== 'undefined'
+  ? ''
+  : process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
 
 export const tokenStorage = {
   getTokens: () => {

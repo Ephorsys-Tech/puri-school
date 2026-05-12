@@ -175,7 +175,7 @@ export default function Achievements() {
         <div className="mb-20">
           <SectionLabel>Journey Since 1992</SectionLabel>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
             {milestones.map((m, i) => (
               <motion.div
                 key={i}
