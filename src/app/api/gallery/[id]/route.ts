@@ -7,7 +7,7 @@ import { Types } from 'mongoose';
 // GET single gallery item
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await connectDB();
@@ -39,8 +39,11 @@ export async function GET(
     );
   } catch (error: any) {
     console.error('Fetch single gallery error:', error);
+
     return NextResponse.json(
-      { error: error.message || 'Failed to fetch gallery item' },
+      {
+        error: error.message || 'Failed to fetch gallery item',
+      },
       { status: 500 }
     );
   }
@@ -49,7 +52,7 @@ export async function GET(
 // PUT - Update gallery item (Admin only)
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Verify admin authentication
@@ -64,7 +67,7 @@ export async function PUT(
 
     await connectDB();
 
-    const { id } = params;
+    const { id } = await params;
 
     if (!Types.ObjectId.isValid(id)) {
       return NextResponse.json(
@@ -78,7 +81,10 @@ export async function PUT(
     const gallery = await Gallery.findByIdAndUpdate(
       id,
       { imageUrl, category },
-      { new: true, runValidators: true }
+      {
+        new: true,
+        runValidators: true,
+      }
     );
 
     if (!gallery) {
@@ -97,8 +103,11 @@ export async function PUT(
     );
   } catch (error: any) {
     console.error('Update gallery error:', error);
+
     return NextResponse.json(
-      { error: error.message || 'Failed to update gallery item' },
+      {
+        error: error.message || 'Failed to update gallery item',
+      },
       { status: 500 }
     );
   }
@@ -107,7 +116,7 @@ export async function PUT(
 // DELETE - Delete gallery item (Admin only)
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Verify admin authentication
@@ -148,8 +157,11 @@ export async function DELETE(
     );
   } catch (error: any) {
     console.error('Delete gallery error:', error);
+
     return NextResponse.json(
-      { error: error.message || 'Failed to delete gallery item' },
+      {
+        error: error.message || 'Failed to delete gallery item',
+      },
       { status: 500 }
     );
   }

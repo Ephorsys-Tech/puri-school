@@ -7,7 +7,7 @@ import { Types } from 'mongoose';
 // DELETE - Delete message (Admin only)
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Verify admin authentication
@@ -22,6 +22,7 @@ export async function DELETE(
 
     await connectDB();
 
+    // Next.js 16: params is a Promise
     const { id } = await params;
 
     if (!Types.ObjectId.isValid(id)) {
@@ -48,8 +49,11 @@ export async function DELETE(
     );
   } catch (error: any) {
     console.error('Delete message error:', error);
+
     return NextResponse.json(
-      { error: error.message || 'Failed to delete message' },
+      {
+        error: error.message || 'Failed to delete message',
+      },
       { status: 500 }
     );
   }
