@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Mail, MapPin, Phone, Send, Clock, MessageCircle, AlertCircle } from 'lucide-react';
+import { Mail, MapPin, Phone, Send, Clock, MessageCircle, AlertCircle, ExternalLink } from 'lucide-react';
 import { contactSchema } from '@/lib/validations/contactSchema';
 
 export default function ContactPage() {
@@ -245,9 +245,8 @@ export default function ContactPage() {
                       onChange={(e) => handleChange('name', e.target.value)}
                       onKeyDown={handleNameKeyDown}
                       onBlur={() => validateField('name', formData.name)}
-                      className={`w-full rounded-md border bg-cream/10 px-4 py-3 text-cream outline-none transition-colors placeholder:text-cream/40 focus:border-gold ${
-                        errors.name ? 'border-amber-400' : 'border-cream/20'
-                      }`}
+                      className={`w-full rounded-md border bg-cream/10 px-4 py-3 text-cream outline-none transition-colors placeholder:text-cream/40 focus:border-gold ${errors.name ? 'border-amber-400' : 'border-cream/20'
+                        }`}
                       placeholder="Your Name"
                     />
                     {errors.name && (
@@ -265,9 +264,8 @@ export default function ContactPage() {
                       onChange={(e) => handleChange('phone', e.target.value)}
                       onKeyDown={handlePhoneKeyDown}
                       onBlur={() => validateField('phone', formData.phone)}
-                      className={`w-full rounded-md border bg-cream/10 px-4 py-3 text-cream outline-none transition-colors placeholder:text-cream/40 focus:border-gold ${
-                        errors.phone ? 'border-amber-400' : 'border-cream/20'
-                      }`}
+                      className={`w-full rounded-md border bg-cream/10 px-4 py-3 text-cream outline-none transition-colors placeholder:text-cream/40 focus:border-gold ${errors.phone ? 'border-amber-400' : 'border-cream/20'
+                        }`}
                       placeholder="Enter Your Number"
                     />
                     {errors.phone && (
@@ -285,9 +283,8 @@ export default function ContactPage() {
                     value={formData.email}
                     onChange={(e) => handleChange('email', e.target.value)}
                     onBlur={() => validateField('email', formData.email)}
-                    className={`w-full rounded-md border bg-cream/10 px-4 py-3 text-cream outline-none transition-colors placeholder:text-cream/40 focus:border-gold ${
-                      errors.email ? 'border-amber-400' : 'border-cream/20'
-                    }`}
+                    className={`w-full rounded-md border bg-cream/10 px-4 py-3 text-cream outline-none transition-colors placeholder:text-cream/40 focus:border-gold ${errors.email ? 'border-amber-400' : 'border-cream/20'
+                      }`}
                     placeholder="you@example.com"
                   />
                   {errors.email && (
@@ -304,9 +301,8 @@ export default function ContactPage() {
                     value={formData.message}
                     onChange={(e) => handleChange('message', e.target.value)}
                     onBlur={() => validateField('message', formData.message)}
-                    className={`w-full resize-none rounded-md border bg-cream/10 px-4 py-3 text-cream outline-none transition-colors placeholder:text-cream/40 focus:border-gold ${
-                      errors.message ? 'border-amber-400' : 'border-cream/20'
-                    }`}
+                    className={`w-full resize-none rounded-md border bg-cream/10 px-4 py-3 text-cream outline-none transition-colors placeholder:text-cream/40 focus:border-gold ${errors.message ? 'border-amber-400' : 'border-cream/20'
+                      }`}
                     placeholder="Write your question here (minimum 5 characters)"
                   ></textarea>
                   {errors.message && (
@@ -354,17 +350,30 @@ export default function ContactPage() {
           <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <span className="text-sm font-black uppercase tracking-[0.22em] text-blue">Find Us</span>
-              <h2 className="mt-3 font-heading text-3xl sm:text-4xl md:text-5xl font-black text-navy">Usthi Foundation India School, Puri</h2>
+              <h2 className="mt-3 font-heading text-3xl sm:text-4xl md:text-5xl font-black text-navy">
+                Usthi Foundation India School, Puri
+              </h2>
             </div>
-            <p className="max-w-xl text-navy/70">
-              Located near Indoor Stadium on Water Works Road for convenient access from central Puri.
-            </p>
+            <div className="flex flex-col items-start gap-2 md:items-end">
+              <p className="max-w-xl text-navy/70">
+                Located near Indoor Stadium on Water Works Road for convenient access from central Puri.
+              </p>
+              <a
+                href="https://www.google.com/maps/place/19%C2%B048'40.8%22N+85%C2%B051'12.8%22E/@19.811321,85.853565,17z"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm font-bold text-blue transition-colors hover:text-navy"
+              >
+                <span>View on Google Maps</span>
+                <ExternalLink size={16} />
+              </a>
+            </div>
           </div>
 
           <div className="h-[28rem] overflow-hidden rounded-lg border border-blue/10 bg-white shadow-xl">
             <iframe
               title="Map showing Usthi Foundation India School in Puri"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119743.40927376722!2d85.73805175!3d19.8045657!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19c4180256e495%3A0x496a9d8bf04d1efc!2sPuri%2C%20Odisha!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+              src="https://maps.google.com/maps?q=19.811321,85.853565+(Usthi+Foundation+India+School)&t=&z=17&ie=UTF8&iwloc=B&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0 }}
