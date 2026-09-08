@@ -39,8 +39,11 @@ export async function GET(
     );
   } catch (error: any) {
     console.error('Fetch single gallery error:', error);
+
     return NextResponse.json(
-      { error: error.message || 'Failed to fetch gallery item' },
+      {
+        error: error.message || 'Failed to fetch gallery item',
+      },
       { status: 500 }
     );
   }
@@ -78,7 +81,10 @@ export async function PUT(
     const gallery = await Gallery.findByIdAndUpdate(
       id,
       { imageUrl, category },
-      { new: true, runValidators: true }
+      {
+        new: true,
+        runValidators: true,
+      }
     );
 
     if (!gallery) {
@@ -97,8 +103,11 @@ export async function PUT(
     );
   } catch (error: any) {
     console.error('Update gallery error:', error);
+
     return NextResponse.json(
-      { error: error.message || 'Failed to update gallery item' },
+      {
+        error: error.message || 'Failed to update gallery item',
+      },
       { status: 500 }
     );
   }
@@ -148,8 +157,11 @@ export async function DELETE(
     );
   } catch (error: any) {
     console.error('Delete gallery error:', error);
+
     return NextResponse.json(
-      { error: error.message || 'Failed to delete gallery item' },
+      {
+        error: error.message || 'Failed to delete gallery item',
+      },
       { status: 500 }
     );
   }

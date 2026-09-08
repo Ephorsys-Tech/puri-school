@@ -248,7 +248,7 @@ export default function ContactPage() {
                       className={`w-full rounded-md border bg-cream/10 px-4 py-3 text-cream outline-none transition-colors placeholder:text-cream/40 focus:border-gold ${
                         errors.name ? 'border-amber-400' : 'border-cream/20'
                       }`}
-                      placeholder="Your name (letters only)"
+                      placeholder="Your Name"
                     />
                     {errors.name && (
                       <p className="mt-1 text-xs font-semibold text-amber-300 flex items-center gap-1">
@@ -268,7 +268,7 @@ export default function ContactPage() {
                       className={`w-full rounded-md border bg-cream/10 px-4 py-3 text-cream outline-none transition-colors placeholder:text-cream/40 focus:border-gold ${
                         errors.phone ? 'border-amber-400' : 'border-cream/20'
                       }`}
-                      placeholder="10-digit number starting 6,7,8,9"
+                      placeholder="Enter Your Number"
                     />
                     {errors.phone && (
                       <p className="mt-1 text-xs font-semibold text-amber-300 flex items-center gap-1">
