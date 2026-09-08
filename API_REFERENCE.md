@@ -1,6 +1,29 @@
-# Puri School - Backend API (Login Only)
+# Puri School - Backend API
 
 ## API Endpoints
+
+### 0. Register Admin (POST /api/auth/register)
+Create a new admin account.
+
+**Request Body:**
+```json
+{
+  "email": "newadmin@school.org",
+  "password": "SecurePassword123"
+}
+```
+
+**Response (201 Created):**
+```json
+{
+  "message": "Admin registered successfully",
+  "admin": {
+    "id": "65a8d2b9c1e2f3g4h5i6j7k8",
+    "email": "newadmin@school.org",
+    "createdAt": "2026-09-08T12:00:00.000Z"
+  }
+}
+```
 
 ### 1. Login (POST /api/auth/login)
 Admin login to get tokens.
@@ -8,7 +31,7 @@ Admin login to get tokens.
 **Request:**
 ```json
 {
-  "email": "adminpurischool@gmail.com",
+  "email": "c",
   "password": "Puri@2026"
 }
 ```

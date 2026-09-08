@@ -29,7 +29,7 @@ export default function ChairmanMessage() {
 
               <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-black leading-tight">
                 Message from the <br/>
-                <span className="text-gold">Chairman</span>
+                <span className="text-gold">Secretary</span>
               </h2>
             </div>
             
@@ -53,10 +53,10 @@ export default function ChairmanMessage() {
             <div className="pt-4 border-t border-white/10 flex items-center gap-4">
               <div>
                 <h4 className="font-heading text-lg sm:text-xl font-bold text-white">
-                  Mr. Rajesh Verma
+                  Mr. Ratan Barik
                 </h4>
                 <p className="text-gold font-semibold tracking-wide text-xs uppercase mt-1">
-                  Chairman, Usthi Foundation India School
+                  Secretary, Usthi Foundation India School
                 </p>
               </div>
             </div>

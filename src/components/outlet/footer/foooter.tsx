@@ -26,13 +26,13 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-3 lg:col-span-2 lg:max-w-[520px]">
             <Link href="/" className="flex items-center gap-3 mb-4 group">
               {/* Logo */}
-            <div className="w-14 h-14 lg:w-16 lg:h-16 rounded-full overflow-hidden">
-              <img
-                src="images/logo.png"
-                alt="School Logo"
-                className="w-full h-full object-cover"
-              />
-            </div>
+              <div className="w-14 h-14 lg:w-16 lg:h-16 rounded-full overflow-hidden">
+                <img
+                  src="images/logo.png"
+                  alt="School Logo"
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <span className="font-heading text-2xl md:text-3xl font-bold tracking-tight text-cream leading-tight">
                 Usthi Foundation India School
               </span>
@@ -49,16 +49,10 @@ export default function Footer() {
                 <BsYoutube size={18} />
               </a>
               <a
-                href="#"
+                href=""
                 className="w-11 h-11 rounded-full glass-navy flex items-center justify-center text-gold hover:bg-gold hover:text-navy transition-all duration-300"
               >
-                <FaTwitter size={18} />
-              </a>
-              <a
-                href="#"
-                className="w-11 h-11 rounded-full glass-navy flex items-center justify-center text-gold hover:bg-gold hover:text-navy transition-all duration-300"
-              >
-                <FaInstagram size={18} />
+                <FaFacebookF size={18} />
               </a>
             </div>
           </div>
@@ -115,9 +109,19 @@ export default function Footer() {
                   Usthi Foundation India School, Water works Road Puri, Near to Indoor Stadium, Puri, Odisha
                 </span>
               </li>
-              <li className="flex items-center gap-3">
-                <MdPhone className="text-gold shrink-0" size={20} />
-                <span className="text-cream/80 text-sm md:text-base">+91 7853822264</span>
+              <li className="flex items-start gap-3">
+                <MdPhone className="text-gold shrink-0 mt-1" size={20} />
+                <div className="flex flex-col gap-1">
+                  <a href="tel:+917853822264" className="text-cream/80 text-sm md:text-base hover:text-gold transition-colors">
+                    +91 78538 22264
+                  </a>
+                  <a href="tel:+919439392033" className="text-cream/80 text-sm md:text-base hover:text-gold transition-colors">
+                    +91 94393 92033
+                  </a>
+                  <a href="tel:+919439392033" className="text-cream/80 text-sm md:text-base hover:text-gold transition-colors">
+                    +91 98613 33254
+                  </a>
+                </div>
               </li>
               <li className="flex items-center gap-3">
                 <MdEmail className="text-gold shrink-0" size={20} />
@@ -130,7 +134,7 @@ export default function Footer() {
 
         <div className="border-t border-cream/10 pt-8 flex flex-col lg:flex-row justify-between items-center gap-4 text-cream/60 text-sm">
           <p className="text-center lg:text-left">&copy; {new Date().getFullYear()} Usthi Foundation School Puri. All rights reserved.</p>
-          
+
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/privacy-policy" className="hover:text-gold transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-gold transition-colors">Terms of Service</Link>

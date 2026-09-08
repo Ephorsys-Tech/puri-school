@@ -5,9 +5,9 @@ import { motion } from 'framer-motion';
 
 export default function AboutSchool() {
   const stats = [
-    { label: 'Teachers', value: '50+' },
-    { label: 'Students', value: '800+' },
-    { label: 'Years', value: '15+' },
+    { label: 'Teachers', value: '30+' },
+    { label: 'Students', value: '8000+' },
+    { label: 'Years', value: '34+' },
     { label: 'Excellence', value: '100%' },
   ];
 

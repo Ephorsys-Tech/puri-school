@@ -7,7 +7,7 @@ export default function Subjects() {
   const classSubjects = [
     { level: 'Nursery & KG', subjects: ['English', 'Mathematics', 'Environmental Awareness', 'Art & Craft', 'Music', 'Physical Education'] },
     { level: 'Class 1 - 5', subjects: ['English', 'Hindi', 'Odia', 'Mathematics', 'EVS', 'Computer Basics', 'Physical Education'] },
-    { level: 'Class 6 - 8', subjects: ['English', 'Hindi', 'Odia', 'Mathematics', 'Science', 'Social Science', 'Computer Science'] },
+    { level: 'Class 6 - 8', subjects: ['English', 'Hindi', 'Odia/Sanskrit', 'Mathematics', 'Science', 'Social Studies', 'Computer Science'] },
     { level: 'Class 9 - 10', subjects: ['English', 'Mathematics', 'Science', 'Social Science', 'IT/Computer', 'Optional Languages'] }
   ];
 

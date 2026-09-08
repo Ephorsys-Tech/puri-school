@@ -75,7 +75,7 @@ export default function PrincipalMessage() {
             <div className="pt-4 border-t border-navy/10 flex items-center gap-4">
               <div>
                 <h4 className="font-heading text-lg sm:text-xl font-bold text-navy">
-                  Dr. A. Sharma
+                  Dr. Amit Kumar Kar
                 </h4>
                 <p className="text-blue font-semibold tracking-wide text-xs uppercase mt-1">
                   Principal, Usthi Foundation India School
