@@ -47,7 +47,7 @@ export default function AdmissionsPage() {
       <AdmissionProcess />
       <Eligibility />
       <RequiredDocuments />
-      <FeeStructure />
+      {/* <FeeStructure /> */}
     </main>
   );
 }

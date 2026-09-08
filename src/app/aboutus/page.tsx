@@ -14,7 +14,7 @@ export default function AboutPage() {
       <PrincipalMessage />
       <ChairmanMessage />
       <Achievements />
-      <Teachers />
+      {/* <Teachers /> */}
     </main>
   );
 }

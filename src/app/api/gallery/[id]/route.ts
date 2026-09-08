@@ -7,7 +7,7 @@ import { Types } from 'mongoose';
 // GET single gallery item
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await connectDB();
@@ -49,7 +49,7 @@ export async function GET(
 // PUT - Update gallery item (Admin only)
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Verify admin authentication
@@ -64,7 +64,7 @@ export async function PUT(
 
     await connectDB();
 
-    const { id } = params;
+    const { id } = await params;
 
     if (!Types.ObjectId.isValid(id)) {
       return NextResponse.json(
@@ -107,7 +107,7 @@ export async function PUT(
 // DELETE - Delete gallery item (Admin only)
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Verify admin authentication

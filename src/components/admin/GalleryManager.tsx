@@ -36,18 +36,24 @@ export default function GalleryManager() {
     }
   };
 
+  const [submitting, setSubmitting] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitting(true);
     try {
       if (editingImage) {
         await apiAuth.put(`/api/gallery/${editingImage._id}`, formData);
       } else {
         await apiAuth.post('/api/gallery', formData);
       }
-      fetchImages();
+      await fetchImages();
       closeModal();
     } catch {
       alert('Failed to save gallery item');
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -58,6 +64,7 @@ export default function GalleryManager() {
 
   const confirmDelete = async () => {
     if (!imageToDelete) return;
+    setDeleting(true);
     try {
       await apiAuth.delete(`/api/gallery/${imageToDelete}`);
       setImages(images.filter(img => img._id !== imageToDelete));
@@ -65,6 +72,8 @@ export default function GalleryManager() {
       setImageToDelete(null);
     } catch {
       alert('Failed to delete');
+    } finally {
+      setDeleting(false);
     }
   };
 
@@ -274,16 +283,24 @@ export default function GalleryManager() {
                 <button 
                   type="button" 
                   onClick={closeModal}
-                  className="flex-1 rounded-xl bg-navy/5 py-4 text-xs font-black uppercase tracking-[0.18em] text-navy/45 transition-all hover:bg-navy/10 hover:text-navy"
+                  disabled={submitting}
+                  className="flex-1 rounded-xl bg-navy/5 py-4 text-xs font-black uppercase tracking-[0.18em] text-navy/45 transition-all hover:bg-navy/10 hover:text-navy disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Discard
                 </button>
                 <button 
                   type="submit" 
-                  disabled={uploading || !formData.imageUrl}
-                  className="flex-1 rounded-xl bg-blue py-4 text-xs font-black uppercase tracking-[0.18em] text-white shadow-xl shadow-blue-500/20 transition-all hover:scale-[1.02] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-30 disabled:grayscale"
+                  disabled={submitting || uploading || !formData.imageUrl}
+                  className="flex-1 rounded-xl bg-blue py-4 text-xs font-black uppercase tracking-[0.18em] text-white shadow-xl shadow-blue-500/20 transition-all hover:scale-[1.02] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 disabled:grayscale flex items-center justify-center gap-2"
                 >
-                  {editingImage ? 'Update' : 'Archive'}
+                  {submitting ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      <span>{editingImage ? 'Updating...' : 'Archiving...'}</span>
+                    </>
+                  ) : (
+                    <span>{editingImage ? 'Update' : 'Archive'}</span>
+                  )}
                 </button>
               </div>
             </form>
@@ -305,15 +322,24 @@ export default function GalleryManager() {
             <div className="flex gap-4">
               <button 
                 onClick={() => setIsDeleteModalOpen(false)}
-                className="flex-grow py-4 bg-navy/5 rounded-xl font-black text-xs uppercase tracking-[0.2em] text-navy/40 hover:bg-navy/10 hover:text-navy transition-all"
+                disabled={deleting}
+                className="flex-grow py-4 bg-navy/5 rounded-xl font-black text-xs uppercase tracking-[0.2em] text-navy/40 hover:bg-navy/10 hover:text-navy transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Cancel
               </button>
               <button 
                 onClick={confirmDelete}
-                className="flex-grow py-4 bg-red-500 text-white rounded-xl font-black text-xs uppercase tracking-[0.2em] shadow-xl shadow-red-500/20 hover:bg-red-600 transition-all"
+                disabled={deleting}
+                className="flex-grow py-4 bg-red-500 text-white rounded-xl font-black text-xs uppercase tracking-[0.2em] shadow-xl shadow-red-500/20 hover:bg-red-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
-                Delete
+                {deleting ? (
+                  <>
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <span>Deleting...</span>
+                  </>
+                ) : (
+                  <span>Delete</span>
+                )}
               </button>
             </div>
           </div>

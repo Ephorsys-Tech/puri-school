@@ -7,7 +7,7 @@ export default function Library() {
   const statistics = [
     { number: '5000+', label: 'Physical Books' },
     { number: '500+', label: 'E-Resources' },
-    { number: '24/7', label: 'Digital Access' },
+    { number: '24/7', label: 'Wifi Access' },
     { number: '50+', label: 'Journals' }
   ];
 

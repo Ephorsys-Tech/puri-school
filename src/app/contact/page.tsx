@@ -2,15 +2,85 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Mail, MapPin, Phone, Send, Clock, MessageCircle } from 'lucide-react';
+import { Mail, MapPin, Phone, Send, Clock, MessageCircle, AlertCircle } from 'lucide-react';
+import { contactSchema } from '@/lib/validations/contactSchema';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [serverError, setServerError] = useState<string | null>(null);
+
+  const validateField = (field: keyof typeof formData, value: string) => {
+    const updatedForm = { ...formData, [field]: value };
+    const validation = contactSchema.safeParse(updatedForm);
+    if (!validation.success) {
+      const fieldErrors = validation.error.flatten().fieldErrors;
+      setErrors(prev => ({
+        ...prev,
+        [field]: fieldErrors[field]?.[0] || ''
+      }));
+    } else {
+      setErrors(prev => ({
+        ...prev,
+        [field]: ''
+      }));
+    }
+  };
+
+  const handleChange = (field: keyof typeof formData, rawValue: string) => {
+    let filteredValue = rawValue;
+
+    if (field === 'name') {
+      // Disallow numbers and symbols in Name field
+      filteredValue = rawValue.replace(/[^A-Za-z\s]/g, '');
+    } else if (field === 'phone') {
+      // Disallow letters in Phone field, cap at 10 digits
+      filteredValue = rawValue.replace(/\D/g, '').slice(0, 10);
+    }
+
+    setFormData(prev => ({ ...prev, [field]: filteredValue }));
+    if (errors[field]) {
+      validateField(field, filteredValue);
+    }
+  };
+
+  const handleNameKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    // Block numbers 0-9 from keypress in Name field
+    if (/^[0-9]$/.test(e.key)) {
+      e.preventDefault();
+    }
+  };
+
+  const handlePhoneKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    // Block alphabetic letters from keypress in Phone field
+    if (/^[a-zA-Z]$/.test(e.key)) {
+      e.preventDefault();
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setServerError(null);
+
+    // Validate with Zod
+    const validation = contactSchema.safeParse(formData);
+    if (!validation.success) {
+      const fieldErrors = validation.error.flatten().fieldErrors;
+      const formattedErrors: Record<string, string> = {};
+      Object.keys(fieldErrors).forEach(key => {
+        const fieldKey = key as keyof typeof fieldErrors;
+        if (fieldErrors[fieldKey]?.[0]) {
+          formattedErrors[fieldKey] = fieldErrors[fieldKey]![0]!;
+        }
+      });
+      setErrors(formattedErrors);
+      return;
+    }
+
+    setErrors({});
     setStatus('loading');
+
     try {
       const response = await fetch('/api/messages', {
         method: 'POST',
@@ -20,17 +90,30 @@ export default function ContactPage() {
         body: JSON.stringify(formData),
       });
 
+      const resData = await response.json();
+
       if (!response.ok) {
-        throw new Error('Failed to send message');
+        throw new Error(resData.error || 'Failed to send message');
       }
 
       setStatus('success');
       setFormData({ name: '', email: '', phone: '', message: '' });
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error sending message:', error);
+      setServerError(error.message || 'Message could not be sent. Please try again.');
       setStatus('error');
     }
   };
+
+  React.useEffect(() => {
+    if (status === 'success' || status === 'error') {
+      const timer = setTimeout(() => {
+        setStatus('idle');
+        setServerError(null);
+      }, 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [status]);
 
   return (
     <main className="flex-grow bg-cream text-navy">
@@ -152,30 +235,46 @@ export default function ContactPage() {
               <span className="text-sm font-black uppercase tracking-[0.22em] text-gold">Send a Message</span>
               <h2 className="mt-3 font-heading text-4xl font-black text-cream">Tell us how we can help</h2>
 
-              <form onSubmit={handleSubmit} className="mt-8 grid gap-5">
+              <form onSubmit={handleSubmit} className="mt-8 grid gap-5" noValidate>
                 <div className="grid gap-5 md:grid-cols-2">
                   <label className="block">
                     <span className="mb-2 block text-sm font-semibold text-cream/80">Full Name <span className="text-gold">*</span></span>
                     <input
                       type="text"
-                      required
                       value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full rounded-md border border-cream/20 bg-cream/10 px-4 py-3 text-cream outline-none transition-colors placeholder:text-cream/40 focus:border-gold"
-                      placeholder="Your name"
+                      onChange={(e) => handleChange('name', e.target.value)}
+                      onKeyDown={handleNameKeyDown}
+                      onBlur={() => validateField('name', formData.name)}
+                      className={`w-full rounded-md border bg-cream/10 px-4 py-3 text-cream outline-none transition-colors placeholder:text-cream/40 focus:border-gold ${
+                        errors.name ? 'border-amber-400' : 'border-cream/20'
+                      }`}
+                      placeholder="Your name (letters only)"
                     />
+                    {errors.name && (
+                      <p className="mt-1 text-xs font-semibold text-amber-300 flex items-center gap-1">
+                        <AlertCircle size={12} /> {errors.name}
+                      </p>
+                    )}
                   </label>
 
                   <label className="block">
                     <span className="mb-2 block text-sm font-semibold text-cream/80">Phone Number <span className="text-gold">*</span></span>
                     <input
                       type="tel"
-                      required
                       value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full rounded-md border border-cream/20 bg-cream/10 px-4 py-3 text-cream outline-none transition-colors placeholder:text-cream/40 focus:border-gold"
-                      placeholder="+91"
+                      onChange={(e) => handleChange('phone', e.target.value)}
+                      onKeyDown={handlePhoneKeyDown}
+                      onBlur={() => validateField('phone', formData.phone)}
+                      className={`w-full rounded-md border bg-cream/10 px-4 py-3 text-cream outline-none transition-colors placeholder:text-cream/40 focus:border-gold ${
+                        errors.phone ? 'border-amber-400' : 'border-cream/20'
+                      }`}
+                      placeholder="10-digit number starting 6,7,8,9"
                     />
+                    {errors.phone && (
+                      <p className="mt-1 text-xs font-semibold text-amber-300 flex items-center gap-1">
+                        <AlertCircle size={12} /> {errors.phone}
+                      </p>
+                    )}
                   </label>
                 </div>
 
@@ -184,22 +283,37 @@ export default function ContactPage() {
                   <input
                     type="email"
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full rounded-md border border-cream/20 bg-cream/10 px-4 py-3 text-cream outline-none transition-colors placeholder:text-cream/40 focus:border-gold"
+                    onChange={(e) => handleChange('email', e.target.value)}
+                    onBlur={() => validateField('email', formData.email)}
+                    className={`w-full rounded-md border bg-cream/10 px-4 py-3 text-cream outline-none transition-colors placeholder:text-cream/40 focus:border-gold ${
+                      errors.email ? 'border-amber-400' : 'border-cream/20'
+                    }`}
                     placeholder="you@example.com"
                   />
+                  {errors.email && (
+                    <p className="mt-1 text-xs font-semibold text-amber-300 flex items-center gap-1">
+                      <AlertCircle size={12} /> {errors.email}
+                    </p>
+                  )}
                 </label>
 
                 <label className="block">
                   <span className="mb-2 block text-sm font-semibold text-cream/80">Message <span className="text-gold">*</span></span>
                   <textarea
-                    required
                     rows={5}
                     value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full resize-none rounded-md border border-cream/20 bg-cream/10 px-4 py-3 text-cream outline-none transition-colors placeholder:text-cream/40 focus:border-gold"
-                    placeholder="Write your question here"
+                    onChange={(e) => handleChange('message', e.target.value)}
+                    onBlur={() => validateField('message', formData.message)}
+                    className={`w-full resize-none rounded-md border bg-cream/10 px-4 py-3 text-cream outline-none transition-colors placeholder:text-cream/40 focus:border-gold ${
+                      errors.message ? 'border-amber-400' : 'border-cream/20'
+                    }`}
+                    placeholder="Write your question here (minimum 5 characters)"
                   ></textarea>
+                  {errors.message && (
+                    <p className="mt-1 text-xs font-semibold text-amber-300 flex items-center gap-1">
+                      <AlertCircle size={12} /> {errors.message}
+                    </p>
+                  )}
                 </label>
 
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
@@ -208,18 +322,32 @@ export default function ContactPage() {
                     disabled={status === 'loading'}
                     className="inline-flex items-center justify-center gap-2 rounded-md bg-gold px-8 py-4 font-black text-navy transition-colors hover:bg-amber hover:text-cream disabled:cursor-not-allowed disabled:opacity-70"
                   >
-                    <Send size={20} />
-                    {status === 'loading' ? 'Sending...' : 'Send Message'}
+                    {status === 'loading' ? (
+                      <>
+                        <div className="w-5 h-5 border-2 border-navy border-t-transparent rounded-full animate-spin"></div>
+                        <span>Sending...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Send size={20} />
+                        <span>Send Message</span>
+                      </>
+                    )}
                   </button>
 
                   {status === 'success' && <p className="text-sm font-semibold text-green-300">Message sent successfully.</p>}
-                  {status === 'error' && <p className="text-sm font-semibold text-red-300">Message could not be sent. Please try again.</p>}
+                  {status === 'error' && (
+                    <p className="text-sm font-semibold text-amber-300 flex items-center gap-1">
+                      <AlertCircle size={14} /> {serverError || 'Message could not be sent. Please check inputs.'}
+                    </p>
+                  )}
                 </div>
               </form>
             </div>
           </div>
         </div>
       </section>
+
 
       <section className="bg-accent pb-20 pt-16 lg:pb-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

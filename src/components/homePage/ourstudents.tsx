@@ -1,47 +1,64 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Icon, Trophy, TrophyIcon, Users } from "lucide-react";
+import { Users, TrophyIcon } from "lucide-react";
+import { Student } from "@/types";
+
+const fallbackStudents = [
+  {
+    _id: "default-1",
+    class: "Class 8",
+    image:
+      "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=800",
+    highlight: "Debate Champion",
+  },
+  {
+    _id: "default-2",
+    class: "Class 10",
+    image:
+      "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=800",
+    highlight: "Football Team Captain",
+  },
+  {
+    _id: "default-3",
+    class: "Class 9",
+    image:
+      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800",
+    highlight: "Art & Painting",
+  },
+  {
+    _id: "default-4",
+    class: "Class 7",
+    image:
+      "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=800",
+    highlight: "Science Fair Winner",
+  },
+];
 
 export default function Students() {
-  const students = [
-    {
-      id: 1,
-      name: "Riya Das",
-      class: "Class 8",
-      image:
-        "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=800",
-      highlight: "Debate Champion",
-      Icon: TrophyIcon,
-    },
-    {
-      id: 2,
-      name: "Aman Behera",
-      class: "Class 10",
-      image:
-        "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=800",
-      highlight: "Football Team Captain",
-      Icon: TrophyIcon,
-    },
-    {
-      id: 3,
-      name: "Sanjana Rout",
-      class: "Class 9",
-      image:
-        "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800",
-      highlight: "Art & Painting",
-      Icon: TrophyIcon,
-    },
-    {
-      id: 4,
-      name: "Rahul Sahu",
-      class: "Class 7",
-      image:
-        "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=800",
-      highlight: "Science Fair Winner",
-      Icon: TrophyIcon,
-    },
-  ];
+  const [students, setStudents] = useState<Student[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchStudents();
+  }, []);
+
+  const fetchStudents = async () => {
+    try {
+      const res = await fetch("/api/students");
+      const data = await res.json();
+      if (data.data && Array.isArray(data.data) && data.data.length > 0) {
+        setStudents(data.data);
+      } else {
+        setStudents(fallbackStudents as Student[]);
+      }
+    } catch (err) {
+      console.error("Failed to fetch dynamic students:", err);
+      setStudents(fallbackStudents as Student[]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section className="pt-15 bg-accent">
@@ -58,45 +75,51 @@ export default function Students() {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-8">
-          {students.map((student) => (
-            <motion.div
-              key={student.id}
-              whileHover={{ y: -8 }}
-              className="group cursor-pointer"
-            >
-              <div className="relative overflow-hidden rounded-3xl aspect-4/5 shadow-xl">
-                <img
-                  src={student.image}
-                  alt={student.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                />
+        {loading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-8">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="aspect-4/5 rounded-3xl bg-navy/5 animate-pulse"></div>
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-8">
+            {students.map((student) => (
+              <motion.div
+                key={student._id}
+                whileHover={{ y: -8 }}
+                className="group cursor-pointer"
+              >
+                <div className="relative overflow-hidden rounded-3xl aspect-4/5 shadow-xl bg-navy/10">
+                  <img
+                    src={student.image}
+                    alt={student.class}
+                    className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                  />
 
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-linear-to-t from-navy/90 via-transparent to-transparent"></div>
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/30 to-transparent"></div>
 
-                {/* Highlight */}
-                <div
-                  className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-white/20 backdrop-blur-md px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-white/20 shadow-md"
-                >
-                  <div className="flex items-center gap-2 text-white text-[10px] sm:text-xs font-medium whitespace-nowrap">
-                    <span>{student.highlight}</span>
+                  {/* Highlight text overlay on bottom of card */}
+                  <div className="absolute bottom-4 left-4 right-4 text-white">
+                    <div className="flex items-center gap-1.5 mb-1">
+                      <TrophyIcon className="text-amber-400 shrink-0" size={14} />
+                      <span className="text-xs font-semibold text-amber-300 truncate">
+                        {student.highlight}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Info */}
-              <div className="text-center mt-4">
-                <h3 className="font-heading text-xl font-bold text-navy">
-                  {student.name}
-                </h3>
-                <p className="text-blue text-sm font-semibold uppercase tracking-wider">
-                  {student.class}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+                {/* Info */}
+                <div className="text-center mt-4">
+                  <p className="text-blue text-sm font-semibold uppercase tracking-wider">
+                    {student.class}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
 
         {/* Bottom Highlight Section */}
         <div className="mt-12 bg-white rounded-3xl p-10 text-center shadow-xl">

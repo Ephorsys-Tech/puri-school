@@ -13,13 +13,14 @@ import {
   Menu,
   X,
   School,
-  Mail
+  Mail,
+  GraduationCap
 } from 'lucide-react';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
-  activeTab: 'gallery' | 'messages';
-  setActiveTab: (tab: 'gallery' | 'messages') => void;
+  activeTab: 'gallery' | 'messages' | 'students';
+  setActiveTab: (tab: 'gallery' | 'messages' | 'students') => void;
 }
 
 export default function DashboardLayout({ children, activeTab, setActiveTab }: DashboardLayoutProps) {
@@ -73,6 +74,18 @@ export default function DashboardLayout({ children, activeTab, setActiveTab }: D
 
           <div className="flex-grow space-y-2">
             <button
+              onClick={() => setActiveTab('students')}
+              className={`w-full p-3 rounded-xl flex items-center gap-3 transition-all ${
+                activeTab === 'students'
+                  ? 'bg-gold/10 text-gold'
+                  : 'text-cream/60 hover:bg-white/5 hover:text-cream'
+              }`}
+            >
+              <GraduationCap size={20} />
+              <span className="font-bold">Our Students</span>
+            </button>
+
+            <button
               onClick={() => setActiveTab('gallery')}
               className={`w-full p-3 rounded-xl flex items-center gap-3 transition-all ${
                 activeTab === 'gallery'
@@ -95,6 +108,7 @@ export default function DashboardLayout({ children, activeTab, setActiveTab }: D
               <Mail size={20} />
               <span className="font-bold">Messages</span>
             </button>
+
 
             <Link
               href="/"
