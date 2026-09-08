@@ -49,7 +49,7 @@ export default function Footer() {
                 <BsYoutube size={18} />
               </a>
               <a
-                href=""
+                href="https://www.facebook.com/share/1UcfExndi5/"
                 className="w-11 h-11 rounded-full glass-navy flex items-center justify-center text-gold hover:bg-gold hover:text-navy transition-all duration-300"
               >
                 <FaFacebookF size={18} />
