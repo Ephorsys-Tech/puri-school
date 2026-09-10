@@ -58,7 +58,7 @@ export default function RequiredDocuments() {
           ))}
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <motion.div 
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -95,7 +95,7 @@ export default function RequiredDocuments() {
               className="w-full h-full object-cover"
             />
           </motion.div>
-        </div>
+        </div> */}
 
       </div>
     </section>
