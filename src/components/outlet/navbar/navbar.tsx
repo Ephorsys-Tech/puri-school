@@ -38,7 +38,7 @@ export default function Navbar() {
       {/* Navbar */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white">
         <div className="max-w-330 mx-auto px-6 lg:px-10 flex items-center justify-between h-20 lg:h-22">
-          
+
           {/* Logo */}
           <Link href="/" className="flex items-center select-none">
             <div className="w-14 h-14 lg:w-16 lg:h-16 rounded-full overflow-hidden">
@@ -62,10 +62,9 @@ export default function Navbar() {
                     font-semibold uppercase
                     tracking-[0.12em] lg:tracking-[0.15em] xl:tracking-[0.18em]
                     transition-all duration-300
-                    ${
-                      isActive(to)
-                        ? "text-[#159ABF]"
-                        : "text-gray-800 hover:text-[#159ABF]/90"
+                    ${isActive(to)
+                      ? "text-[#159ABF]"
+                      : "text-gray-800 hover:text-[#159ABF]/90"
                     }
                   `}
                 >
@@ -92,17 +91,15 @@ export default function Navbar() {
 
       {/* Overlay */}
       <div
-        className={`fixed inset-0 z-60 bg-black/50 backdrop-blur-sm transition-opacity ${
-          menuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
+        className={`fixed inset-0 z-60 bg-black/50 backdrop-blur-sm transition-opacity ${menuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
         onClick={() => setMenuOpen(false)}
       />
 
       {/* Mobile Drawer */}
       <aside
-        className={`fixed top-0 left-0 h-full w-[320px] z-70 bg-white px-6 py-6 shadow-2xl transition-transform duration-300 ease-out ${
-          menuOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`fixed top-0 left-0 h-full w-[320px] z-70 bg-white px-6 py-6 shadow-2xl transition-transform duration-300 ease-out ${menuOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
       >
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
@@ -134,10 +131,9 @@ export default function Navbar() {
                 text-sm font-semibold uppercase
                 tracking-[0.14em]
                 transition-all
-                ${
-                  isActive(to)
-                    ? "bg-[#159ABF]/10 text-[#159ABF]"
-                    : "text-gray-700 hover:bg-[#159ABF]/5 hover:text-[#159ABF]"
+                ${isActive(to)
+                  ? "bg-[#159ABF]/10 text-[#159ABF]"
+                  : "text-gray-700 hover:bg-[#159ABF]/5 hover:text-[#159ABF]"
                 }
               `}
             >
