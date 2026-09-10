@@ -22,7 +22,7 @@ type Slide = {
 
 const slides: Slide[] = [
   {
-    img: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1600&q=80",
+    img: "https://res.cloudinary.com/dfdi9ngal/image/upload/v1789036963/purischl_d8repn.jpg",
     heading: "Empower",
     highlight: "Every Child",
     tail: "With Education",
@@ -32,7 +32,7 @@ const slides: Slide[] = [
     link: "/about",
   },
   {
-    img: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=1600&q=80",
+    img: "https://res.cloudinary.com/dfdi9ngal/image/upload/v1789036473/IMG-20260815-WA0006.jpg_ywrbjo.jpg",
     heading: "Building",
     highlight: "Bright Futures",
     tail: "Since 1992",
@@ -42,7 +42,7 @@ const slides: Slide[] = [
     link: "/gallery",
   },
   {
-    img: "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=1600&q=80",
+    img: "https://res.cloudinary.com/dfdi9ngal/image/upload/v1789036604/IMG-20260711-WA0012.jpg_xhe2nh.jpg",
     heading: "Support",
     highlight: "Talent & Growth",
     tail: "In Every Child",
