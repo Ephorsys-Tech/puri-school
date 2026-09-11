@@ -123,33 +123,35 @@ export default function GalleryManager() {
   });
 
   return (
-    <div className="space-y-10 animate-[fadeUp_0.4s_ease-out]">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-        <div className="space-y-1 mt-12">
-          <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-black text-navy tracking-tight">Gallery Manager</h1>
-          <p className="text-navy/40 font-medium tracking-wide flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-blue animate-pulse"></span>
+    <div className="space-y-6 sm:space-y-10 animate-[fadeUp_0.4s_ease-out]">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-6">
+        <div className="space-y-1">
+          <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-navy tracking-tight">
+            Gallery Manager
+          </h1>
+          <p className="text-navy/60 text-xs sm:text-sm font-medium tracking-wide flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-blue animate-pulse shrink-0"></span>
             Manage school memories across all pages
           </p>
         </div>
         <button 
           onClick={() => openModal()}
-          className="bg-blue text-white px-8 py-4 rounded-[1.5rem] font-bold flex items-center gap-3 hover:scale-105 active:scale-95 transition-all shadow-xl shadow-blue-500/20"
+          className="w-full sm:w-auto bg-blue text-white px-6 py-3.5 sm:px-8 sm:py-4 rounded-[1.25rem] sm:rounded-[1.5rem] font-bold flex items-center justify-center gap-2.5 hover:scale-105 active:scale-95 transition-all shadow-xl shadow-blue-500/20 text-sm sm:text-base shrink-0"
         >
           <Plus size={20} /> Add New Memory
         </button>
       </div>
 
       {/* Category Tabs */}
-      <div className="flex flex-wrap gap-3 pb-2 border-b border-navy/5">
+      <div className="flex gap-2 sm:gap-3 pb-3 border-b border-navy/5 overflow-x-auto no-scrollbar scroll-smooth">
         {(['all', 'event', 'activity', 'achievement'] as const).map((cat) => (
           <button
             key={cat}
             onClick={() => setActiveFilter(cat)}
-            className={`px-6 py-2.5 rounded-full font-black text-xs uppercase tracking-[0.2em] transition-all ${
+            className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full font-black text-[10px] sm:text-xs uppercase tracking-[0.18em] transition-all shrink-0 ${
               activeFilter === cat 
                 ? 'bg-blue text-white shadow-lg' 
-                : 'bg-navy/5 text-navy/40 hover:bg-navy/10'
+                : 'bg-navy/5 text-navy/50 hover:bg-navy/10'
             }`}
           >
             {cat}
@@ -159,41 +161,41 @@ export default function GalleryManager() {
 
       {/* Grid */}
       {loading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {[...Array(8)].map((_, i) => (
-            <div key={i} className="h-64 rounded-3xl bg-navy/5 animate-pulse"></div>
+            <div key={i} className="h-56 sm:h-64 rounded-3xl bg-navy/5 animate-pulse"></div>
           ))}
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {(Array.isArray(filteredImages) ? filteredImages : []).map((img) => (
-            <div key={img._id} className="group relative aspect-square rounded-[2rem] overflow-hidden border-4 border-white shadow-lg hover:shadow-2xl transition-all duration-500">
+            <div key={img._id} className="group relative aspect-[4/3] sm:aspect-square rounded-2xl sm:rounded-[2rem] overflow-hidden border-2 sm:border-4 border-white shadow-lg hover:shadow-2xl transition-all duration-500">
               <img 
                 src={img.imageUrl} 
                 alt={`${img.category} gallery memory`}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4 sm:p-6">
                 <div className="flex gap-2">
-                  <button onClick={() => openModal(img)} className="flex-grow py-3 bg-white/20 backdrop-blur-md text-white rounded-xl flex items-center justify-center hover:bg-blue transition-colors">
+                  <button onClick={() => openModal(img)} className="flex-grow py-2.5 sm:py-3 bg-white/25 backdrop-blur-md text-white rounded-xl flex items-center justify-center hover:bg-blue transition-colors active:scale-95">
                     <Pencil size={18} />
                   </button>
-                  <button onClick={() => openDeleteModal(img._id)} className="flex-grow py-3 bg-white/20 backdrop-blur-md text-red-400 rounded-xl flex items-center justify-center hover:bg-red-500 hover:text-white transition-colors">
+                  <button onClick={() => openDeleteModal(img._id)} className="flex-grow py-2.5 sm:py-3 bg-white/25 backdrop-blur-md text-red-400 rounded-xl flex items-center justify-center hover:bg-red-500 hover:text-white transition-colors active:scale-95">
                     <Trash2 size={18} />
                   </button>
                 </div>
               </div>
-              <div className="absolute top-4 left-4">
-                <span className="px-3 py-1 bg-white/90 backdrop-blur-md text-navy text-[8px] font-black uppercase tracking-[0.2em] rounded-full shadow-sm">
+              <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
+                <span className="px-2.5 py-1 bg-white/90 backdrop-blur-md text-navy text-[8px] sm:text-[9px] font-black uppercase tracking-[0.18em] rounded-full shadow-sm">
                   {img.category}
                 </span>
               </div>
             </div>
           ))}
           {filteredImages.length === 0 && (
-            <div className="col-span-full py-32 text-center border-4 border-dashed border-navy/5 rounded-[3rem]">
-              <ImageIcon size={64} className="mx-auto text-navy/10 mb-6" />
-              <p className="text-navy/20 text-xl font-bold italic tracking-wide">No memories captured in this category yet.</p>
+            <div className="col-span-full py-20 sm:py-32 text-center border-2 sm:border-4 border-dashed border-navy/10 rounded-2xl sm:rounded-[3rem] px-4">
+              <ImageIcon size={56} className="mx-auto text-navy/15 mb-4 sm:mb-6" />
+              <p className="text-navy/40 text-base sm:text-xl font-bold italic tracking-wide">No memories captured in this category yet.</p>
             </div>
           )}
         </div>
