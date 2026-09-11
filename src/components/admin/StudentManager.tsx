@@ -143,15 +143,15 @@ export default function StudentManager() {
   };
 
   return (
-    <div className="space-y-10 animate-[fadeUp_0.4s_ease-out]">
+    <div className="space-y-6 sm:space-y-10 animate-[fadeUp_0.4s_ease-out]">
       {/* Header & Counter */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-        <div className="space-y-1 mt-12">
-          <div className="flex items-center gap-3">
-            <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-black text-navy tracking-tight">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-6">
+        <div className="space-y-1">
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+            <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-navy tracking-tight">
               Our Students
             </h1>
-            <span className={`px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest ${
+            <span className={`px-3 py-1 sm:px-4 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-black uppercase tracking-widest ${
               students.length >= 4 
                 ? 'bg-amber-100 text-amber-800 border border-amber-300' 
                 : 'bg-emerald-100 text-emerald-800 border border-emerald-300'
@@ -159,8 +159,8 @@ export default function StudentManager() {
               {students.length} / 4 Slots Used
             </span>
           </div>
-          <p className="text-navy/40 font-medium tracking-wide flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-blue animate-pulse"></span>
+          <p className="text-navy/60 text-xs sm:text-sm font-medium tracking-wide flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-blue animate-pulse shrink-0"></span>
             Manage highlighted star students shown on the homepage (Max 4)
           </p>
         </div>
@@ -169,7 +169,7 @@ export default function StudentManager() {
           onClick={() => openModal()}
           disabled={students.length >= 4}
           title={students.length >= 4 ? 'Maximum 4 students allowed' : 'Add Student'}
-          className={`px-8 py-4 rounded-[1.5rem] font-bold flex items-center gap-3 transition-all shadow-xl ${
+          className={`w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 rounded-[1.25rem] sm:rounded-[1.5rem] font-bold flex items-center justify-center gap-2.5 transition-all shadow-xl text-sm sm:text-base shrink-0 ${
             students.length >= 4
               ? 'bg-gray-300 text-gray-500 cursor-not-allowed shadow-none'
               : 'bg-blue text-white hover:scale-105 active:scale-95 shadow-blue-500/20'
@@ -181,9 +181,9 @@ export default function StudentManager() {
 
       {/* Global Limit Banner if 4 students exist */}
       {students.length >= 4 && (
-        <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-800 flex items-center gap-3">
+        <div className="p-3.5 sm:p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-800 flex items-center gap-3">
           <AlertCircle size={20} className="shrink-0 text-amber-600" />
-          <p className="text-sm font-semibold">
+          <p className="text-xs sm:text-sm font-semibold">
             Maximum limit of 4 students reached. To add a new student, please edit or delete one of the current students.
           </p>
         </div>
@@ -191,19 +191,19 @@ export default function StudentManager() {
 
       {/* Grid */}
       {loading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {[...Array(4)].map((_, i) => (
-            <div key={i} className="h-80 rounded-3xl bg-navy/5 animate-pulse"></div>
+            <div key={i} className="h-72 sm:h-80 rounded-3xl bg-navy/5 animate-pulse"></div>
           ))}
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {students.map((student) => (
             <div 
               key={student._id} 
-              className="group relative rounded-[2rem] overflow-hidden border-4 border-white shadow-lg hover:shadow-2xl transition-all duration-500 bg-white flex flex-col"
+              className="group relative rounded-2xl sm:rounded-[2rem] overflow-hidden border-2 sm:border-4 border-white shadow-lg hover:shadow-2xl transition-all duration-500 bg-white flex flex-col"
             >
-              <div className="relative aspect-[4/5] overflow-hidden bg-navy/5">
+              <div className="relative aspect-[4/5] sm:aspect-[4/5] overflow-hidden bg-navy/5">
                 <img 
                   src={student.image} 
                   alt={student.class}
@@ -212,29 +212,29 @@ export default function StudentManager() {
                 <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
                 
                 {/* Actions Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity bg-navy/40 backdrop-blur-xs">
+                <div className="absolute inset-0 flex items-center justify-center gap-3 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity bg-navy/30 lg:bg-navy/40 backdrop-blur-xs">
                   <button 
                     onClick={() => openModal(student)} 
-                    className="p-3 bg-white text-navy rounded-xl hover:bg-blue hover:text-white transition-colors shadow-lg"
+                    className="p-3 bg-white text-navy rounded-xl hover:bg-blue hover:text-white transition-colors shadow-lg active:scale-95"
                     title="Edit Student"
                   >
-                    <Pencil size={20} />
+                    <Pencil size={18} />
                   </button>
                   <button 
                     onClick={() => openDeleteModal(student)} 
-                    className="p-3 bg-white text-red-500 rounded-xl hover:bg-red-500 hover:text-white transition-colors shadow-lg"
+                    className="p-3 bg-white text-red-500 rounded-xl hover:bg-red-500 hover:text-white transition-colors shadow-lg active:scale-95"
                     title="Delete Student"
                   >
-                    <Trash2 size={20} />
+                    <Trash2 size={18} />
                   </button>
                 </div>
 
                 {/* Badge Overlay */}
-                <div className="absolute bottom-4 left-4 right-4 text-white">
-                  <span className="px-3 py-1 bg-blue text-white text-[10px] font-black uppercase tracking-[0.2em] rounded-full shadow-sm">
+                <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 text-white">
+                  <span className="px-2.5 py-1 bg-blue text-white text-[10px] font-black uppercase tracking-[0.2em] rounded-full shadow-sm">
                     {student.class}
                   </span>
-                  <p className="mt-2 text-sm font-bold truncate text-white/90">
+                  <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm font-bold truncate text-white/90">
                     {student.highlight}
                   </p>
                 </div>
@@ -243,9 +243,9 @@ export default function StudentManager() {
           ))}
 
           {students.length === 0 && (
-            <div className="col-span-full py-32 text-center border-4 border-dashed border-navy/5 rounded-[3rem]">
-              <GraduationCap size={64} className="mx-auto text-navy/10 mb-6" />
-              <p className="text-navy/30 text-xl font-bold italic tracking-wide">
+            <div className="col-span-full py-20 sm:py-32 text-center border-2 sm:border-4 border-dashed border-navy/10 rounded-2xl sm:rounded-[3rem] px-4">
+              <GraduationCap size={56} className="mx-auto text-navy/15 mb-4 sm:mb-6" />
+              <p className="text-navy/40 text-base sm:text-xl font-bold italic tracking-wide">
                 No students added yet. Click &quot;Add New Student&quot; to create up to 4 student highlights.
               </p>
             </div>

@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import AdmissionProcess from '@/components/admissionsPage/AdmissionProcess';
 import Eligibility from '@/components/admissionsPage/Eligibility';
 import RequiredDocuments from '@/components/admissionsPage/RequiredDocuments';
-import FeeStructure from '@/components/admissionsPage/FeeStructure';
 
 export default function AdmissionsPage() {
   return (
@@ -47,7 +46,6 @@ export default function AdmissionsPage() {
       <AdmissionProcess />
       <Eligibility />
       <RequiredDocuments />
-      {/* <FeeStructure /> */}
     </main>
   );
 }
