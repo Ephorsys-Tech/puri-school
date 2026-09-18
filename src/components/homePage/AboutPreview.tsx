@@ -18,7 +18,7 @@ export default function AboutPreview() {
             </h2>
 
             <p className="text-cream/80 text-base sm:text-lg leading-relaxed">
-              Founded under the aegis of Usthi Foundation India, GNO Project
+              Founded under the aegis of Usthi Foundation India, NGO
               School provides quality education with strong values. We remove
               barriers so every student can reach their full potential.
             </p>
@@ -38,12 +38,6 @@ export default function AboutPreview() {
               ))}
             </ul>
 
-            <Link
-              href="/about"
-              className="inline-block mt-4 text-gold border-b-2 border-gold pb-1 hover:text-amber hover:border-amber transition duration-300 font-bold uppercase tracking-wide text-sm sm:text-base"
-            >
-              Discover Our Vision
-            </Link>
           </div>
 
           <div className="relative w-full">
@@ -51,7 +45,7 @@ export default function AboutPreview() {
             <div className="relative w-full h-65 sm:h-80 md:h-100 lg:h-112.5 rounded-2xl overflow-hidden shadow-xl">
               
               <Image
-                src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1200&q=80"
+                src="https://res.cloudinary.com/dfdi9ngal/image/upload/v1789037072/IMG-20260711-WA0020.jpg_umm4tj.jpg"
                 alt="School"
                 fill
                 className="object-cover"

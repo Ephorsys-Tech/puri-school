@@ -2,8 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '@/lib/mongodb';
 import Message from '@/models/Message';
 import { verifyAuth } from '@/middleware/auth';
+import { contactSchema } from '@/lib/validations/contactSchema';
 
-// GET all messages (Admin only)
+// GET all messages with pagination (Admin only, limit=20 per page)
 export async function GET(request: NextRequest) {
   try {
     // Verify admin authentication
@@ -18,12 +19,29 @@ export async function GET(request: NextRequest) {
 
     await connectDB();
 
-    const messages = await Message.find().sort({ createdAt: -1 });
+    const searchParams = request.nextUrl.searchParams;
+    const page = Math.max(1, parseInt(searchParams.get('page') || '1', 10));
+    const limit = Math.max(1, parseInt(searchParams.get('limit') || '20', 10));
+    const skip = (page - 1) * limit;
+
+    const total = await Message.countDocuments();
+    const messages = await Message.find()
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit);
+
+    const totalPages = Math.ceil(total / limit) || 1;
 
     return NextResponse.json(
       {
         message: 'Messages fetched successfully',
         data: messages,
+        pagination: {
+          total,
+          page,
+          totalPages,
+          limit,
+        },
       },
       { status: 200 }
     );
@@ -36,23 +54,32 @@ export async function GET(request: NextRequest) {
   }
 }
 
-// POST - Create message (Public)
+// POST - Create message (Public, validated via Zod)
 export async function POST(request: NextRequest) {
   try {
-    await connectDB();
+    const body = await request.json();
 
-    const { name, email, phone, message } = await request.json();
-
-    if (!name || !phone || !message) {
+    // Validate request body using Zod schema
+    const validation = contactSchema.safeParse(body);
+    if (!validation.success) {
+      const fieldErrors = validation.error.flatten().fieldErrors;
+      const firstErrorMessage = Object.values(fieldErrors).flat()[0] || 'Validation failed';
       return NextResponse.json(
-        { error: 'Name, phone and message are required' },
+        {
+          error: firstErrorMessage,
+          details: fieldErrors,
+        },
         { status: 400 }
       );
     }
 
+    const { name, email, phone, message } = validation.data;
+
+    await connectDB();
+
     const newMessage = await Message.create({
       name,
-      email,
+      email: email || '',
       phone,
       message,
     });

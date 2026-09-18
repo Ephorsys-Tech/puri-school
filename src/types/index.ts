@@ -1,3 +1,13 @@
+export interface Student {
+  _id: string;
+  class: string;
+  highlight: string;
+  image: string;
+  publicId?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 export interface GalleryImage {
   _id: string;
   imageUrl: string;
@@ -34,3 +44,4 @@ export interface LoginResponse {
     email: string;
   };
 }
+

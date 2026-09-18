@@ -6,7 +6,7 @@ import GalleryManager from '@/components/admin/GalleryManager';
 
 export default function GalleryDashboardPage() {
   return (
-    <DashboardLayout>
+    <DashboardLayout activeTab="gallery" setActiveTab={() => {}}>
       <GalleryManager />
     </DashboardLayout>
   );

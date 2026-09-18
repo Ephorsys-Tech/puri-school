@@ -17,6 +17,11 @@ const sourceSans = Source_Sans_3({
 export const metadata: Metadata = {
   title: 'Usthi Foundation India School - Puri',
   description: 'Usthi Foundation India, Puri School',
+  icons: {
+    icon: '/images/logo.png',
+    shortcut: '/images/logo.png',
+    apple: '/images/logo.png',
+  },
 };
 
 export default function RootLayout({

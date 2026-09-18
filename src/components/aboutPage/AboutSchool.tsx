@@ -5,9 +5,9 @@ import { motion } from 'framer-motion';
 
 export default function AboutSchool() {
   const stats = [
-    { label: 'Teachers', value: '50+' },
-    { label: 'Students', value: '800+' },
-    { label: 'Years', value: '15+' },
+    { label: 'Teachers', value: '30+' },
+    { label: 'Students', value: '8000+' },
+    { label: 'Years', value: '34+' },
     { label: 'Excellence', value: '100%' },
   ];
 
@@ -56,7 +56,7 @@ export default function AboutSchool() {
           >
             <div className="absolute inset-0 bg-linear-to-br from-blue to-gold rounded-4xl transform rotate-3 scale-105 opacity-20 blur-xl"></div>
             <img 
-              src="https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=1200&auto=format&fit=crop" 
+              src="https://res.cloudinary.com/dfdi9ngal/image/upload/v1789037072/IMG-20260711-WA0020.jpg_umm4tj.jpg" 
               alt="Students learning" 
               className="relative w-full h-150 object-cover rounded-4xl shadow-2xl border-4 border-white"
             />
